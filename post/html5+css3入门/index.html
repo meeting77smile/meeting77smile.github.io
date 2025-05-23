@@ -1,0 +1,1869 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="auto"
+  >
+  <head><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  HTML5&#43;CSS3入门 | meeting_smile
+</title>
+<meta
+  name="description"
+  content="未来一定是要笑着谈的(*≧▽≦)ツ"
+/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"https://meeting77smile.github.io/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_0khxww3tj3q9\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/css/loader.min.ac746e154f756f8220326eeb52a719f142ab038be5a8ddf30ea5ef15ef2356ea.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="HTML5&#43;CSS3入门 | meeting_smile" />
+  <meta
+    property="og:description"
+    content="未来一定是要笑着谈的(*≧▽≦)ツ"
+  />
+  <meta property="og:url" content="https://meeting77smile.github.io/post/html5&#43;css3%E5%85%A5%E9%97%A8/" />
+  <meta
+    property="og:site_name"
+    content="meeting_smile&#39;s blog"
+  />
+  <meta
+    property="og:image"
+    content="https://img0.baidu.com/it/u=523234089,1058084480&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=800&amp;h=1029"
+  />
+  <meta property="article:author" content="meeting_smile" />
+  <meta property="article:published_time" content="2024-11-01T22:11:00-07:00" />
+  <meta property="article:modified_time" content="2025-05-23T13:37:00-07:00" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="https://img0.baidu.com/it/u=523234089,1058084480&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=800&amp;h=1029" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.min.0de2add787a47bd659c0fa4a4ac0fb62637faac5dfe00cdd147a2be59d04bf69.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.11/dist/katex.min.css"
+    integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm&#43;ZU03BU6SQNC66uf4l5&#43;" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css"
+    integrity="sha384-4NN3fZ5AokFyHuoihl7A9qWaCt&#43;HsAtOaUsXwJGRb4/SMBtFr2vcNSHR5E8dg0Wk" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">马上就好~</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script><div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="lang-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+本文章没有找到对应的语言版本
+</div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav"><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/">首页</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/archives">归档</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/about">关于</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/friend">友链</a>
+      </span><a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a></nav></div>
+<header id="header"><picture></picture>
+    <img crossorigin="anonymous" fetchpriority="high" src="https://img0.baidu.com/it/u=523234089,1058084480&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=800&amp;h=1029" alt="HTML5&#43;CSS3入门"><div id="header-outer">
+    <div id="header-title"><a href="/" id="logo">
+            <h1 data-aos="slide-up">HTML5&#43;CSS3入门</h1>
+          </a><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          
+          class="sidebar-right"  ><aside id="sidebar"><div class="sidebar-wrapper wrap-sticky">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-基础知识">1. 基础知识</a>
+      <ul>
+        <li><a href="#11-网页的相关概念">1.1 网页的相关概念</a></li>
+        <li><a href="#12-web标准">1.2 Web标准</a></li>
+        <li><a href="#13-vscode常用快捷键">1.3 VSCode常用快捷键</a></li>
+        <li><a href="#14-vscode在网页中显示运行结果">1.4 VSCode在网页中显示运行结果</a></li>
+        <li><a href="#15-常用插件">1.5 常用插件</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-html5">2. HTML5</a>
+      <ul>
+        <li><a href="#21-html基本结构标签">2.1 HTML基本结构标签</a></li>
+        <li><a href="#22-html常用标签">2.2 HTML常用标签</a></li>
+      </ul>
+    </li>
+    <li><a href="#3css">3.CSS</a>
+      <ul>
+        <li><a href="#31-了解css">3.1 了解CSS</a></li>
+        <li><a href="#32-语法规范">3.2 语法规范</a></li>
+        <li><a href="#33-选择器">3.3 选择器</a></li>
+        <li><a href="#331-基础选择器">3.3.1 基础选择器</a></li>
+        <li><a href="#33-css中的常用属性">3.3 CSS中的常用属性</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="meeting_smile"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">meeting_smile</div>
+  <div class="sidebar-description">未来一定是要笑着谈的(*≧▽≦)ツ</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">6</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social"></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div>
+
+  <div class="sidebar-widget"></div></aside>
+<section id="main"><article
+  class="h-entry article"
+  itemprop="blogPost"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link"
+    data-aos="zoom-in"
+  >
+    <time datetime="2024-11-01 22:11:00 -0700 -0700" itemprop="datePublished"
+      >2024-11-01</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-05-23</time
+    >
+  </span>
+</div>
+<div class="article-category"></div>
+</div>
+    <div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="html5css3">
+<a class="header-anchor" href="#html5css3"></a>
+HTML5+CSS3
+</h1><h2 id="1-基础知识">
+<a class="header-anchor" href="#1-%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86"></a>
+1. 基础知识
+</h2><h3 id="11-网页的相关概念">
+<a class="header-anchor" href="#11-%e7%bd%91%e9%a1%b5%e7%9a%84%e7%9b%b8%e5%85%b3%e6%a6%82%e5%bf%b5"></a>
+1.1 网页的相关概念
+</h3><ul>
+<li>
+<p>网站：指在因特网上根据一定的规则，使用HTML等制作的用于展示特定内容相关的网页集合。</p>
+</li>
+<li>
+<p>网页：是构成网站的基本元素，它通常由图片、链接、文字、声音、视频等元素组成。通常我们看到的网页，一般是以.htm或.html后缀结尾的文件，因此将其俗称为HTML文件。</p>
+</li>
+</ul>
+<h3 id="12-web标准">
+<a class="header-anchor" href="#12-web%e6%a0%87%e5%87%86"></a>
+1.2 Web标准
+</h3><ul>
+<li>
+<p>为什么要使用Web标准：不同的浏览器显示或者排版会有差异，为了可以让开发人员写出的页面更标准、更统一，因此需要一个统一的标准</p>
+</li>
+<li>
+<p>构成：主要包括结构（Structure)、表现（Presentation）和行为（Behavior）三个方面。结构类似身体、表现类似外观装饰、行为类似动作，三者中结构最重要。</p>
+</li>
+<li>
+<p>不同构成的说明：<strong>结构</strong>用于对网页元素进行整理和分类，一般写在HTML文件里；<strong>表现</strong>用于设置网页元素的版式、颜色、大小等外观形式，一般写在CSS文件里；<strong>行为</strong>是指网页模型的定义及交互的编写，现阶段写在JavaScript文件 里。</p>
+</li>
+</ul>
+<h3 id="13-vscode常用快捷键">
+<a class="header-anchor" href="#13-vscode%e5%b8%b8%e7%94%a8%e5%bf%ab%e6%8d%b7%e9%94%ae"></a>
+1.3 VSCode常用快捷键
+</h3><ul>
+<li>
+<p><strong><!-- raw HTML omitted -->shift+alt+下箭头(上箭头）<!-- raw HTML omitted --></strong>：快速<strong>将一行代码复制</strong>到下一行。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted --><strong>ctrl+d</strong><!-- raw HTML omitted -->:选定多个<strong>相同的单词</strong>。先双击选定一个单词，然后按下ctrl+d再松开可以依次往下选择相同的单词，这样同样<!-- raw HTML omitted -->修改相同的单词<!-- raw HTML omitted -->就非常方便。</p>
+</li>
+<li>
+<p><strong><!-- raw HTML omitted -->ctrl+h<!-- raw HTML omitted --></strong>:<strong>全局替换某单词</strong>。先按下ctrl+h，再输入需要全局替换的单词，再点击“全部替换”。</p>
+<p>如：将“body”全部换为“b“：</p>
+<p><img src="images/d78685c8bca0326080987702815272d1b252ed07.png" alt=""></p>
+</li>
+<li>
+<p><strong><!-- raw HTML omitted -->ctrl+g<!-- raw HTML omitted --></strong>：快速<strong>定位到某一行</strong>。先按下ctrl+g，再输入需要定位到的行数，再按下回车即可。</p>
+<p><img src="images/18b776dd074711b3aa942aa5d82d54c90955414a.png" alt=""></p>
+</li>
+<li>
+<p><strong><!-- raw HTML omitted -->shift+alt+拖动鼠标<!-- raw HTML omitted --></strong>:选中一个代码区块。</p>
+<p><img src="images/b2827ea500f258e3a0fcfc179ecb50b429d71151.png" alt=""></p>
+<p>此快捷键可<strong>避免</strong>只用拖动鼠标时<strong>选中空格部分</strong>：</p>
+<p><img src="images/d6e43f1bba222ede8851cf3a6e1539c7076dce3f.png" alt=""></p>
+</li>
+<li>
+<p><strong><!-- raw HTML omitted -->自定义快捷键<!-- raw HTML omitted --></strong>：</p>
+<p>首先，点击”管理“</p>
+<p><img src="images/7b637e668e62b8076eccd9a498a67b512e5d9383.png" alt=""></p>
+<p>其次，点击”键盘快捷方式”</p>
+<p><img src="images/88ee85d3e16d24b17b2f810576933049bcbbaa12.png" alt=""></p>
+<p>接着，打字输入想要更改的快捷键：</p>
+<p><img src="images/5209e1c966b357969af20e2fa9b4f76e9c2ad591.png" alt=""></p>
+<p>点击需要更改的快捷键，再按照一定次序按下想要更改成的按键（注意：此时是按键盘上的按键，而不是打字输入），即可完成快捷键的更改。</p>
+<p><img src="images/d6d80030bd6ec0a687a72cb180e64933d5a01ed5.png" alt=""></p>
+</li>
+</ul>
+<h3 id="14-vscode在网页中显示运行结果">
+<a class="header-anchor" href="#14-vscode%e5%9c%a8%e7%bd%91%e9%a1%b5%e4%b8%ad%e6%98%be%e7%a4%ba%e8%bf%90%e8%a1%8c%e7%bb%93%e6%9e%9c"></a>
+1.4 VSCode在网页中显示运行结果
+</h3><ul>
+<li>
+<p>首先，在VSCode的“扩展”中搜索“Live Server”插件并安装：</p>
+<p><img src="images/c1e01b855dc53fee073e1a506c0e97802dc76611.png" alt=""></p>
+</li>
+<li>
+<p>安装完后，当代码写完时，右键点击鼠标，再点击”Open with Live Sever“即可在浏览器中看到运行结果。</p>
+</li>
+</ul>
+<h3 id="15-常用插件">
+<a class="header-anchor" href="#15-%e5%b8%b8%e7%94%a8%e6%8f%92%e4%bb%b6"></a>
+1.5 常用插件
+</h3><ul>
+<li>
+<p><!-- raw HTML omitted -->HTML Boilerplate<!-- raw HTML omitted --></p>
+<p>下载后输入html，选择<!-- raw HTML omitted -->html5-boilerplate<!-- raw HTML omitted -->后按下<!-- raw HTML omitted -->TAB键<!-- raw HTML omitted -->即可自动补全。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->Chinese (Simplified)<!-- raw HTML omitted --></p>
+<p>简体中文插件</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->Auto Rename Tag<!-- raw HTML omitted --></p>
+<p>修改标签时前后两个标签可同时被修改。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->One Dark Pro<!-- raw HTML omitted --></p>
+<p>比较好看的颜色主题</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->Live Server<!-- raw HTML omitted --></p>
+<p>在<!-- raw HTML omitted -->浏览器中<!-- raw HTML omitted -->实时预览页面。使用时需要<!-- raw HTML omitted -->用vscode打开文件所在的文件夹<!-- raw HTML omitted -->
+如：新建一个文件夹，然后拖到vscode里，然后在vscode中新建html文件，即可使用</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->Live Preview<!-- raw HTML omitted --></p>
+<p>在<!-- raw HTML omitted -->VS code<!-- raw HTML omitted -->中实时预览页面。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->Easy Less<!-- raw HTML omitted --></p>
+<p>我们写的less不能直接引入html文件，这个插件可以帮我们生成css文件。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->CSS Peek<!-- raw HTML omitted --></p>
+</li>
+</ul>
+<h2 id="2-html5">
+<a class="header-anchor" href="#2-html5"></a>
+2. HTML5
+</h2><h3 id="21-html基本结构标签">
+<a class="header-anchor" href="#21-html%e5%9f%ba%e6%9c%ac%e7%bb%93%e6%9e%84%e6%a0%87%e7%ad%be"></a>
+2.1 HTML基本结构标签
+</h3><ul>
+<li>
+<p><strong><!-- raw HTML omitted --><!-- raw HTML omitted --></strong>：HTML标签，是页面中最大的标签，我们称为<!-- raw HTML omitted -->根标签<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p><strong><!-- raw HTML omitted --><!-- raw HTML omitted --></strong>：<!-- raw HTML omitted -->文档的头部<!-- raw HTML omitted -->，包含了title标签。</p>
+</li>
+<li>
+<p><strong><!-- raw HTML omitted --><!-- raw HTML omitted --></strong>：<!-- raw HTML omitted -->文档的标题<!-- raw HTML omitted -->，作用是让页面拥有一个属于自己的网页标题。</p>
+</li>
+</ul>
+<p><strong>示例代码：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1.0&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;这是网页标题&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><p><strong>运行效果：</strong></p>
+<p><img src="images/83d984c6a5ef4a240e6101168c848eb77917be0d.png" alt=""></p>
+<ul>
+<li>
+<p><strong><!-- raw HTML omitted --><!-- raw HTML omitted --></strong>：<!-- raw HTML omitted -->文档的主体<!-- raw HTML omitted -->，元素包含文档的所有内容，页面内容基本都是放到body里面的。</p>
+</li>
+<li>
+<p><strong><!-- raw HTML omitted --></strong>：<!-- raw HTML omitted -->文档类型声明<!-- raw HTML omitted -->标签(document type)，作用是告诉浏览器使用哪种HTML版本来显示网页。如<!-- raw HTML omitted -->的作用是告知浏览器当前页面采取的是HTML5版本来显示网页。</p>
+</li>
+<li>
+<p><strong><!-- raw HTML omitted --></strong>：用来定义当前文档显示的<!-- raw HTML omitted -->语言<!-- raw HTML omitted -->(language)&gt;。如定义en就是英语网页，zh-CN就是中文网页。（注意：实际上，定义成<!-- raw HTML omitted -->en<!-- raw HTML omitted -->的文档<!-- raw HTML omitted -->也可以显示中文<!-- raw HTML omitted -->，定义成zh-CN的文档也可以显示英文 ，但定义错误可能会出现一些问题，如当定义为en时，若出现的均为中文，则某些浏览器会<!-- raw HTML omitted -->提示<!-- raw HTML omitted -->“是否翻译为中文”，或者出现一些<!-- raw HTML omitted -->翻译错误<!-- raw HTML omitted -->。）</p>
+</li>
+<li>
+<p><strong><!-- raw HTML omitted --></strong>：用于<!-- raw HTML omitted -->定义<!-- raw HTML omitted -->HTML文档的<!-- raw HTML omitted -->元数据<!-- raw HTML omitted -->,它位于文档的头部，<!-- raw HTML omitted -->不包含内容<!-- raw HTML omitted -->，通常用于指定<!-- raw HTML omitted -->字符集<!-- raw HTML omitted -->、<!-- raw HTML omitted -->页面描述<!-- raw HTML omitted -->、<!-- raw HTML omitted -->关键词<!-- raw HTML omitted -->、<!-- raw HTML omitted -->文档作者<!-- raw HTML omitted -->和<!-- raw HTML omitted -->视口设置<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p><strong>charset</strong>：<!-- raw HTML omitted -->字符集<!-- raw HTML omitted -->。 常用的值有：GB2312、BIG5、GBK和UTF-8，其中常用的<!-- raw HTML omitted -->UTF-8<!-- raw HTML omitted -->也被成为<!-- raw HTML omitted -->万国码<!-- raw HTML omitted -->，基本包含了所有国家需要用到的字符。若不设定字符集的值或者设定错了，则会出现乱码，无法正常显示文字。</p>
+</li>
+</ul>
+<h3 id="22-html常用标签">
+<a class="header-anchor" href="#22-html%e5%b8%b8%e7%94%a8%e6%a0%87%e7%ad%be"></a>
+2.2 HTML常用标签
+</h3><ul>
+<li>
+<p><strong>1.标题标签</strong>：HTML共提供了<!-- raw HTML omitted -->6个等级<!-- raw HTML omitted -->的网页标签，即&lt; h1 &gt;-&lt; h6 &gt;。</p>
+<ul>
+<li>
+<p>&lt; h &gt;即<!-- raw HTML omitted -->head<!-- raw HTML omitted -->的缩写，意为标题。</p>
+</li>
+<li>
+<p>标签语义：写为标题使用，并且根据重要性<!-- raw HTML omitted -->递减<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p>使用方法：如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">h1</span>&gt;我是一级标题&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span></code></pre></div></li>
+<li>
+<p>特点：加了标题的文字会<!-- raw HTML omitted -->加粗<!-- raw HTML omitted -->、字体也会<!-- raw HTML omitted -->变大<!-- raw HTML omitted -->；一个标题<!-- raw HTML omitted -->独占一行<!-- raw HTML omitted -->。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>2.段落和换行标签</strong>：<!-- raw HTML omitted -->p<!-- raw HTML omitted -->标签用于定义<!-- raw HTML omitted -->段落<!-- raw HTML omitted -->，<!-- raw HTML omitted -->br<!-- raw HTML omitted -->标签用于<!-- raw HTML omitted -->换行<!-- raw HTML omitted --></p>
+<ul>
+<li>
+<p><strong>段落标签&lt; p &gt;</strong>：</p>
+<ul>
+<li>
+<p>p即paragraph的缩写，意为段落；br即break的缩写，意为打断、换行。</p>
+</li>
+<li>
+<p>当<!-- raw HTML omitted -->未使用p标签<!-- raw HTML omitted -->时，用<!-- raw HTML omitted -->回车或者空格均无法实现换行<!-- raw HTML omitted -->；文本在一个段落中会根据浏览器窗口的大小自动换行；段落和段落之间保有空隙。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>换行标签&lt; br &gt;</strong>：</p>
+<ul>
+<li>
+<p>br标签语义为强制换行，是个单标签；</p>
+</li>
+<li>
+<p>br标签只是简单地开始新的一行，跟段落不一样，段落之间会插入一些垂直的间距。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>3.文本格式化标签</strong></p>
+<ul>
+<li>
+<p><strong>加粗</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">strong</span>&gt;&lt;/<span style="color:#f92672">strong</span>&gt;或者&lt;<span style="color:#f92672">b</span>&gt;&lt;/<span style="color:#f92672">b</span>&gt;
+</span></span></code></pre></div></li>
+<li>
+<p><strong>倾斜</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">em</span>&gt;&lt;/<span style="color:#f92672">em</span>&gt;或者&lt;<span style="color:#f92672">i</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;
+</span></span></code></pre></div></li>
+<li>
+<p><strong>删除线</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">del</span>&gt;&lt;/<span style="color:#f92672">del</span>&gt;或者&lt;<span style="color:#f92672">s</span>&gt;&lt;/<span style="color:#f92672">s</span>&gt;
+</span></span></code></pre></div></li>
+<li>
+<p><strong>下划线</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">ins</span>&gt;&lt;/<span style="color:#f92672">ins</span>&gt;或者&lt;<span style="color:#f92672">u</span>&gt;&lt;/<span style="color:#f92672">u</span>&gt;
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>4.&lt; div &gt;和&lt; span &gt;标签</strong></p>
+<ul>
+<li>
+<p><strong>&lt; div &gt;</strong> 和 <strong>&lt; span &gt;</strong> 是没有语义的，它们就像是一个用来<!-- raw HTML omitted -->装内容的盒子<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p><strong>&lt; div &gt;标签</strong>：</p>
+<ul>
+<li>
+<p>div是division的缩写，表示分割、分区。</p>
+</li>
+<li>
+<p>div标签是用于布局的，但是现在<!-- raw HTML omitted -->一行只能放一个<!-- raw HTML omitted -->&lt; div &gt;，相当于一个大盒子：</p>
+<p><img src="images/1a87030abf22b74aa56686ee371384af3bfbac2a.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>&lt; span &gt;标签</strong>：</p>
+<ul>
+<li>
+<p>span意为跨度、跨距。</p>
+</li>
+<li>
+<p>span标签也用于布局，<!-- raw HTML omitted -->一行上可以有多个<!-- raw HTML omitted -->span，相当于一个小盒子：</p>
+<p><img src="images/c509a0fd55df126ce10983d86e3a126fa1681714.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>5.图像标签</strong></p>
+<ul>
+<li>
+<p><strong>图像标签</strong></p>
+<ul>
+<li>
+<p>在HTML标签中，<strong>&lt; img &gt;标签</strong>(image，意为图像)用于定义HTML页面中的<!-- raw HTML omitted -->图像<!-- raw HTML omitted -->。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;图像URL&#34;</span>/&gt;
+</span></span></code></pre></div></li>
+<li>
+<p><strong>src</strong>是img标签的<!-- raw HTML omitted -->必须属性<!-- raw HTML omitted -->，用于指定图像文件的路径和文件名。</p>
+</li>
+<li>
+<p>使用实例：当放入的是<!-- raw HTML omitted -->本地图片<!-- raw HTML omitted -->的路径时。</p>
+<p>首先，把所要使用的图片先放到网页文件中：</p>
+<p><img src="images/f803111762cf608dbc398aac19f7b8269a2bc341.png" alt=""></p>
+<p>之后，再把图片的文件名复制到引号中：</p>
+<p><img src="images/c97e5587565a82c291019071cc241f2f7feb8a53.png" alt=""></p>
+</li>
+<li>
+<p><strong>图像标签的其他属性</strong></p>
+<ul>
+<li>
+<p><strong>alt</strong>：<!-- raw HTML omitted -->图像无法显示时<!-- raw HTML omitted -->所<!-- raw HTML omitted -->显示的文字<!-- raw HTML omitted -->。属性值为文本。</p>
+</li>
+<li>
+<p><strong>title</strong>：<!-- raw HTML omitted -->鼠标放到图像<!-- raw HTML omitted -->上显示的<!-- raw HTML omitted -->文字<!-- raw HTML omitted -->。属性值为文本。</p>
+</li>
+<li>
+<p><strong>width</strong>：用于设置<!-- raw HTML omitted -->图像的宽度<!-- raw HTML omitted -->。属性值为像素。</p>
+</li>
+<li>
+<p><strong>height</strong>：用于设置<!-- raw HTML omitted -->图像的高度<!-- raw HTML omitted -->。属性值为像素。</p>
+<p>（注意：一般设置图像的高度和宽度时，最好<!-- raw HTML omitted -->只设置一项<!-- raw HTML omitted -->，如只设置宽度值时，高度会<!-- raw HTML omitted -->等比例变化<!-- raw HTML omitted -->。若同时设置图像的长度和宽度，则图像则可能无法按照正常的比例显示。</p>
+</li>
+<li>
+<p><strong>border</strong>：用于设置图像的<!-- raw HTML omitted -->边框粗细<!-- raw HTML omitted -->。属性值为像素。</p>
+</li>
+<li>
+<p>图像标签属性的注意点：</p>
+<ul>
+<li>
+<p>图像标签<!-- raw HTML omitted -->可以拥有多个属性<!-- raw HTML omitted -->，但必须写在标签名的后面。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->属性<!-- raw HTML omitted -->之间<!-- raw HTML omitted -->不分先后顺序<!-- raw HTML omitted -->，标签名与属性、属性与属性之间均以<!-- raw HTML omitted -->空格分开<!-- raw HTML omitted --></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>6.超链接标签</strong></p>
+<ul>
+<li>
+<p><strong>&lt; a &gt;</strong> 标签(anchor，意为“锚”)用于定义超链接，作用是从一个<!-- raw HTML omitted -->页面跳转<!-- raw HTML omitted -->到另一个界面。</p>
+</li>
+<li>
+<p>链接的<strong>语法格式</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;跳转目标&#34;</span> <span style="color:#a6e22e">target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;目标窗口的弹出方式&#34;</span>&gt;文本或图像&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span></code></pre></div></li>
+<li>
+<p><strong>超链接标签的属性</strong></p>
+<ul>
+<li>
+<p><strong>href</strong>：用于指定链接<!-- raw HTML omitted -->目标的url地址<!-- raw HTML omitted -->,是<!-- raw HTML omitted -->必须属性<!-- raw HTML omitted -->,当标签运用了href属性时，它就具有了超链接功能。</p>
+</li>
+<li>
+<p><strong>target</strong>：用于指定链接页面的<!-- raw HTML omitted -->打开方式<!-- raw HTML omitted -->，其中 <strong>_self</strong> （默认值）为在当前窗口打开的打开方式； <strong>_blank、_top、_parent</strong>均为在新窗口打开的打开方式。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>链接分类：</strong></p>
+<ul>
+<li>
+<p><strong>外部链接</strong>：指非当前网页的<!-- raw HTML omitted -->其他网页的链接<!-- raw HTML omitted -->，注意需要在链接前加上<!-- raw HTML omitted -->http://<!-- raw HTML omitted -->，如<strong><a href="http://www.qq.com">http://www.qq.com</a></strong>。</p>
+</li>
+<li>
+<p><strong>内部链接</strong>：<!-- raw HTML omitted -->网站内部页面之间的<!-- raw HTML omitted -->相互链接，不用加上 <strong>http://</strong> ，直接链接内部页面名称即可，如当需要跳转的页面文件与当前页面文件在同一个文件夹时：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;index.html&#34;</span>&gt;首页&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span></code></pre></div></li>
+<li>
+<p><strong>空连接</strong>：当没有确定href里要写哪个链接时，可以用空链接：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#&#34;</span>&gt;文本或图像&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span></code></pre></div><p>（因为href为必须属性，故必须要写href，但此时又未确定写哪个链接，所以此时就可以使用空链接。实际上引号里也可不写东西）</p>
+</li>
+<li>
+<p><strong>下载链接</strong>：可以下载文件或压缩包的链接，<!-- raw HTML omitted -->点击该链接即可下载<!-- raw HTML omitted -->，如当需要下载的文件与当前页面文件在同一个文件夹时：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;img.zip&#34;</span>&gt;下载压缩包&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span></code></pre></div><p>（注：地址链接是如文件.exe，压缩包.zip等形式）</p>
+</li>
+<li>
+<p><strong>网页元素链接</strong>：在网页中的各种<!-- raw HTML omitted -->网页元素<!-- raw HTML omitted -->，如文本、图像、表格、音频、视频等都可以<!-- raw HTML omitted -->添加超链接<!-- raw HTML omitted -->，<!-- raw HTML omitted -->点击添加的网页元素即可打开<!-- raw HTML omitted -->相应的链接，如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.qq.com&#34;</span>&gt;&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;img.jpg&#34;</span>&gt;&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span></code></pre></div><p>即可实现<!-- raw HTML omitted -->点击图片进入其他网页<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p><strong>锚点链接</strong>：通过点击锚点链接，可以<!-- raw HTML omitted -->快速定位<!-- raw HTML omitted -->到<!-- raw HTML omitted -->当前页面的某个位置<!-- raw HTML omitted -->。使用步骤：</p>
+<ol>
+<li>
+<p>在链接文本的href属性中，设置属性值为<!-- raw HTML omitted -->#<!-- raw HTML omitted -->＋<!-- raw HTML omitted -->名字<!-- raw HTML omitted -->的形式，如</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#first&#34;</span>&gt;第一部分&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span></code></pre></div></li>
+<li>
+<p>找到<!-- raw HTML omitted -->目标位置标签<!-- raw HTML omitted -->，在里面<!-- raw HTML omitted -->添加一个id<!-- raw HTML omitted -->与先前用到的名字相同，如</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">h1</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;first&#34;</span>&gt;第一部分介绍&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span></code></pre></div></li>
+</ol>
+<p>（易错点： 别漏加 <strong>#</strong>  ！！！）</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>7.注释标签和特殊字符</strong></p>
+<ul>
+<li>
+<p><strong>注释标签</strong>：  <strong></strong> 。也可用快捷键<strong>ctrl+/</strong></p>
+</li>
+<li>
+<p><strong>特殊字符</strong>：在HTML页面中，一些特殊的符号很难或者不方便直接使用，此时我们就可以使用下面的字符来替代：</p>
+<p><img src="images/ef8a53769f4f23eccb8926e85b1df4d4ae7698b1.png" alt=""></p>
+<p>重点记空格、大于号、小于号这三个即可。（注意：别漏了写分号）</p>
+<p>使用示例：如当按下空格键时，运行之后文字之间并没有用空格隔开，此时在字符之间加上 &quot; <strong>&amp;nbsp</strong>&quot;   +    &quot; <strong>;</strong> &quot; 即可实现一个空格的效果，若想用多个空格隔开，就用多个该字符。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>8.表格标签</strong></p>
+<ul>
+<li>
+<p><strong>表格的基本语法</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>    &lt;<span style="color:#f92672">table</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">td</span>&gt;单元格内的文字&lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>            ...
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>        ...
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">table</span>&gt;
+</span></span></code></pre></div><p>其中：</p>
+<ol>
+<li>
+<p><strong>&lt; table &gt;&lt; /table &gt;</strong> 是用于<!-- raw HTML omitted -->定义表格<!-- raw HTML omitted -->的标签，相当于表格的框。</p>
+</li>
+<li>
+<p><strong>&lt; tr &gt;&lt; /tr &gt;</strong> （tr即table row)标签用于<!-- raw HTML omitted -->定义表格中行<!-- raw HTML omitted -->，必须嵌套在&lt; table &gt;&lt; /table &gt;标签中。</p>
+</li>
+<li>
+<p><strong>&lt; td &gt;&lt; /td &gt;</strong> (td即table date)用于定义表格中<!-- raw HTML omitted -->每一行<!-- raw HTML omitted -->的<!-- raw HTML omitted -->单元格<!-- raw HTML omitted -->，必须<!-- raw HTML omitted -->嵌套在&lt; tr &gt;&lt; /tr &gt;标签中<!-- raw HTML omitted -->。</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>表头单元格标签&lt; th &gt;</strong></p>
+<p>&lt; th &gt;标签表示HTML<!-- raw HTML omitted -->表格的表头部分<!-- raw HTML omitted -->（table head）。一般表头单元格位于<!-- raw HTML omitted -->表格的第一行或者第一列<!-- raw HTML omitted -->，表头单元格里面的文本内容<!-- raw HTML omitted -->加粗居中<!-- raw HTML omitted -->显示。使用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>    &lt;<span style="color:#f92672">table</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">th</span>&gt;表头单元格内的文字&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>            ...
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>        ...
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">table</span>&gt;
+</span></span></code></pre></div></li>
+<li>
+<p><strong>表格相关属性</strong></p>
+<ul>
+<li>
+<p><strong>align</strong>：规定<!-- raw HTML omitted -->整个表格<!-- raw HTML omitted -->相对周围元素的对齐方式。属性值有left、center、right。</p>
+</li>
+<li>
+<p><strong>border</strong>：规定表格单元<!-- raw HTML omitted -->是否拥有边框<!-- raw HTML omitted -->，默认为&quot;&quot;，表示没有边框。属性值为1或&quot;&quot;。</p>
+</li>
+<li>
+<p><strong>cellpadding</strong>：规定<!-- raw HTML omitted -->单元格边沿与其内容<!-- raw HTML omitted -->之间的空白，默认为1像素。属性值为像素。</p>
+</li>
+<li>
+<p><strong>cellspacing</strong>：规定<!-- raw HTML omitted -->单元格之间<!-- raw HTML omitted -->的空白，默认为2像素。属性值为像素。</p>
+</li>
+<li>
+<p><strong>width</strong>：规定<!-- raw HTML omitted -->表格的宽度<!-- raw HTML omitted -->。属性值为像素或百分比。</p>
+</li>
+<li>
+<p><strong>height</strong>：规定<!-- raw HTML omitted -->表格的高度<!-- raw HTML omitted -->。属性值为像素或百分比。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>表格的结构标签</strong>：</p>
+<p>在表格标签中，分别用 <strong><!-- raw HTML omitted --></strong> 标签表示表格表格的<!-- raw HTML omitted -->头部区域<!-- raw HTML omitted -->（注意：<!-- raw HTML omitted -->内部必须要拥有<!-- raw HTML omitted -->标签），<strong><!-- raw HTML omitted --></strong> 标签表示表格的<!-- raw HTML omitted -->主体区域<!-- raw HTML omitted -->，这样可以更好地分清表格结构。二者均放在&lt; table &gt;&lt; /table &gt;标签中</p>
+</li>
+<li>
+<p><strong>合并单元格</strong></p>
+<ul>
+<li>
+<p><strong>合并单元格方式</strong>：</p>
+<ul>
+<li>
+<p><!-- raw HTML omitted -->跨行<!-- raw HTML omitted -->合并：rowspan=&ldquo;合并单元格的个数&rdquo;。（注意：thead区域内的单元格无法与tbody区域内的单元格合并）</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->跨列<!-- raw HTML omitted -->合并：colspan=&ldquo;合并单元格的个数&rdquo;。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>合并单元格的步骤</strong>：</p>
+<ol>
+<li>
+<p>先<!-- raw HTML omitted -->确定合并<!-- raw HTML omitted -->单元格的<!-- raw HTML omitted -->方式<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p>找到<!-- raw HTML omitted -->目标单元格<!-- raw HTML omitted -->（若选择跨行合并，则目标单元格为最上侧单元格；若选择跨列合并，则目标单元格为最左侧单元格），在其标签内（&lt; td &gt;或&lt; th &gt;)写上合并方式。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->删除被合并的<!-- raw HTML omitted -->单元格。</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>9.列表标签</strong></p>
+<p>根据使用场景的不同，列表可分为三大类：<strong>无序列表</strong>、<strong>有序列表</strong>和<strong>自定义列表</strong>。</p>
+<ul>
+<li>
+<p><strong>无序列表</strong></p>
+<ul>
+<li>
+<p>基本语法格式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>    &lt;<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">li</span>&gt;列表1&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">li</span>&gt;列表2&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">li</span>&gt;列表3&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>        ...
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span></code></pre></div></li>
+<li>
+<p>注意：</p>
+<ol>
+<li>
+<p><!-- raw HTML omitted -->无序列表<!-- raw HTML omitted -->的<!-- raw HTML omitted -->各个列表之间没有顺序级别之分<!-- raw HTML omitted -->，是并列的。</p>
+</li>
+<li>
+<p>&lt; ul &gt;&lt; /ul &gt;中<!-- raw HTML omitted -->只能嵌套&lt; li &gt;&lt; /li &gt;<!-- raw HTML omitted -->，不能在其中输入其他标签或者文字。</p>
+</li>
+<li>
+<p>&lt; li &gt;&lt; /li &gt;之间可以<!-- raw HTML omitted -->容纳所有元素<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p>ul即unordered list，li即list。</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>有序列表</strong></p>
+<ul>
+<li>
+<p>基本语法格式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>    &lt;<span style="color:#f92672">ol</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">li</span>&gt;列表1&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">li</span>&gt;列表2&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">li</span>&gt;列表3&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>        ...
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">ol</span>&gt;
+</span></span></code></pre></div></li>
+<li>
+<p>注意：</p>
+<ol>
+<li>
+<p>有序列表的各个列表之间<!-- raw HTML omitted -->有顺序<!-- raw HTML omitted -->级别之分。</p>
+</li>
+<li>
+<p>&lt; li &gt;&lt; /li &gt;之间可以容纳所有元素。</p>
+</li>
+<li>
+<p>有序列表会带有自己的样式属性，（即默认列表前带有序号），我们会使用CSS来设置。</p>
+</li>
+<li>
+<p>ol即 ordered list。</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>自定义列表</strong></p>
+<ul>
+<li>
+<p>基本语法格式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">dl</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">dt</span>&gt;列表1&lt;/<span style="color:#f92672">dt</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">dt</span>&gt;列表2&lt;/<span style="color:#f92672">dt</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">dt</span>&gt;列表3&lt;/<span style="color:#f92672">dt</span>&gt;
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">ol</span>&gt;
+</span></span></code></pre></div><p>其中<!-- raw HTML omitted -->dl<!-- raw HTML omitted -->即definition lists，用于定义列表；<!-- raw HTML omitted -->dt<!-- raw HTML omitted -->即define list title，用于定义项目/名字；<!-- raw HTML omitted -->dd<!-- raw HTML omitted -->即definition description（自定义列表描述），用于描述项目。</p>
+</li>
+<li>
+<p>注意：</p>
+<ol>
+<li>
+<p>&lt; dl &gt;&lt; /dl &gt;里面<!-- raw HTML omitted -->只能包含&lt; dt &gt;和&lt; dd &gt;<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p>&lt; dt &gt;和&lt; dd &gt;个数没有限制，但一般是<!-- raw HTML omitted -->一个 &lt; dt &gt;对应多个&lt; dd &gt;<!-- raw HTML omitted -->。（但dt和dd是<!-- raw HTML omitted -->并列关系<!-- raw HTML omitted -->，不是包含关系！）</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>10.表单标签</strong></p>
+<p>一个完整的表单通常由<!-- raw HTML omitted -->表单域<!-- raw HTML omitted -->、<!-- raw HTML omitted -->表单控件<!-- raw HTML omitted -->（也称为表单元素）和<!-- raw HTML omitted -->提示信息<!-- raw HTML omitted -->3个部分构成。</p>
+<ul>
+<li>
+<p><strong>表单域</strong></p>
+<ul>
+<li>
+<p>基本语法格式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;url地址&#34;</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;提交方式&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;表单名称&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  各种表单元素控件
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">form</span>&gt;
+</span></span></code></pre></div></li>
+<li>
+<p>常用属性</p>
+<ul>
+<li>
+<p><strong>action</strong>：用于<!-- raw HTML omitted -->指定<!-- raw HTML omitted -->接受并处理表单数据的服务器的<!-- raw HTML omitted -->url地址<!-- raw HTML omitted -->。属性值是url地址。</p>
+</li>
+<li>
+<p><strong>method</strong>：用于设置<!-- raw HTML omitted -->表单数据的提交方式<!-- raw HTML omitted -->。属性值是get或post。</p>
+</li>
+<li>
+<p><strong>name</strong>：用于设置<!-- raw HTML omitted -->表单的名称<!-- raw HTML omitted -->，以便于区分同一个页面中的不同表单域。属性值为名称。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>表单控件（表单元素）</strong></p>
+<ul>
+<li>
+<p>表单元素就是允许用户在表单中<!-- raw HTML omitted -->输入<!-- raw HTML omitted -->或<!-- raw HTML omitted -->选择<!-- raw HTML omitted -->的内容控件。</p>
+</li>
+<li>
+<p><strong>&lt; input &gt;表单输入元素</strong></p>
+<ul>
+<li>
+<p>&lt; input &gt;标签用于<!-- raw HTML omitted -->收集用户信息<!-- raw HTML omitted --></p>
+</li>
+<li>
+<p><strong>基本语法</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;属性值&#34;</span>/&gt;
+</span></span></code></pre></div></li>
+<li>
+<p><strong><!-- raw HTML omitted -->type<!-- raw HTML omitted --></strong> 的常用属性值：</p>
+<p><img src="images/029a5562fb4e44ddef430bad857155e6f12aad61.png" alt=""></p>
+<ul>
+<li><strong>radio</strong> 实现<!-- raw HTML omitted -->单选<!-- raw HTML omitted -->功能：将选项的name属性赋予相同的属性值。</li>
+</ul>
+</li>
+<li>
+<p>除type属性外,&lt; input &gt;标签还有其他很多属性，常用属性如下：</p>
+<p><img src="images/cc188ccf171e31476c84044923880a9e0a856cc3.png" alt=""></p>
+<ul>
+<li>
+<p><strong>name</strong>和<strong>value</strong>是每个表单元素都有都的属性值，主要给后台人员使用。</p>
+</li>
+<li>
+<p><strong>name</strong>指表单元素的名字，要求<!-- raw HTML omitted -->单选按钮<!-- raw HTML omitted -->和<!-- raw HTML omitted -->复选框<!-- raw HTML omitted -->要有<!-- raw HTML omitted -->相同的name值<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p><strong>checked</strong>属性主要针对与单选按钮和复选框，主要作用是使得一打开界面就可以<!-- raw HTML omitted -->默认选中某个表单元素<!-- raw HTML omitted -->。若多个元素同时设置了该属性，则最终结果是最后一个元素被选中。</p>
+</li>
+<li>
+<p><strong>maxlength</strong>是用户可以在表单元素<!-- raw HTML omitted -->输入的最大字符数<!-- raw HTML omitted -->，一般较少使用。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>&lt; label &gt;标签</strong></p>
+<ul>
+<li>
+<p><strong>&lt; lable &gt;</strong> 标签能够<strong>为input元素定义标注</strong>（标签）。</p>
+</li>
+<li>
+<p><strong>&lt; lable &gt;</strong> 标签用于绑定一个表单元素，当<!-- raw HTML omitted -->点击<!-- raw HTML omitted --> &lt; lable &gt; 标签内的<!-- raw HTML omitted -->文本<!-- raw HTML omitted -->时，浏览器就会<!-- raw HTML omitted -->自动<!-- raw HTML omitted -->将光标<!-- raw HTML omitted -->转到<!-- raw HTML omitted -->或者选择<!-- raw HTML omitted -->对应的表单元素<!-- raw HTML omitted -->上，<strong>使得可点击的范围更大</strong>，增加用户体验。</p>
+</li>
+<li>
+<p><strong>语法</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sex&#34;</span>&gt;男&lt;/<span style="color:#f92672">label</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;radio&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sex&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sex&#34;</span> /&gt;
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>select下拉表单元素</strong></p>
+<ul>
+<li>
+<p><strong>语法：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">select</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">option</span>&gt;选项1&lt;/<span style="color:#f92672">option</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">option</span>&gt;选项2&lt;/<span style="color:#f92672">option</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">option</span>&gt;选项3&lt;/<span style="color:#f92672">option</span>&gt;
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">select</span>&gt;
+</span></span></code></pre></div><ol>
+<li>
+<p>&lt; select&gt;中至少<!-- raw HTML omitted -->包含一对&lt; option &gt;<!-- raw HTML omitted --></p>
+</li>
+<li>
+<p>&lt; option &gt;中定义selected属性=&ldquo;selected&quot;时，当前&lt; option &gt;项即为默认选中项。</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>&lt; textarea &gt;</strong> 表单元素</p>
+<ul>
+<li>
+<p>&lt; textarea &gt;标签是用于定义<!-- raw HTML omitted -->多行文本输入<!-- raw HTML omitted -->的控件。当用户<strong>输入内容较多</strong>时，此时文本可能会有多行，此时我们就不能使用文本框表单了，应该用&lt; textarea &gt;标签。</p>
+</li>
+<li>
+<p><strong>语法</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">textarea</span> <span style="color:#a6e22e">row</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#a6e22e">cols</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;20&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  文本内容
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">textarea</span>&gt;
+</span></span></code></pre></div><ol>
+<li>
+<p>通过&lt; textarea &gt;标签可以轻松地创建多行文本输入框。</p>
+</li>
+<li>
+<p><strong>cols</strong>=&ldquo;每行中的字符数&rdquo;,<strong>row</strong>=&ldquo;显示的行数&rdquo;,但在实际开发中通常不会使用，都是通过CSS来改变大小。</p>
+</li>
+<li>
+<p>若不想一开始的文本内容开头有空格，则可将一开始的文本内容写在标签之后：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">textarea</span> <span style="color:#a6e22e">row</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#a6e22e">cols</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;20&#34;</span>&gt;文本内容
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">textarea</span>&gt;
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>若想学习更多的相关内容，可以通过查阅文档的方式，常用网址有：</p>
+<ul>
+<li>
+<p>W3C: <a href="http://www.w3school.com.cn/">http://www.w3school.com.cn/</a></p>
+</li>
+<li>
+<p>MDN: <a href="https://developer.mozilla.org/zh-CN/">https://developer.mozilla.org/zh-CN/</a> （可通过<strong>搜索</strong>查找相关内容）</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3css">
+<a class="header-anchor" href="#3css"></a>
+3.CSS
+</h2><h3 id="31-了解css">
+<a class="header-anchor" href="#31-%e4%ba%86%e8%a7%a3css"></a>
+3.1 了解CSS
+</h3><ul>
+<li>
+<p>CSS是<!-- raw HTML omitted -->层叠样式表<!-- raw HTML omitted -->（Cascading Style Sheets）的简称，有时也会称之为<!-- raw HTML omitted -->CSS样式表<!-- raw HTML omitted -->或<!-- raw HTML omitted -->级联样式表<!-- raw HTML omitted -->，其也是一种<!-- raw HTML omitted -->标记语言<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p>CSS主要用于设置HTML页面中的<!-- raw HTML omitted -->文本内容<!-- raw HTML omitted -->（字体、大小、对齐方式等）、<!-- raw HTML omitted -->图片的外形<!-- raw HTML omitted -->（宽高、边框样式、边距等）以及<!-- raw HTML omitted -->版面的布局<!-- raw HTML omitted -->和<!-- raw HTML omitted -->外观显示样式<!-- raw HTML omitted -->。简而言之，CSS可以<!-- raw HTML omitted -->美化<!-- raw HTML omitted -->HTML。</p>
+</li>
+</ul>
+<h3 id="32-语法规范">
+<a class="header-anchor" href="#32-%e8%af%ad%e6%b3%95%e8%a7%84%e8%8c%83"></a>
+3.2 语法规范
+</h3><ul>
+<li>
+<p>CSS规则主要由两个部分构成：<!-- raw HTML omitted -->选择器<!-- raw HTML omitted -->（要改变谁的样式）以及一条或多条<!-- raw HTML omitted -->声明<!-- raw HTML omitted -->（要改变成什么样式）。</p>
+<ul>
+<li>
+<p><!-- raw HTML omitted -->选择器<!-- raw HTML omitted --> 是用于指定CSS样式的<!-- raw HTML omitted -->HTML标签<!-- raw HTML omitted --> ，花括号内是对该对象的具体样式</p>
+</li>
+<li>
+<p>属性和属性值以&rdquo;<!-- raw HTML omitted -->键值对<!-- raw HTML omitted -->&ldquo;的形式出现。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->属性和属性值<!-- raw HTML omitted -->之间用英文的<!-- raw HTML omitted -->冒号<!-- raw HTML omitted -->隔开。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->多个键值对之间<!-- raw HTML omitted -->用英文的<!-- raw HTML omitted -->分号<!-- raw HTML omitted -->隔开。（区别：HTML中不用）</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>示例</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">p</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">color</span>: <span style="color:#66d9ef">red</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>        这是段落标签
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span></code></pre></div><p>注意：</p>
+<ul>
+<li>
+<p>通常把CSS写在<!-- raw HTML omitted -->style标签<!-- raw HTML omitted -->中，把常用的网页元素标签写到<!-- raw HTML omitted -->body标签<!-- raw HTML omitted -->中，实现结构和样式分离。</p>
+</li>
+<li>
+<p>此时<!-- raw HTML omitted -->p<!-- raw HTML omitted -->就是<!-- raw HTML omitted -->选择器<!-- raw HTML omitted -->，<!-- raw HTML omitted -->color: rebeccapurpl <!-- raw HTML omitted -->就是<!-- raw HTML omitted -->声明<!-- raw HTML omitted -->。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="33-选择器">
+<a class="header-anchor" href="#33-%e9%80%89%e6%8b%a9%e5%99%a8"></a>
+3.3 选择器
+</h3><ul>
+<li>
+<p>选择器（选择符）就是用于根据不同需求<!-- raw HTML omitted -->把不同标签选出来<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p>选择器分为<!-- raw HTML omitted -->基础选择器<!-- raw HTML omitted -->和<!-- raw HTML omitted -->复合选择器<!-- raw HTML omitted -->两大类。</p>
+<h3 id="331-基础选择器">
+<a class="header-anchor" href="#331-%e5%9f%ba%e7%a1%80%e9%80%89%e6%8b%a9%e5%99%a8"></a>
+3.3.1 基础选择器
+</h3></li>
+<li>
+<p>基础选择是由单个选择器组成的，包括<!-- raw HTML omitted -->标签选择器<!-- raw HTML omitted -->、<!-- raw HTML omitted -->类选择器<!-- raw HTML omitted -->、<!-- raw HTML omitted -->id选择器<!-- raw HTML omitted -->和<!-- raw HTML omitted -->通配符选择器<!-- raw HTML omitted -->。</p>
+<ul>
+<li>
+<p><strong>id选择器</strong></p>
+<ul>
+<li>
+<p>id选择器可以将标有特点id的HTML元素设定为指定的样式，与<!-- raw HTML omitted -->类选择器<!-- raw HTML omitted -->功能类似。</p>
+</li>
+<li>
+<p><strong>id选择器和类选择器的区别</strong>：</p>
+<p>id好比是人的名字，<!-- raw HTML omitted -->一个标签<!-- raw HTML omitted -->只能有<!-- raw HTML omitted -->一个id<!-- raw HTML omitted -->，但可以有<!-- raw HTML omitted -->多个类名<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p><strong>语法</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>#id名 {
+</span></span><span style="display:flex;"><span>    属性1: 属性值1;
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>标签选择器</strong></p>
+<ul>
+<li>
+<p>标签选择器 是指用<!-- raw HTML omitted -->HTML标签名<!-- raw HTML omitted -->称作为选择器，<!-- raw HTML omitted -->按标签名来分类<!-- raw HTML omitted -->，为页面中某<!-- raw HTML omitted -->一类标签<!-- raw HTML omitted -->指定统一的CSS样式。</p>
+</li>
+<li>
+<p><strong>作用</strong>：可以把<!-- raw HTML omitted -->某一类<!-- raw HTML omitted -->标签<!-- raw HTML omitted -->全部选择出来<!-- raw HTML omitted -->，如所有的p标签。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->优点<!-- raw HTML omitted -->是能快速为页面中的同类型<!-- raw HTML omitted -->标签统一设置样式<!-- raw HTML omitted -->，<!-- raw HTML omitted -->缺点<!-- raw HTML omitted -->则是<!-- raw HTML omitted -->不能差异化<!-- raw HTML omitted -->样式，只能选择全部的当前标签。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>类选择器</strong></p>
+<ul>
+<li>
+<p>如果想要<!-- raw HTML omitted -->差异化不同的标签<!-- raw HTML omitted -->，单独选一个或者某几个标签，可以使用 <!-- raw HTML omitted -->类选择器<!-- raw HTML omitted --></p>
+</li>
+<li>
+<p><strong>语法</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>    .类名 {
+</span></span><span style="display:flex;"><span>        属性1 ：属性值1;
+</span></span><span style="display:flex;"><span>        ...
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>例如，使所有拥有red类的HTML元素均为红色。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>    &lt;<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">red</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">color</span>: <span style="color:#66d9ef">red</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>   &lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;red&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        这是段落标签
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>        这是段落标签
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>        这是段落标签
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>        这是段落标签
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>        这是段落标签
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span></code></pre></div><p>运行结果：</p>
+<p><img src="images/e9556e37a163908169a8f4e6b89c3736d4f8e973.png" alt=""></p>
+<p>此时，哪个标签想为color赋予red属性，就在哪个标签里赋予对应的类目。</p>
+</li>
+<li>
+<p>类名的<!-- raw HTML omitted -->命名规则<!-- raw HTML omitted -->：</p>
+<ol>
+<li>
+<p>长名称或词组可以使用中横线为选择器命名。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->不要<!-- raw HTML omitted -->使用<!-- raw HTML omitted -->纯数字<!-- raw HTML omitted -->、<!-- raw HTML omitted -->中文<!-- raw HTML omitted -->命名，尽量使用英文字母来表示。</p>
+</li>
+<li>
+<p>命名要有意义，使人可以见名知意。</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>多类名</strong></p>
+<ul>
+<li>
+<p>我们可以给一个标签指定多个类名，从而实现不同标签共用相同类的功能，进而达到简化代码的目的。</p>
+</li>
+<li>
+<p>代码格式：不同类名用<!-- raw HTML omitted -->空格隔开<!-- raw HTML omitted -->。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span> &lt;<span style="color:#f92672">标签名</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;类名1 类名2...&#34;</span>&gt;&lt;/<span style="color:#f92672">标签名</span>&gt;
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>通配符选择器</strong></p>
+<ul>
+<li>
+<p>在CSS中，通配符选择器使用“ *** ”** 来定义，它表示选取<!-- raw HTML omitted -->页面中的所有元素<!-- raw HTML omitted -->（标签）。</p>
+</li>
+<li>
+<p><strong>语法</strong> ：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>*{
+</span></span><span style="display:flex;"><span>    属性1 :属性值1;
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>通配符选择器不需要调用，会<strong>自动</strong>给<strong>所有</strong>的元素设置对应的样式。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="33-css中的常用属性">
+<a class="header-anchor" href="#33-css%e4%b8%ad%e7%9a%84%e5%b8%b8%e7%94%a8%e5%b1%9e%e6%80%a7"></a>
+3.3 CSS中的常用属性
+</h3><h4 id="331-css字体属性">
+<a class="header-anchor" href="#331-css%e5%ad%97%e4%bd%93%e5%b1%9e%e6%80%a7"></a>
+3.3.1 CSS字体属性
+</h4><p><strong>1. font-family设置字体系列</strong></p>
+<p>CSS使用<!-- raw HTML omitted -->font-family<!-- raw HTML omitted -->属性定义文本的<!-- raw HTML omitted -->字体类型<!-- raw HTML omitted -->，如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>p {
+</span></span><span style="display:flex;"><span>     font-family:&#34;微软雅黑&#34;; 
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>
+<p><strong>注意</strong>：</p>
+<ul>
+<li>
+<p>各种<!-- raw HTML omitted -->字体之间<!-- raw HTML omitted -->必须使用<!-- raw HTML omitted -->英文逗号隔开<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p>一般状态下，如果有空格隔开的<strong>多个单词组成的字体</strong>，需要<strong>加引号</strong>，如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>div{font-family:Arial,&#34;Microsoft yahei&#34;,&#34;微软雅黑&#34;;}
+</span></span></code></pre></div></li>
+<li>
+<p>尽量使用系统默认的自带字体，以保证在任何用户的浏览器中都能正常显示字体。</p>
+</li>
+<li>
+<p>字体的<!-- raw HTML omitted -->属性值<!-- raw HTML omitted -->既可以写<!-- raw HTML omitted -->中文<!-- raw HTML omitted -->，也可以写<!-- raw HTML omitted -->英文<!-- raw HTML omitted --> ，如&quot;微软雅黑&quot;也可以写为&quot;Microsoft yahei&rdquo;（&ldquo;yahei&quot;也可以用大写&quot;Yahei&rdquo;）</p>
+</li>
+<li>
+<p>一个选择器可以设置<!-- raw HTML omitted -->多种字体类型<!-- raw HTML omitted -->，当程序运行时，将按顺序选择字体，若用户电脑上<!-- raw HTML omitted -->安装了该种字体，则选择改字体<!-- raw HTML omitted -->；若没有，则<!-- raw HTML omitted -->按顺序继续选择<!-- raw HTML omitted -->；若所有字体都没有安装，则使用<!-- raw HTML omitted -->浏览器默认的字体<!-- raw HTML omitted -->。（如谷歌浏览器默认的字体是&quot;微软雅黑&quot;）</p>
+</li>
+<li>
+<p>在实际开发过程中，经常把字体属性<!-- raw HTML omitted -->定义给body<!-- raw HTML omitted -->标签，这样页面中的主要元素就都会以body的字体来显示了。如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>body{font-family:Arial,&#34;Microsoft yahei&#34;,&#34;微软雅黑&#34;;}
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<p><strong>2. font-size设置字号大小</strong></p>
+<p>CSS使用<!-- raw HTML omitted -->font-size<!-- raw HTML omitted --> 属性定义<!-- raw HTML omitted -->字体大小<!-- raw HTML omitted -->，如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>p {
+</span></span><span style="display:flex;"><span>    font-size: 20px;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>
+<p><strong>注意</strong>：</p>
+<ul>
+<li>
+<p><!-- raw HTML omitted -->px（像素）<!-- raw HTML omitted --> 大小是我们网页中最常见的单位。</p>
+</li>
+<li>
+<p>谷歌浏览器默认的字体大小为16px；</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->不同浏览器默认<!-- raw HTML omitted -->的字体大小<!-- raw HTML omitted -->可能不一致<!-- raw HTML omitted -->，所以我们<!-- raw HTML omitted -->尽量给一个明确值<!-- raw HTML omitted -->大小。</p>
+</li>
+<li>
+<p>可以给body指定整个页面文字的大小。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->标题标签<!-- raw HTML omitted -->比较特殊，需要<!-- raw HTML omitted -->单独指定文字大小<!-- raw HTML omitted -->。如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>h1 {
+</span></span><span style="display:flex;"><span>    font-size: 20px;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<p><strong>3. font-weight</strong>设置文本<strong>字体的粗细</strong>,如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>p {
+</span></span><span style="display:flex;"><span>    font-weight: bold;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>
+<p><strong>属性值</strong></p>
+<ul>
+<li>
+<p><!-- raw HTML omitted -->100-900的数字<!-- raw HTML omitted --></p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->normal：正常粗细<!-- raw HTML omitted -->，与<strong>400</strong> 等价。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->bold ：加粗 <!-- raw HTML omitted -->，与700等价。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->lighter <!-- raw HTML omitted -->：比从父元素继承来的值更细 (处在字体可行的粗细值范围内)。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->bolder <!-- raw HTML omitted -->：比从父元素继承来的值更粗 (处在字体可行的粗细值范围内)。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>注意</strong> ：</p>
+<ul>
+<li>
+<p><!-- raw HTML omitted -->默认加粗的标签<!-- raw HTML omitted -->（如h1、strong标签）均可使用<!-- raw HTML omitted -->font-weight<!-- raw HTML omitted --> 使字体<!-- raw HTML omitted -->变细<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p>实际开发中，更习惯用<!-- raw HTML omitted -->数字<!-- raw HTML omitted -->来<!-- raw HTML omitted -->表示粗细<!-- raw HTML omitted -->。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>4. font-style设置文本的风格（如斜体）</strong>，如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>p {
+</span></span><span style="display:flex;"><span>    font-style: normal;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>
+<p><strong>属性值</strong></p>
+<ul>
+<li>
+<p><!-- raw HTML omitted -->normal<!-- raw HTML omitted -->：默认值，使得浏览器显示<!-- raw HTML omitted -->标准的字体样式<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->italic<!-- raw HTML omitted -->：使得浏览器显示<!-- raw HTML omitted -->斜体<!-- raw HTML omitted -->的字体样式。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>注意</strong>：</p>
+<p>平时我们<!-- raw HTML omitted -->很少通过该标签<!-- raw HTML omitted -->给文字加斜体，反而经常要给<!-- raw HTML omitted -->斜体标签<!-- raw HTML omitted -->（<!-- raw HTML omitted -->&lt; em &gt;，&lt; i &gt;<!-- raw HTML omitted -->）通过<!-- raw HTML omitted -->normal<!-- raw HTML omitted -->设置<!-- raw HTML omitted -->不倾斜<!-- raw HTML omitted -->字体。</p>
+</li>
+</ul>
+<p><strong>5. font字体复合属性</strong></p>
+<ul>
+<li>
+<p>要把一个标签的字体设置多种属性，一般会想到这么做：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>    p {
+</span></span><span style="display:flex;"><span>        font-style: italic;
+</span></span><span style="display:flex;"><span>        font-weight: 700;
+</span></span><span style="display:flex;"><span>        font-size: 20px;
+</span></span><span style="display:flex;"><span>        font-family: &#34;宋体&#34;;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>可这样需要写较多的代码，为了节约代码，可采取<!-- raw HTML omitted -->字体复合属性<!-- raw HTML omitted --> ，按照以下格式综合来写：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>body {
+</span></span><span style="display:flex;"><span>    font: font-style属性值 font-weight属性值 font-size/line-height
+</span></span><span style="display:flex;"><span>属性值 font-family属性值;
+</span></span></code></pre></div><ul>
+<li>
+<p><strong>注意</strong> :</p>
+<ul>
+<li>
+<p>使用font属性时，必须按照上面的语法格式及顺序书写，每个属性之间以<!-- raw HTML omitted --> 空格<!-- raw HTML omitted --> 隔开，<!-- raw HTML omitted -->不能更改顺序<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p>不需要设置的属性<!-- raw HTML omitted -->可以省略<!-- raw HTML omitted -->（取默认值）。其中可以省略的属性有font-style，font-weight，line-height，但<!-- raw HTML omitted -->必须保留font-size和font-family<!-- raw HTML omitted --> ，否则font属性将不起作用。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="332-css文本属性">
+<a class="header-anchor" href="#332-css%e6%96%87%e6%9c%ac%e5%b1%9e%e6%80%a7"></a>
+3.3.2 CSS文本属性
+</h4><p><strong>1. color定义文本颜色</strong></p>
+<ul>
+<li>
+<p><strong>格式</strong>，如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>div {
+</span></span><span style="display:flex;"><span>    color: red;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>属性值有三种形式</strong>：</p>
+<ul>
+<li>
+<p><!-- raw HTML omitted -->英文字母<!-- raw HTML omitted -->：如red、green、blue。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->“ #”<!-- raw HTML omitted -->  +  <!-- raw HTML omitted -->“ (六位)十六进制 ”<!-- raw HTML omitted --> ：如#FF0000。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->RGB代码<!-- raw HTML omitted -->：如rgb(255,0,0)。</p>
+</li>
+</ul>
+<p>其中，开发中<!-- raw HTML omitted -->最常用<!-- raw HTML omitted -->的是<!-- raw HTML omitted -->十六进制<!-- raw HTML omitted -->。此外，三种形式均可自定义选择颜色：</p>
+<ul>
+<li>
+<p>首先，先任选一种形式输入任意一种颜色作为属性值。</p>
+</li>
+<li>
+<p>接着鼠标双击属性值。</p>
+</li>
+<li>
+<p>最后即可在跳出的<!-- raw HTML omitted -->色盘上手动选择<!-- raw HTML omitted -->自己想要的颜色。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. text-align对齐文本</strong></p>
+<ul>
+<li>
+<p><strong>text-align</strong>属性<!-- raw HTML omitted -->仅用于<!-- raw HTML omitted -->设置元素内文本内容的<!-- raw HTML omitted -->水平对齐方式<!-- raw HTML omitted -->，<!-- raw HTML omitted -->不能用于<!-- raw HTML omitted -->设置<!-- raw HTML omitted -->垂直方向<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p><strong>属性值</strong>：</p>
+<ul>
+<li>
+<p><!-- raw HTML omitted -->leftt<!-- raw HTML omitted -->：左对齐（默认值）。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->right<!-- raw HTML omitted -->：右对齐。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->center<!-- raw HTML omitted -->：居中对齐。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>应用：<!-- raw HTML omitted -->使图片居中<!-- raw HTML omitted --></p>
+<p>不能直接对img标签进行操作，而是应该：</p>
+<ul>
+<li>
+<p>先将<!-- raw HTML omitted -->img标签放在其他标签中<!-- raw HTML omitted -->，如&lt; p &gt;标签</p>
+</li>
+<li>
+<p>再<!-- raw HTML omitted -->对该标签<!-- raw HTML omitted -->，如此时的&lt; p &gt;标签的<!-- raw HTML omitted -->text-align<!-- raw HTML omitted -->属性<!-- raw HTML omitted -->设定center属性值<!-- raw HTML omitted -->。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>3. text-decoration装饰文本</strong>（通常用于给文字添加<!-- raw HTML omitted -->下划线<!-- raw HTML omitted -->、<!-- raw HTML omitted -->删除线<!-- raw HTML omitted -->）</p>
+<ul>
+<li>
+<p><strong>属性值</strong></p>
+<ul>
+<li>
+<p><!-- raw HTML omitted -->none<!-- raw HTML omitted -->：<!-- raw HTML omitted -->无装饰线<!-- raw HTML omitted -->（默认值），最常用。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->underline<!-- raw HTML omitted -->：<!-- raw HTML omitted -->下划线<!-- raw HTML omitted -->（<!-- raw HTML omitted -->链接标签a会自带<!-- raw HTML omitted -->）。、</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->overline<!-- raw HTML omitted -->：<!-- raw HTML omitted -->上划线<!-- raw HTML omitted -->（几乎不用）。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->line-through<!-- raw HTML omitted -->：<!-- raw HTML omitted -->删除线<!-- raw HTML omitted -->（不常用）。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>应用例子</strong>：用于删除链接标签a自带的下划线.。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">a</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">text-decoration</span>: <span style="color:#66d9ef">none</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">style</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;去除链接标签的下划线&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span></code></pre></div></li>
+<li>
+<p>重点记如何添加、删除下划线即可。</p>
+</li>
+</ul>
+<p><strong>4. text-indent文本缩进</strong></p>
+<ul>
+<li>
+<p><!-- raw HTML omitted -->text-indent<!-- raw HTML omitted --> 属性用来指定<!-- raw HTML omitted -->文本的第一行的缩进<!-- raw HTML omitted -->，通常是将段落的首行缩进。</p>
+</li>
+<li>
+<p><strong>属性值</strong></p>
+<ul>
+<li>
+<p><!-- raw HTML omitted -->像素单位px<!-- raw HTML omitted --></p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->相对单位em<!-- raw HTML omitted -->：即当<!-- raw HTML omitted -->前元素1个文字的大小<!-- raw HTML omitted -->（font-size）。如果当前元素没有设置大小，则会按照父元素的一个文字大小。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>注意</strong> ：</p>
+<p>属性值也<!-- raw HTML omitted -->可以<!-- raw HTML omitted -->为<!-- raw HTML omitted -->负值<!-- raw HTML omitted -->，意为向<!-- raw HTML omitted -->左缩进<!-- raw HTML omitted -->（<!-- raw HTML omitted -->正值<!-- raw HTML omitted -->则为向<!-- raw HTML omitted -->右缩进<!-- raw HTML omitted -->）。</p>
+</li>
+</ul>
+<p><strong>5. line-height行间距</strong>：</p>
+<ul>
+<li>
+<p>line-height用于<!-- raw HTML omitted -->设置行间的距离<!-- raw HTML omitted -->（行高），可以控制行与行之间的文字距离。</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->行高<!-- raw HTML omitted -->的组成：<!-- raw HTML omitted -->上间距<!-- raw HTML omitted -->、<!-- raw HTML omitted -->文本高度<!-- raw HTML omitted -->、<!-- raw HTML omitted -->下间距<!-- raw HTML omitted -->。</p>
+<p><img src="images/48df30bbe95fb579bf22493e40004d41e00f464f.png" alt=""></p>
+</li>
+<li>
+<p><strong>属性值</strong></p>
+<p><!-- raw HTML omitted -->像素单位px<!-- raw HTML omitted --></p>
+</li>
+<li>
+<p><strong>查询网页元素里的行高</strong>：</p>
+<p>在<!-- raw HTML omitted -->网页中<!-- raw HTML omitted -->点击鼠标<!-- raw HTML omitted -->右键<!-- raw HTML omitted -->，点击“<!-- raw HTML omitted -->检查<!-- raw HTML omitted -->”，再用鼠标<!-- raw HTML omitted -->对准相应的代码区域<!-- raw HTML omitted -->，即可显示出行高。</p>
+</li>
+</ul>
+<h4 id="34-css的引入方式">
+<a class="header-anchor" href="#34-css%e7%9a%84%e5%bc%95%e5%85%a5%e6%96%b9%e5%bc%8f"></a>
+3.4 CSS的引入方式
+</h4><p><!-- raw HTML omitted -->按照<!-- raw HTML omitted -->CSS样式书写的<!-- raw HTML omitted -->位置<!-- raw HTML omitted -->（或者引入方式），CSS样式表可以分为<!-- raw HTML omitted -->三大类<!-- raw HTML omitted -->：</p>
+<ol>
+<li>
+<p><!-- raw HTML omitted -->内部样式表<!-- raw HTML omitted -->（嵌入式）</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->行内样式表<!-- raw HTML omitted -->（行内式）</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->外部样式表<!-- raw HTML omitted -->（链接式）</p>
+</li>
+</ol>
+<ul>
+<li>
+<p><strong>内部样式表</strong></p>
+<p><strong>内部样式表（内嵌样式表）</strong> 是写到<!-- raw HTML omitted -->html页面内部<!-- raw HTML omitted -->，将所有的CSS代码抽取出来，单独<!-- raw HTML omitted -->放到一个&lt; style &gt;标签中<!-- raw HTML omitted -->。</p>
+<ul>
+<li>
+<p><!-- raw HTML omitted -->&lt; style &gt;标签<!-- raw HTML omitted -->理论上可以放在<!-- raw HTML omitted -->HTML文档<!-- raw HTML omitted -->的<!-- raw HTML omitted -->任何地方<!-- raw HTML omitted -->，但<!-- raw HTML omitted -->一般<!-- raw HTML omitted -->会放在文档的 <!-- raw HTML omitted -->&lt; head &gt;标签<!-- raw HTML omitted -->中。</p>
+</li>
+<li>
+<p>通过此种方式，可以方便控制当前<!-- raw HTML omitted -->整个页面<!-- raw HTML omitted -->中的<!-- raw HTML omitted -->元素样式<!-- raw HTML omitted -->设置。</p>
+</li>
+<li>
+<p>该样式代码<!-- raw HTML omitted -->结构清晰<!-- raw HTML omitted -->，但是并<!-- raw HTML omitted -->没有<!-- raw HTML omitted -->实现<!-- raw HTML omitted -->结构与样式完全分离<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p>此样式表是我们<!-- raw HTML omitted -->练习时常用<!-- raw HTML omitted -->的方式。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>行内样式表</strong></p>
+<p><strong>行内样式表（内嵌样式表）</strong> 是在元素<!-- raw HTML omitted -->标签<!-- raw HTML omitted -->内部的<!-- raw HTML omitted -->style属性<!-- raw HTML omitted -->中设定CSS样式。</p>
+<ul>
+<li>
+<p><strong>代码样例</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color: red;font-size: 20px;&#34;</span>&gt;行内样式表测试&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span></code></pre></div></li>
+<li>
+<p>此时<!-- raw HTML omitted -->style<!-- raw HTML omitted -->是作为<!-- raw HTML omitted -->标签的属性<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p>属性和属性值要写在双引号中间，写法要符合CSS规范。</p>
+</li>
+<li>
+<p>行内样式表<!-- raw HTML omitted -->只能控制当前的标签<!-- raw HTML omitted -->设置样式。</p>
+</li>
+<li>
+<p>该样式表由于<!-- raw HTML omitted -->书写频繁<!-- raw HTML omitted -->，并且没有体现结构与样式分离的思想，所以不推荐大量使用，只有对当前元素添加简单样式的时候，可以考虑使用。</p>
+</li>
+<li>
+<p>使用行内样式设定CSS，通常也被称为<!-- raw HTML omitted -->行内式引入<!-- raw HTML omitted -->。</p>
+</li>
+<li>
+<p>各个属性之间用分号分开。</p>
+</li>
+<li>
+<p><strong>外部样式表</strong></p>
+<p><!-- raw HTML omitted -->实际开发<!-- raw HTML omitted -->通常都是使用<!-- raw HTML omitted -->外部样式表<!-- raw HTML omitted -->，<!-- raw HTML omitted -->适合<!-- raw HTML omitted -->于<!-- raw HTML omitted -->需要设置的样式比较多<!-- raw HTML omitted -->的情况，核心是样式<!-- raw HTML omitted -->单独写到CSS文件中<!-- raw HTML omitted -->，之后把CSS文件引入到HTML页面中使用。</p>
+<ul>
+<li>
+<p>引入外部样式表分为两步：</p>
+<ol>
+<li>
+<p><!-- raw HTML omitted -->新建<!-- raw HTML omitted -->一个后缀名为<!-- raw HTML omitted -->.css的样式文<!-- raw HTML omitted -->件，把所有的CSS代码都放入此文件中。</p>
+</li>
+<li>
+<p>在<!-- raw HTML omitted -->HTML页面中<!-- raw HTML omitted -->，使用<!-- raw HTML omitted -->&lt; link &gt;标签引入<!-- raw HTML omitted -->这个文件中：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;css文件路径&#34;</span>&gt;
+</span></span></code></pre></div><p>如当.css文件与当前.html文件在同一级路径时：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;style.css&#34;</span>&gt;
+</span></span></code></pre></div></li>
+</ol>
+<p>此时该.css样式文件的路径为style.css</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap article-nav-link-right"><img
+            data-src="https://img2.baidu.com/it/u=2940854202,2684708212&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=800&amp;h=800"
+            data-sizes="auto"
+            alt="Android笔记"
+            class="lazyload"
+          /><a href="/post/android_notes/"></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">Android笔记</h3>
+      </div></nav></article></section>
+        </div><footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2020-2025<span class="footer-info-sep rotate"></span>
+      meeting_smile
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;45.0k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;01:32</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-基础知识">1. 基础知识</a>
+      <ul>
+        <li><a href="#11-网页的相关概念">1.1 网页的相关概念</a></li>
+        <li><a href="#12-web标准">1.2 Web标准</a></li>
+        <li><a href="#13-vscode常用快捷键">1.3 VSCode常用快捷键</a></li>
+        <li><a href="#14-vscode在网页中显示运行结果">1.4 VSCode在网页中显示运行结果</a></li>
+        <li><a href="#15-常用插件">1.5 常用插件</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-html5">2. HTML5</a>
+      <ul>
+        <li><a href="#21-html基本结构标签">2.1 HTML基本结构标签</a></li>
+        <li><a href="#22-html常用标签">2.2 HTML常用标签</a></li>
+      </ul>
+    </li>
+    <li><a href="#3css">3.CSS</a>
+      <ul>
+        <li><a href="#31-了解css">3.1 了解CSS</a></li>
+        <li><a href="#32-语法规范">3.2 语法规范</a></li>
+        <li><a href="#33-选择器">3.3 选择器</a></li>
+        <li><a href="#331-基础选择器">3.3.1 基础选择器</a></li>
+        <li><a href="#33-css中的常用属性">3.3 CSS中的常用属性</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="meeting_smile"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">meeting_smile</div>
+  <div class="sidebar-description">未来一定是要笑着谈的(*≧▽≦)ツ</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">6</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social"></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/js/main.js" integrity="" crossorigin="anonymous" ></script><script src="/js/aos.js" integrity="" crossorigin="anonymous" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" integrity="" crossorigin="anonymous" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "",
+        apiKey: "",
+        indexName: "",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/instantsearch.js@4.56.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-hHJCflT4KBLQyHfKO9vpstIcFKn/Y&#43;KHTORelMMEn7mOp2AVPp&#43;7fr03dLgZiV3J" crossorigin="anonymous"></script><script src="/js/algolia_search.js" integrity="" crossorigin="anonymous" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (window.firework) {
+    const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+    options.excludeElements = options.excludeelements;
+    delete options.excludeelements;
+    window.firework(options);
+  }
+</script><script>
+  function initLive2d() {
+    live2d.init('https:\/\/fastly.jsdelivr.net\/gh\/D-Sketon\/plugin-live2d\/', {themeTipsPath: ""});
+  }
+</script><script
+    src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js"
+    asynconload="initLive2d()"></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "meeting_smile",
+          title: "HTML5\u002bCSS3入门",
+          url: "https:\/\/meeting77smile.github.io\/post\/html5\u002bcss3%E5%85%A5%E9%97%A8\/",
+          description: " HTML5\u002bCSS3 1. 基础知识 1.1 网页的相关概念 网站：指在因特网上根据一定的规则，使用HTML等制作的用于展示特定内容相关的网页集合。\n网页：是构成网站的基本元素，它通常由图片、链接、文字、声音、视频等元素组成。通常我们看到的网页，一般是以.htm或.html后缀结尾的文件，因此将其俗称为HTML文件。\n",
+          cover: "https:\/\/img0.baidu.com\/it\/u=523234089,1058084480\u0026fm=253\u0026fmt=auto\u0026app=138\u0026f=JPEG?w=800\u0026h=1029",
+        };
+      </script><script src="/js/insert_highlight.js" integrity="" crossorigin="anonymous" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>
