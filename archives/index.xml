@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>meeting_smile&#39;s blog</title>
-    <link>https://meeting77smile.github.io/archives/</link>
+    <link>http://localhost:1313/archives/</link>
     <description>Recent content from meeting_smile&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
@@ -15,7 +15,7 @@
     <lastBuildDate></lastBuildDate>
     
     
-    <atom:link href="https://meeting77smile.github.io/archives/index.xml" rel="self" type="application/rss&#43;xml" />
+    <atom:link href="http://localhost:1313/archives/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
     

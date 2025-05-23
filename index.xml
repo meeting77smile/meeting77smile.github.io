@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>meeting_smile&#39;s blog</title>
-    <link>https://meeting77smile.github.io/algolia.json</link>
+    <link>http://localhost:1313/algolia.json</link>
     <description>Recent content from meeting_smile&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
@@ -15,7 +15,7 @@
     <lastBuildDate>Fri, 23 May 2025 13:53:00 -0700</lastBuildDate>
     
     
-    <atom:link href="https://meeting77smile.github.io/index.xml" rel="self" type="application/rss&#43;xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss&#43;xml" />
     
 
     
@@ -23,10 +23,10 @@
 
     <item>
       <title>积语——云伴学</title>
-      <link>https://meeting77smile.github.io/post/jiyuguidebook/</link>
+      <link>http://localhost:1313/post/jiyuguidebook/</link>
       <pubDate>Sat, 15 Mar 2025 22:11:00 -0700</pubDate>
       <author>2054865827@qq.com (meeting_smile)</author>
-      <guid>https://meeting77smile.github.io/post/jiyuguidebook/</guid>
+      <guid>http://localhost:1313/post/jiyuguidebook/</guid>
       <description>
         <![CDATA[<h1>积语——云伴学</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
         
@@ -44,7 +44,7 @@
 <!-- raw HTML omitted --> <strong>使用指南</strong>
 </h1><p><strong>欢迎使用积语·云伴学——基于多智能体的个性化学习规划辅助定制平台</strong></p>
         
-        <hr><p>本文2025-03-15首发于<a href='https://meeting77smile.github.io/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
+        <hr><p>本文2025-03-15首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
       </description>
       
     </item>
@@ -53,10 +53,10 @@
 
     <item>
       <title>HTML5&#43;CSS3入门</title>
-      <link>https://meeting77smile.github.io/post/html5&#43;css3%E5%85%A5%E9%97%A8/</link>
+      <link>http://localhost:1313/post/html5&#43;css3%E5%85%A5%E9%97%A8/</link>
       <pubDate>Fri, 01 Nov 2024 22:11:00 -0700</pubDate>
       <author>2054865827@qq.com (meeting_smile)</author>
-      <guid>https://meeting77smile.github.io/post/html5&#43;css3%E5%85%A5%E9%97%A8/</guid>
+      <guid>http://localhost:1313/post/html5&#43;css3%E5%85%A5%E9%97%A8/</guid>
       <description>
         <![CDATA[<h1>HTML5+CSS3入门</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
         
@@ -76,7 +76,7 @@ HTML5+CSS3
 <li>
 <p>网页：是构成网站的基本元素，它通常由图片、链接、文字、声音、视频等元素组成。通常我们看到的网页，一般是以.htm或.html后缀结尾的文件，因此将其俗称为HTML文件。</p>
         
-        <hr><p>本文2024-11-01首发于<a href='https://meeting77smile.github.io/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
+        <hr><p>本文2024-11-01首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
       </description>
       
     </item>
@@ -85,10 +85,10 @@ HTML5+CSS3
 
     <item>
       <title>Android笔记</title>
-      <link>https://meeting77smile.github.io/post/android_notes/</link>
+      <link>http://localhost:1313/post/android_notes/</link>
       <pubDate>Sat, 23 Nov 2024 11:54:00 -0700</pubDate>
       <author>2054865827@qq.com (meeting_smile)</author>
-      <guid>https://meeting77smile.github.io/post/android_notes/</guid>
+      <guid>http://localhost:1313/post/android_notes/</guid>
       <description>
         <![CDATA[<h1>Android笔记</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
         
@@ -111,7 +111,7 @@ HTML5+CSS3
 <li>
 <p>在<!-- raw HTML omitted -->AndroidManifest.xml<!-- raw HTML omitted -->文件中，在如图所示的位置改为想要作为主界面的的java文件名（注意别忘了名称开头要加点）</p>
         
-        <hr><p>本文2024-11-23首发于<a href='https://meeting77smile.github.io/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
+        <hr><p>本文2024-11-23首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
       </description>
       
     </item>
@@ -120,10 +120,10 @@ HTML5+CSS3
 
     <item>
       <title>电商秒杀项目</title>
-      <link>https://meeting77smile.github.io/post/secondkill/</link>
+      <link>http://localhost:1313/post/secondkill/</link>
       <pubDate>Sun, 06 Apr 2025 18:06:00 -0700</pubDate>
       <author>2054865827@qq.com (meeting_smile)</author>
-      <guid>https://meeting77smile.github.io/post/secondkill/</guid>
+      <guid>http://localhost:1313/post/secondkill/</guid>
       <description>
         <![CDATA[<h1>电商秒杀项目</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
         
@@ -146,7 +146,7 @@ HTML5+CSS3
 <li>通过生成uuid隐藏秒杀地址、easy-captcha生成验证码和计数器算法实现接口限流等操作，实现了防止恶意刷单的功能，从而增加了系统的抗压能力。</li>
 </ul>
         
-        <hr><p>本文2025-04-06首发于<a href='https://meeting77smile.github.io/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
+        <hr><p>本文2025-04-06首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
       </description>
       
     </item>
@@ -155,10 +155,10 @@ HTML5+CSS3
 
     <item>
       <title>星云好物——基于微服务架构的电商平台</title>
-      <link>https://meeting77smile.github.io/post/nebulamall/</link>
+      <link>http://localhost:1313/post/nebulamall/</link>
       <pubDate>Mon, 12 May 2025 18:06:00 -0700</pubDate>
       <author>2054865827@qq.com (meeting_smile)</author>
-      <guid>https://meeting77smile.github.io/post/nebulamall/</guid>
+      <guid>http://localhost:1313/post/nebulamall/</guid>
       <description>
         <![CDATA[<h1>星云好物——基于微服务架构的电商平台</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
         
@@ -183,7 +183,7 @@ HTML5+CSS3
 <li>微服务保护：利用Sentinel实现请求限流、线程隔离和服务熔断，通过Prometheus+Grafana监控平台可知系统可用性达99.9%。</li>
 </ul>
         
-        <hr><p>本文2025-05-12首发于<a href='https://meeting77smile.github.io/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
+        <hr><p>本文2025-05-12首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
       </description>
       
     </item>
@@ -192,10 +192,10 @@ HTML5+CSS3
 
     <item>
       <title>亿级流量点赞系统</title>
-      <link>https://meeting77smile.github.io/post/likesystem/</link>
+      <link>http://localhost:1313/post/likesystem/</link>
       <pubDate>Mon, 19 May 2025 18:06:00 -0700</pubDate>
       <author>2054865827@qq.com (meeting_smile)</author>
-      <guid>https://meeting77smile.github.io/post/likesystem/</guid>
+      <guid>http://localhost:1313/post/likesystem/</guid>
       <description>
         <![CDATA[<h1>亿级流量点赞系统</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
         
@@ -219,7 +219,7 @@ HTML5+CSS3
 <li>高可用保障​​：搭建Prometheus+Grafana监控平台，故障定位效率提升70%，便于项目维护</li>
 </ul>
         
-        <hr><p>本文2025-05-19首发于<a href='https://meeting77smile.github.io/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
+        <hr><p>本文2025-05-19首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
       </description>
       
     </item>
