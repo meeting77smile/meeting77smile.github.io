@@ -1,5 +1,17 @@
 [
   {
+    "objectID": "1750809600",
+    "permalink": "/post/%E4%BD%BF%E7%94%A8git%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81%E6%95%99%E7%A8%8B/",
+    "title": "使用Git贡献代码教程","content": " 使用Git贡献代码教程 前言 git适用于GitHub、Gitee、GitLab等主流托管平台，它们均使用git作为底层版本控制工具\nGit中的三个分区 Git有三个主要的工作区域：工作区（working directory）、暂存区（staging area）和版本库（repository）。 工作区是指您电脑文件系统上用于修改文件的目录。在这里，您可以创建、编辑和删除文件。 暂存区是一个中间状态，它充当了您提交更改的缓冲区。在Git中，您必须明确地将文件添加到暂存区，然后才能将其提交到版本库中。这样做的好处是，您可以对每个更改进行精细控制，并确保只提交需要保存的更改。 版本库包含Git存储库的所有历史记录和元数据。它是Git存储库的核心组成部分，是由Git自动维护的。 简而言之，工作区是您正在处理的实际文件，而暂存区是下一次提交所需更改的文件列表。它们之间的区别在于，您可以对工作区中的任何文件进行修改，但只有将它们添加到暂存区并将其提交到版本库中，它们才会成为Git跟踪的部分。\n1.配置用户信息 在最开始使用git之前，需要先配置git的用户信息：\ngit config --global user.name \u0026amp;#34;这里输入你的用户名\u0026amp;#34; git config --global user.email \u0026amp;#34;这里输入你的邮箱\u0026amp;#34; 其中，用户名可自定义，其作用是用于标识提交者的身份，不一定与GitHub、Gitee、GitLab等平台的用户名一致 配置完之后，可以看一下配置信息：\ngit config --global --list 2.克隆项目到本地 在本地新建文件夹(如本地文件夹名称为my_project)，接着使用自己fork仓库的地址克隆项目到本地(如项目文件夹名称为project)：\ngit clone 你的fork仓库地址.git 克隆成功之后，变可在本地文件夹my_project中发现有克隆下来的项目文件夹project\n3.切换分支 注意，之后的操作都要在项目的文件夹中进行，否则会报错。在本地文件夹my_project中使用命令以进入：\ncd project 选择需要将项目上传的分支，如此时想把修改之后的内容上传到feature分支：\ngit checkout feature 出现如下的提示则说明切换分支成功：\nbranch …","date": "2025-06-24 17:00:00",
+    "updated": "2025-06-25 16:46:00"
+  }, 
+  {
+    "objectID": "1749331560",
+    "permalink": "/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/",
+    "title": "服务器项目部署","content": " 服务器项目部署 1. 内网穿透 1.1 目的 为了让他人也能通过指定的url访问到自己启动的项目\n1.2 实现步骤 1.2.1 下载与配置 搜索 https://www.cpolar.com ，进入cpolar官网。\n注册账号。\n注册登录之后，按照首页的提示进行安装和配置。\n获取Authtoken ：点击首页右上角的 “用户设置”——\u0026amp;gt;点击 “重置Authtoken” ——\u0026amp;gt;复制Authtoken进行配置。\n配置Authtoken：按下 win+R ，在cmd命令行中复制如下命令：\ncpolar authtoken (这里改为你自己的Authtoken) 出现如下类似的结果说明配置成功：\n启动cpolar：以管理员的身份运行cmd ，输入如下命令：\nnet start cpolar 出现结果，说明已经启动成功：\n1.2.2 使用Cpolar 通过地址 http://127.0.0.1:9200 （或者点击桌面的图标）访问cpolar的管理界面，输入注册时的邮箱与密码即可访问：\n点击 隧道管理 ——\u0026amp;gt; 创建隧道 ，即可实现本地地址与穿透地址的映射\n1.2.3 示例 在vscode自己写一个cpolar.html文件：\n\u0026amp;lt;!DOCTYPE html\u0026amp;gt; \u0026amp;lt;html lang=\u0026amp;#34;en\u0026amp;#34;\u0026amp;gt; \u0026amp;lt;head\u0026amp;gt; \u0026amp;lt;meta charset=\u0026amp;#34;UTF-8\u0026amp;#34;\u0026amp;gt; \u0026amp;lt;meta name=\u0026amp;#34;viewport\u0026amp;#34; content=\u0026amp;#34;width=device-width, initial-scale=1.0\u0026amp;#34;\u0026amp;gt; \u0026amp;lt;title\u0026amp;gt;Document\u0026amp;lt;/title\u0026amp;gt; \u0026amp;lt;/head\u0026amp;gt; \u0026amp;lt;body\u0026amp;gt; \u0026amp;lt;h1\u0026amp;gt;Hello Cpolar!\u0026amp;lt;/h1\u0026amp;gt; \u0026amp;lt;/body\u0026amp;gt; \u0026amp;lt;/html\u0026amp;gt; 利用 Live Server 插件，右键点击 Open With Live Server，即可运行\n运行之后，可以看到此时我的html文件的的本地端口号为5500（不同的设备可能不一样）\n记下该端口号，在刚刚的 创建隧道 页面中的 本地地址部分 输入为5500端口号，并选择 随机域名 和 http 协议 …","date": "2025-06-07 14:26:00",
+    "updated": "2025-06-07 14:26:00"
+  }, 
+  {
     "objectID": "1747703160",
     "permalink": "/post/likesystem/",
     "title": "亿级流量点赞系统","content": " 仓库地址：https://github.com/meeting77smile/like-system 项目介绍： 本人在学习高并发项目过程中制作的亿级流量点赞系统，包含了后端代码。 项目亮点： 高并发优化​​：设计Caffeine+Redis多级缓存架构，高并发情况下的接口响应时间降低92%（压测TPS达3000+）；利用HeavyKeeper热点探测算法将本地缓存命中率提升至92% 异步处理系统：集成Pulsar消息队列实现批量消费（1000条/10秒），数据库写压力下降94%；通过Lua脚本保证原子操作+定时对账，数据一致性达99.99% 分布式架构升级​​：从MySQL迁移至TiDB实现自动分片，写入吞吐量提升2倍 高可用保障​​：搭建Prometheus+Grafana监控平台，故障定位效率提升70%，便于项目维护 ","date": "2025-05-19 18:06:00",
