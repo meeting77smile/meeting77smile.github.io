@@ -9,7 +9,7 @@
     "objectID": "1749331560",
     "permalink": "/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/",
     "title": "服务器项目部署","content": " 服务器项目部署 1. 内网穿透 1.1 目的 为了让他人也能通过指定的url访问到自己启动的项目\n1.2 实现步骤 1.2.1 下载与配置 搜索 https://www.cpolar.com ，进入cpolar官网。\n注册账号。\n注册登录之后，按照首页的提示进行安装和配置。\n获取Authtoken ：点击首页右上角的 “用户设置”——\u0026amp;gt;点击 “重置Authtoken” ——\u0026amp;gt;复制Authtoken进行配置。\n配置Authtoken：按下 win+R ，在cmd命令行中复制如下命令：\ncpolar authtoken (这里改为你自己的Authtoken) 出现如下类似的结果说明配置成功：\n启动cpolar：以管理员的身份运行cmd ，输入如下命令：\nnet start cpolar 出现结果，说明已经启动成功：\n1.2.2 使用Cpolar 通过地址 http://127.0.0.1:9200 （或者点击桌面的图标）访问cpolar的管理界面，输入注册时的邮箱与密码即可访问：\n点击 隧道管理 ——\u0026amp;gt; 创建隧道 ，即可实现本地地址与穿透地址的映射\n1.2.3 示例 在vscode自己写一个cpolar.html文件：\n\u0026amp;lt;!DOCTYPE html\u0026amp;gt; \u0026amp;lt;html lang=\u0026amp;#34;en\u0026amp;#34;\u0026amp;gt; \u0026amp;lt;head\u0026amp;gt; \u0026amp;lt;meta charset=\u0026amp;#34;UTF-8\u0026amp;#34;\u0026amp;gt; \u0026amp;lt;meta name=\u0026amp;#34;viewport\u0026amp;#34; content=\u0026amp;#34;width=device-width, initial-scale=1.0\u0026amp;#34;\u0026amp;gt; \u0026amp;lt;title\u0026amp;gt;Document\u0026amp;lt;/title\u0026amp;gt; \u0026amp;lt;/head\u0026amp;gt; \u0026amp;lt;body\u0026amp;gt; \u0026amp;lt;h1\u0026amp;gt;Hello Cpolar!\u0026amp;lt;/h1\u0026amp;gt; \u0026amp;lt;/body\u0026amp;gt; \u0026amp;lt;/html\u0026amp;gt; 利用 Live Server 插件，右键点击 Open With Live Server，即可运行\n运行之后，可以看到此时我的html文件的的本地端口号为5500（不同的设备可能不一样）\n记下该端口号，在刚刚的 创建隧道 页面中的 本地地址部分 输入为5500端口号，并选择 随机域名 和 http 协议 …","date": "2025-06-07 14:26:00",
-    "updated": "2025-06-07 14:26:00"
+    "updated": "2025-06-07 15:26:00"
   }, 
   {
     "objectID": "1747703160",
