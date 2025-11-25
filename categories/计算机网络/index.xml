@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>计算机网络 on meeting_smile&#39;s blog</title>
+    <link>http://localhost:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link>
+    <description>Recent content from meeting_smile&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>2054865827@qq.com (meeting_smile)</managingEditor>
+    <webMaster>2054865827@qq.com (meeting_smile)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Tue, 25 Nov 2025 16:46:00 -0700</lastBuildDate>
+    
+    
+    <atom:link href="http://localhost:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>SSL/TLS</title>
+      <link>http://localhost:1313/post/ssl%E4%B8%8Etls/ssl%E4%B8%8Etls/</link>
+      <pubDate>Mon, 10 Nov 2025 17:00:00 -0700</pubDate>
+      <author>2054865827@qq.com (meeting_smile)</author>
+      <guid>http://localhost:1313/post/ssl%E4%B8%8Etls/ssl%E4%B8%8Etls/</guid>
+      <description>
+        <![CDATA[<h1>SSL/TLS</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        
+          <h1 id="ssltls">
+<a class="header-anchor" href="#ssltls"></a>
+SSL/TLS
+</h1><h2 id="1-概念">
+<a class="header-anchor" href="#1-%e6%a6%82%e5%bf%b5"></a>
+1. 概念
+</h2><ul>
+<li>
+<p>SSL（Secure Socket Layer）全称安全套接字层协议，是Netscape公司率先采用的网络安全协议。它是在传输<a href="https://baike.baidu.com/item/%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/3351624?fromModule=lemma_inlink">通信协议</a>（TCP/IP）上实现的一种安全协议，采用<a href="https://baike.baidu.com/item/%E5%85%AC%E5%BC%80%E5%AF%86%E9%92%A5/7453570?fromModule=lemma_inlink">公开密钥</a>技术。SSL广泛支持各种类型的网络。</p>
+</li>
+<li>
+<p>TLS（Transport Layer Security）全称传输层安全协议，前身为SSL协议。</p>
+        
+        <hr><p>本文2025-11-10首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
+      </description>
+      
+        <category>计算机网络</category>
+      
+    </item>
+    
+  </channel>
+</rss>

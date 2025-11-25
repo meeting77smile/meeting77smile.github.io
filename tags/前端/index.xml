@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>前端 on meeting_smile&#39;s blog</title>
+    <link>http://localhost:1313/tags/%E5%89%8D%E7%AB%AF/</link>
+    <description>Recent content from meeting_smile&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>2054865827@qq.com (meeting_smile)</managingEditor>
+    <webMaster>2054865827@qq.com (meeting_smile)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Fri, 23 May 2025 13:53:00 -0700</lastBuildDate>
+    
+    
+    <atom:link href="http://localhost:1313/tags/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>积语——云伴学</title>
+      <link>http://localhost:1313/post/jiyuguidebook/</link>
+      <pubDate>Sat, 15 Mar 2025 22:11:00 -0700</pubDate>
+      <author>2054865827@qq.com (meeting_smile)</author>
+      <guid>http://localhost:1313/post/jiyuguidebook/</guid>
+      <description>
+        <![CDATA[<h1>积语——云伴学</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        
+          <h2 id="仓库地址">
+<a class="header-anchor" href="#%e4%bb%93%e5%ba%93%e5%9c%b0%e5%9d%80"></a>
+仓库地址
+</h2><h3 id="网页端httpsgithubcommeeting77smilejiyulearning">
+<a class="header-anchor" href="#%e7%bd%91%e9%a1%b5%e7%ab%afhttpsgithubcommeeting77smilejiyulearning"></a>
+网页端：https://github.com/meeting77smile/JiYuLearning
+</h3><h3 id="移动端httpsgithubcommeeting77smilejiyulearning-app">
+<a class="header-anchor" href="#%e7%a7%bb%e5%8a%a8%e7%ab%afhttpsgithubcommeeting77smilejiyulearning-app"></a>
+移动端：https://github.com/meeting77smile/JiYuLearning-APP
+</h3><h1 id="使用指南">
+<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8%e6%8c%87%e5%8d%97"></a>
+<!-- raw HTML omitted --> <strong>使用指南</strong>
+</h1><p><strong>欢迎使用积语·云伴学——基于多智能体的个性化学习规划辅助定制平台</strong></p>
+        
+        <hr><p>本文2025-03-15首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
+      </description>
+      
+        <category>项目</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>HTML5&#43;CSS3入门</title>
+      <link>http://localhost:1313/post/html5&#43;css3%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Fri, 01 Nov 2024 22:11:00 -0700</pubDate>
+      <author>2054865827@qq.com (meeting_smile)</author>
+      <guid>http://localhost:1313/post/html5&#43;css3%E5%85%A5%E9%97%A8/</guid>
+      <description>
+        <![CDATA[<h1>HTML5+CSS3入门</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        
+          <h1 id="html5css3">
+<a class="header-anchor" href="#html5css3"></a>
+HTML5+CSS3
+</h1><h2 id="1-基础知识">
+<a class="header-anchor" href="#1-%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86"></a>
+1. 基础知识
+</h2><h3 id="11-网页的相关概念">
+<a class="header-anchor" href="#11-%e7%bd%91%e9%a1%b5%e7%9a%84%e7%9b%b8%e5%85%b3%e6%a6%82%e5%bf%b5"></a>
+1.1 网页的相关概念
+</h3><ul>
+<li>
+<p>网站：指在因特网上根据一定的规则，使用HTML等制作的用于展示特定内容相关的网页集合。</p>
+</li>
+<li>
+<p>网页：是构成网站的基本元素，它通常由图片、链接、文字、声音、视频等元素组成。通常我们看到的网页，一般是以.htm或.html后缀结尾的文件，因此将其俗称为HTML文件。</p>
+        
+        <hr><p>本文2024-11-01首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
+      </description>
+      
+        <category>前端</category>
+      
+    </item>
+    
+  </channel>
+</rss>

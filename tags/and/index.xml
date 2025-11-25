@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>An&#39;d on meeting_smile&#39;s blog</title>
+    <link>http://localhost:1313/tags/and/</link>
+    <description>Recent content from meeting_smile&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>2054865827@qq.com (meeting_smile)</managingEditor>
+    <webMaster>2054865827@qq.com (meeting_smile)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Fri, 23 May 2025 13:53:00 -0700</lastBuildDate>
+    
+    
+    <atom:link href="http://localhost:1313/tags/and/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>积语——云伴学</title>
+      <link>http://localhost:1313/post/jiyuguidebook/</link>
+      <pubDate>Sat, 15 Mar 2025 22:11:00 -0700</pubDate>
+      <author>2054865827@qq.com (meeting_smile)</author>
+      <guid>http://localhost:1313/post/jiyuguidebook/</guid>
+      <description>
+        <![CDATA[<h1>积语——云伴学</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        
+          <h2 id="仓库地址">
+<a class="header-anchor" href="#%e4%bb%93%e5%ba%93%e5%9c%b0%e5%9d%80"></a>
+仓库地址
+</h2><h3 id="网页端httpsgithubcommeeting77smilejiyulearning">
+<a class="header-anchor" href="#%e7%bd%91%e9%a1%b5%e7%ab%afhttpsgithubcommeeting77smilejiyulearning"></a>
+网页端：https://github.com/meeting77smile/JiYuLearning
+</h3><h3 id="移动端httpsgithubcommeeting77smilejiyulearning-app">
+<a class="header-anchor" href="#%e7%a7%bb%e5%8a%a8%e7%ab%afhttpsgithubcommeeting77smilejiyulearning-app"></a>
+移动端：https://github.com/meeting77smile/JiYuLearning-APP
+</h3><h1 id="使用指南">
+<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8%e6%8c%87%e5%8d%97"></a>
+<!-- raw HTML omitted --> <strong>使用指南</strong>
+</h1><p><strong>欢迎使用积语·云伴学——基于多智能体的个性化学习规划辅助定制平台</strong></p>
+        
+        <hr><p>本文2025-03-15首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
+      </description>
+      
+        <category>项目</category>
+      
+    </item>
+    
+  </channel>
+</rss>

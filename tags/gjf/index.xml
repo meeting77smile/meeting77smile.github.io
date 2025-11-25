@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>G&#39;j&#39;f on meeting_smile&#39;s blog</title>
+    <link>http://localhost:1313/tags/gjf/</link>
+    <description>Recent content from meeting_smile&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>2054865827@qq.com (meeting_smile)</managingEditor>
+    <webMaster>2054865827@qq.com (meeting_smile)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Fri, 23 May 2025 06:00:00 -0700</lastBuildDate>
+    
+    
+    <atom:link href="http://localhost:1313/tags/gjf/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>亿级流量点赞系统</title>
+      <link>http://localhost:1313/post/likesystem/</link>
+      <pubDate>Mon, 19 May 2025 18:06:00 -0700</pubDate>
+      <author>2054865827@qq.com (meeting_smile)</author>
+      <guid>http://localhost:1313/post/likesystem/</guid>
+      <description>
+        <![CDATA[<h1>亿级流量点赞系统</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        
+          <h2 id="仓库地址httpsgithubcommeeting77smilelike-system">
+<a class="header-anchor" href="#%e4%bb%93%e5%ba%93%e5%9c%b0%e5%9d%80httpsgithubcommeeting77smilelike-system"></a>
+仓库地址：https://github.com/meeting77smile/like-system
+</h2><hr>
+<h2 id="项目介绍">
+<a class="header-anchor" href="#%e9%a1%b9%e7%9b%ae%e4%bb%8b%e7%bb%8d"></a>
+项目介绍：
+</h2><ul>
+<li>本人在学习高并发项目过程中制作的亿级流量点赞系统，包含了后端代码。</li>
+</ul>
+<h2 id="项目亮点">
+<a class="header-anchor" href="#%e9%a1%b9%e7%9b%ae%e4%ba%ae%e7%82%b9"></a>
+项目亮点：
+</h2><ul>
+<li>高并发优化​​：设计Caffeine+Redis多级缓存架构，高并发情况下的接口响应时间降低92%（压测TPS达3000+）；利用HeavyKeeper热点探测算法将本地缓存命中率提升至92%</li>
+<li>异步处理系统：集成Pulsar消息队列实现批量消费（1000条/10秒），数据库写压力下降94%；通过Lua脚本保证原子操作+定时对账，数据一致性达99.99%</li>
+<li>分布式架构升级​​：从MySQL迁移至TiDB实现自动分片，写入吞吐量提升2倍</li>
+<li>高可用保障​​：搭建Prometheus+Grafana监控平台，故障定位效率提升70%，便于项目维护</li>
+</ul>
+        
+        <hr><p>本文2025-05-19首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
+      </description>
+      
+        <category>Java基础</category>
+      
+    </item>
+    
+  </channel>
+</rss>

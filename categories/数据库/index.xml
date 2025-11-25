@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据库 on meeting_smile&#39;s blog</title>
+    <link>http://localhost:1313/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <description>Recent content from meeting_smile&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>2054865827@qq.com (meeting_smile)</managingEditor>
+    <webMaster>2054865827@qq.com (meeting_smile)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Tue, 25 Nov 2025 16:46:00 -0700</lastBuildDate>
+    
+    
+    <atom:link href="http://localhost:1313/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>判断字段是否非空不能用等号的原因</title>
+      <link>http://localhost:1313/post/%E5%88%A4%E6%96%AD%E5%AD%97%E6%AE%B5%E6%98%AF%E5%90%A6%E9%9D%9E%E7%A9%BA%E4%B8%8D%E8%83%BD%E7%94%A8%E7%AD%89%E5%8F%B7%E7%9A%84%E5%8E%9F%E5%9B%A0/</link>
+      <pubDate>Tue, 28 Oct 2025 17:00:00 -0700</pubDate>
+      <author>2054865827@qq.com (meeting_smile)</author>
+      <guid>http://localhost:1313/post/%E5%88%A4%E6%96%AD%E5%AD%97%E6%AE%B5%E6%98%AF%E5%90%A6%E9%9D%9E%E7%A9%BA%E4%B8%8D%E8%83%BD%E7%94%A8%E7%AD%89%E5%8F%B7%E7%9A%84%E5%8E%9F%E5%9B%A0/</guid>
+      <description>
+        <![CDATA[<h1>判断字段是否非空不能用等号的原因</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        
+          <h1 id="判断字段是否非空不能用等号的原因">
+<a class="header-anchor" href="#%e5%88%a4%e6%96%ad%e5%ad%97%e6%ae%b5%e6%98%af%e5%90%a6%e9%9d%9e%e7%a9%ba%e4%b8%8d%e8%83%bd%e7%94%a8%e7%ad%89%e5%8f%b7%e7%9a%84%e5%8e%9f%e5%9b%a0"></a>
+判断字段是否非空不能用等号的原因
+</h1><p>在MySQL中，判断字段是否为空（<code>NULL</code>）必须使用 <code>IS NULL</code>或 <code>IS NOT NULL</code>，而不能使用等号（例如 <code>= NULL</code>或 <code>!= NULL</code>），这是因为 <code>NULL</code>在数据库里代表一个特殊概念。</p>
+        
+        <hr><p>本文2025-10-28首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
+      </description>
+      
+        <category>数据库</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>sum和count的区别</title>
+      <link>http://localhost:1313/post/sum%E5%92%8Ccount%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
+      <pubDate>Wed, 05 Nov 2025 17:00:00 -0700</pubDate>
+      <author>2054865827@qq.com (meeting_smile)</author>
+      <guid>http://localhost:1313/post/sum%E5%92%8Ccount%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
+      <description>
+        <![CDATA[<h1>sum和count的区别</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        
+          <h1 id="sum和count的区别">
+<a class="header-anchor" href="#sum%e5%92%8ccount%e7%9a%84%e5%8c%ba%e5%88%ab"></a>
+sum和count的区别
+</h1><p>SQL 中的 <code>SUM</code>和 <code>COUNT</code>是两个最常用的聚合函数，但它们的计算目标和适用场景有本质区别。简单来说，<strong><code>COUNT</code>用于“数个数”，而 <code>SUM</code>用于“算总和”</strong>。</p>
+        
+        <hr><p>本文2025-11-05首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
+      </description>
+      
+        <category>数据库</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>join是否必须指定连接条件</title>
+      <link>http://localhost:1313/post/join%E6%98%AF%E5%90%A6%E5%BF%85%E9%A1%BB%E6%8C%87%E5%AE%9A%E8%BF%9E%E6%8E%A5%E6%9D%A1%E4%BB%B6/</link>
+      <pubDate>Wed, 05 Nov 2025 17:00:00 -0700</pubDate>
+      <author>2054865827@qq.com (meeting_smile)</author>
+      <guid>http://localhost:1313/post/join%E6%98%AF%E5%90%A6%E5%BF%85%E9%A1%BB%E6%8C%87%E5%AE%9A%E8%BF%9E%E6%8E%A5%E6%9D%A1%E4%BB%B6/</guid>
+      <description>
+        <![CDATA[<h1>join是否必须指定连接条件</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        
+          <h1 id="join是否必须指定连接条件">
+<a class="header-anchor" href="#join%e6%98%af%e5%90%a6%e5%bf%85%e9%a1%bb%e6%8c%87%e5%ae%9a%e8%bf%9e%e6%8e%a5%e6%9d%a1%e4%bb%b6"></a>
+join是否必须指定连接条件
+</h1><p>不指定连接条件通常<strong>不会直接导致数据库报语法错误</strong>，但绝大多数情况下会产生一个你可能并不期望的结果——<strong>笛卡尔积（Cart卡尔积）</strong>。</p>
+        
+        <hr><p>本文2025-11-05首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
+      </description>
+      
+        <category>数据库</category>
+      
+    </item>
+    
+  </channel>
+</rss>

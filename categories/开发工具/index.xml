@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>开发工具 on meeting_smile&#39;s blog</title>
+    <link>http://localhost:1313/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</link>
+    <description>Recent content from meeting_smile&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>2054865827@qq.com (meeting_smile)</managingEditor>
+    <webMaster>2054865827@qq.com (meeting_smile)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Tue, 25 Nov 2025 16:46:00 -0700</lastBuildDate>
+    
+    
+    <atom:link href="http://localhost:1313/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>使用IDEA的Maven导出jar包失败</title>
+      <link>http://localhost:1313/post/%E4%BD%BF%E7%94%A8idea%E7%9A%84maven%E5%AF%BC%E5%87%BAjar%E5%8C%85%E5%A4%B1%E8%B4%A5/</link>
+      <pubDate>Wed, 09 Jul 2025 17:00:00 -0700</pubDate>
+      <author>2054865827@qq.com (meeting_smile)</author>
+      <guid>http://localhost:1313/post/%E4%BD%BF%E7%94%A8idea%E7%9A%84maven%E5%AF%BC%E5%87%BAjar%E5%8C%85%E5%A4%B1%E8%B4%A5/</guid>
+      <description>
+        <![CDATA[<h1>使用IDEA的Maven导出jar包失败</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        
+          <h2 id="使用idea的maven导出jar包失败">
+<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8idea%e7%9a%84maven%e5%af%bc%e5%87%bajar%e5%8c%85%e5%a4%b1%e8%b4%a5"></a>
+使用IDEA的Maven导出jar包失败
+</h2><ul>
+<li>
+<p>错误还原：项目使用的是jdk1.8，先使用maven的Lifecycle中的clean，再package，当使用package时，报错：[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.6.1:compile (default-compile) on project cinema-manage-system: Fatal error compiling: java.lang.NoSuchFieldError: Class com.sun.tools.javac.tree.JCTree$JCImport does</p>
+        
+        <hr><p>本文2025-07-09首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
+      </description>
+      
+        <category>开发工具</category>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>使用Git贡献代码教程</title>
+      <link>http://localhost:1313/post/%E4%BD%BF%E7%94%A8git%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Tue, 24 Jun 2025 17:00:00 -0700</pubDate>
+      <author>2054865827@qq.com (meeting_smile)</author>
+      <guid>http://localhost:1313/post/%E4%BD%BF%E7%94%A8git%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81%E6%95%99%E7%A8%8B/</guid>
+      <description>
+        <![CDATA[<h1>使用Git贡献代码教程</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        
+          <h2 id="使用git贡献代码教程">
+<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8git%e8%b4%a1%e7%8c%ae%e4%bb%a3%e7%a0%81%e6%95%99%e7%a8%8b"></a>
+使用Git贡献代码教程
+</h2><hr>
+<h3 id="前言">
+<a class="header-anchor" href="#%e5%89%8d%e8%a8%80"></a>
+前言
+</h3><p>git适用于GitHub、Gitee、GitLab等主流托管平台，它们均使用git作为底层版本控制工具</p>
+<hr>
+<h3 id="git中的三个分区">
+<a class="header-anchor" href="#git%e4%b8%ad%e7%9a%84%e4%b8%89%e4%b8%aa%e5%88%86%e5%8c%ba"></a>
+Git中的三个分区
+</h3><ul>
+<li>Git有三个主要的工作区域：工作区（working directory）、暂存区（staging area）和版本库（repository）。</li>
+<li><strong>工作区</strong>是指您电脑文件系统上用于修改文件的目录。在这里，您可以创建、编辑和删除文件。</li>
+<li><strong>暂存区</strong>是一个中间状态，它充当了您提交更改的缓冲区。在Git中，您必须明确地将文件添加到暂存区，然后才能将其提交到版本库中。这样做的好处是，您可以对每个更改进行精细控制，并确保只提交需要保存的更改。</li>
+<li><strong>版本库</strong>包含Git存储库的所有历史记录和元数据。它是Git存储库的核心组成部分，是由Git自动维护的。</li>
+</ul>
+<p>简而言之，工作区是您正在处理的实际文件，而暂存区是下一次提交所需更改的文件列表。它们之间的区别在于，您可以对工作区中的任何文件进行修改，但只有将它们添加到暂存区并将其提交到版本库中，它们才会成为Git跟踪的部分。</p>
+        
+        <hr><p>本文2025-06-24首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-06-25</p>]]>
+      </description>
+      
+        <category>开发工具</category>
+      
+    </item>
+    
+  </channel>
+</rss>

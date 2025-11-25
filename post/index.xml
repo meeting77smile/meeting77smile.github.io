@@ -40,6 +40,8 @@
         <hr><p>本文2025-07-09首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
       
+        <category>开发工具</category>
+      
     </item>
     
     
@@ -77,6 +79,8 @@ Java定时任务的实现
         <hr><p>本文2025-09-15首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
       
+        <category>框架</category>
+      
     </item>
     
     
@@ -113,6 +117,8 @@ Set和Map的遍历
         
         <hr><p>本文2025-10-16首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
+      
+        <category>Java基础</category>
       
     </item>
     
@@ -321,6 +327,8 @@ java基础——线程相关
         <hr><p>本文2025-10-16首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
       
+        <category>Java基础</category>
+      
     </item>
     
     
@@ -352,6 +360,8 @@ Java的四种引用
         <hr><p>本文2025-10-16首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
       
+        <category>Java基础</category>
+      
     </item>
     
     
@@ -382,6 +392,8 @@ next() 方法
         
         <hr><p>本文2025-10-16首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
+      
+        <category>Java基础</category>
       
     </item>
     
@@ -415,6 +427,8 @@ Linux/Unix shell命令的反斜杠是​​续行符​
         <hr><p>本文2025-10-21首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
       
+        <category>操作系统</category>
+      
     </item>
     
     
@@ -435,6 +449,8 @@ Linux/Unix shell命令的反斜杠是​​续行符​
         
         <hr><p>本文2025-10-28首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
+      
+        <category>数据库</category>
       
     </item>
     
@@ -457,6 +473,8 @@ Zookeeper+Kafka集群的部署与启动
         
         <hr><p>本文2025-11-01首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
+      
+        <category>中间件</category>
       
     </item>
     
@@ -488,6 +506,8 @@ Zookeeper+Kafka集群的部署与启动
         
         <hr><p>本文2025-11-05首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
+      
+        <category>Java基础</category>
       
     </item>
     

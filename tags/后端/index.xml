@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>后端 on meeting_smile&#39;s blog</title>
+    <link>http://localhost:1313/tags/%E5%90%8E%E7%AB%AF/</link>
+    <description>Recent content from meeting_smile&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>2054865827@qq.com (meeting_smile)</managingEditor>
+    <webMaster>2054865827@qq.com (meeting_smile)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Tue, 25 Nov 2025 16:46:00 -0700</lastBuildDate>
+    
+    
+    <atom:link href="http://localhost:1313/tags/%E5%90%8E%E7%AB%AF/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>Zookeeper&#43;Kafka集群的部署与启动</title>
+      <link>http://localhost:1313/post/zookeeper&#43;kafka%E9%9B%86%E7%BE%A4%E7%9A%84%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%90%AF%E5%8A%A8/</link>
+      <pubDate>Sat, 01 Nov 2025 17:00:00 -0700</pubDate>
+      <author>2054865827@qq.com (meeting_smile)</author>
+      <guid>http://localhost:1313/post/zookeeper&#43;kafka%E9%9B%86%E7%BE%A4%E7%9A%84%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%90%AF%E5%8A%A8/</guid>
+      <description>
+        <![CDATA[<h1>Zookeeper+Kafka集群的部署与启动</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        
+          <h1 id="zookeeperkafka集群的部署与启动">
+<a class="header-anchor" href="#zookeeperkafka%e9%9b%86%e7%be%a4%e7%9a%84%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%90%af%e5%8a%a8"></a>
+Zookeeper+Kafka集群的部署与启动
+</h1><blockquote>
+<p>我使用的虚拟机内网IP分别为：192.168.136.129,192.168.136.132,192.168.136.133</p>
+        
+        <hr><p>本文2025-11-01首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
+      </description>
+      
+        <category>框架</category>
+      
+    </item>
+    
+  </channel>
+</rss>

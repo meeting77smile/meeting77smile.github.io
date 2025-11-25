@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>微服务 on meeting_smile&#39;s blog</title>
+    <link>http://localhost:1313/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+    <description>Recent content from meeting_smile&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    
+    <managingEditor>2054865827@qq.com (meeting_smile)</managingEditor>
+    <webMaster>2054865827@qq.com (meeting_smile)</webMaster>
+    
+    <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
+    
+    <lastBuildDate>Fri, 23 May 2025 06:00:00 -0700</lastBuildDate>
+    
+    
+    <atom:link href="http://localhost:1313/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.xml" rel="self" type="application/rss&#43;xml" />
+    
+
+    
+    
+
+    <item>
+      <title>星云好物——基于微服务架构的电商平台</title>
+      <link>http://localhost:1313/post/nebulamall/</link>
+      <pubDate>Mon, 12 May 2025 18:06:00 -0700</pubDate>
+      <author>2054865827@qq.com (meeting_smile)</author>
+      <guid>http://localhost:1313/post/nebulamall/</guid>
+      <description>
+        <![CDATA[<h1>星云好物——基于微服务架构的电商平台</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        
+          <h2 id="仓库地址httpsgithubcommeeting77smilenebula-mall">
+<a class="header-anchor" href="#%e4%bb%93%e5%ba%93%e5%9c%b0%e5%9d%80httpsgithubcommeeting77smilenebula-mall"></a>
+仓库地址：https://github.com/meeting77smile/nebula-mall
+</h2><hr>
+<h2 id="项目介绍">
+<a class="header-anchor" href="#%e9%a1%b9%e7%9b%ae%e4%bb%8b%e7%bb%8d"></a>
+项目介绍：
+</h2><ul>
+<li>本人在学习微服务过程中制作的电商平台的后端代码。</li>
+</ul>
+<h2 id="项目亮点">
+<a class="header-anchor" href="#%e9%a1%b9%e7%9b%ae%e4%ba%ae%e7%82%b9"></a>
+项目亮点：
+</h2><ul>
+<li>服务间异步调用​​：利用RabbitMQ结合SpringAMQP代替OpenFeign从而实现服务间的异步调用，实现了降低服务间的耦合性、避免级联失败的效果。</li>
+<li>超时订单取消：通过DelayExchange插件，利用延迟消息实现订单超时取消功能。</li>
+<li>负载均衡：基于Nacos注册中心，利用DiscoveryClient和随机负载均衡算法，实现服务调用的负载均衡。</li>
+<li>网关登录校验：通过自定义GlobalFilter，结合JWT工具实现一个登录校验的过滤器，提高安全性和拓展性。</li>
+<li>微服务保护：利用Sentinel实现请求限流、线程隔离和服务熔断，通过Prometheus+Grafana监控平台可知系统可用性达99.9%。</li>
+</ul>
+        
+        <hr><p>本文2025-05-12首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
+      </description>
+      
+        <category>项目</category>
+      
+    </item>
+    
+  </channel>
+</rss>
