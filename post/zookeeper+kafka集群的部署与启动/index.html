@@ -1,0 +1,739 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="auto"
+  >
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  Zookeeper&#43;Kafka集群的部署与启动 | meeting_smile
+</title>
+<meta
+  name="description"
+  content="未来一定是要笑着谈的(*≧▽≦)ツ"
+/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1313/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_0khxww3tj3q9\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="Zookeeper&#43;Kafka集群的部署与启动 | meeting_smile" />
+  <meta
+    property="og:description"
+    content="未来一定是要笑着谈的(*≧▽≦)ツ"
+  />
+  <meta property="og:url" content="http://localhost:1313/post/zookeeper&#43;kafka%E9%9B%86%E7%BE%A4%E7%9A%84%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%90%AF%E5%8A%A8/" />
+  <meta
+    property="og:site_name"
+    content="meeting_smile&#39;s blog"
+  />
+  <meta
+    property="og:image"
+    content="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+  />
+  <meta property="article:author" content="meeting_smile" />
+  <meta property="article:published_time" content="2025-11-01T17:00:00-07:00" />
+  <meta property="article:modified_time" content="2025-11-25T16:46:00-07:00" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.11/dist/katex.min.css"
+    integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm&#43;ZU03BU6SQNC66uf4l5&#43;" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css"
+    integrity="sha384-4NN3fZ5AokFyHuoihl7A9qWaCt&#43;HsAtOaUsXwJGRb4/SMBtFr2vcNSHR5E8dg0Wk" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">马上就好~</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script><div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="lang-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+本文章没有找到对应的语言版本
+</div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav"><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/">首页</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/archives">归档</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/about">关于</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/friend">友链</a>
+      </span><a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a></nav></div>
+<header id="header"><picture></picture>
+    <img crossorigin="anonymous" fetchpriority="high" src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="Zookeeper&#43;Kafka集群的部署与启动"><div id="header-outer">
+    <div id="header-title"><a href="/" id="logo">
+            <h1 data-aos="slide-up">Zookeeper&#43;Kafka集群的部署与启动</h1>
+          </a><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          
+          class="sidebar-right"  ><aside id="sidebar"><div class="sidebar-wrapper wrap-sticky">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-完整步骤">1. 完整步骤</a></li>
+    <li><a href="#2-zookeeper的部署与启动">2. Zookeeper的部署与启动</a>
+      <ul>
+        <li><a href="#21-添加集群信息">2.1 添加集群信息</a></li>
+        <li><a href="#22-设置集群的节点">2.2 设置集群的节点</a></li>
+        <li><a href="#23-启动节点查看状态">2.3 启动节点、查看状态</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-kafka集群的部署与启动">3. Kafka集群的部署与启动</a>
+      <ul>
+        <li><a href="#31-指定集群节点指定zookeeper连接地址">3.1 指定集群节点、指定zookeeper连接地址</a></li>
+        <li><a href="#32-设置环境变量">3.2 设置环境变量</a></li>
+        <li><a href="#33-启动和查看状态">3.3 启动和查看状态</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-常用端口">4. 常用端口</a></li>
+    <li><a href="#5-生产者消费者模式测试">5. 生产者消费者模式测试</a>
+      <ul>
+        <li><a href="#51-创建topic">5.1 创建topic</a></li>
+        <li><a href="#52-查看当前服务器中的所有-topic">5.2 查看当前服务器中的所有 topic</a></li>
+        <li><a href="#53-查看某个topic的详情">5.3 查看某个topic的详情</a></li>
+        <li><a href="#54-发布消息生产者进行">5.4 发布消息（生产者进行）</a></li>
+        <li><a href="#55-消费消息生成者进行">5.5 消费消息（生成者进行）</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="meeting_smile"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">meeting_smile</div>
+  <div class="sidebar-description">未来一定是要笑着谈的(*≧▽≦)ツ</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">23</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social"></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div>
+
+  <div class="sidebar-widget"></div></aside>
+<section id="main"><article
+  class="h-entry article"
+  itemprop="blogPost"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-11-01 17:00:00 -0700 -0700" itemprop="datePublished"
+      >2025-11-01</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-11-25</time
+    >
+  </span>
+</div>
+<div class="article-category"></div>
+</div>
+    <div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="zookeeperkafka集群的部署与启动">
+<a class="header-anchor" href="#zookeeperkafka%e9%9b%86%e7%be%a4%e7%9a%84%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%90%af%e5%8a%a8"></a>
+Zookeeper+Kafka集群的部署与启动
+</h1><blockquote>
+<p>我使用的虚拟机内网IP分别为：192.168.136.129,192.168.136.132,192.168.136.133</p></blockquote>
+<h2 id="1-完整步骤">
+<a class="header-anchor" href="#1-%e5%ae%8c%e6%95%b4%e6%ad%a5%e9%aa%a4"></a>
+1. 完整步骤
+</h2><p>见链接：<a href="https://blog.csdn.net/2302_78835233/article/details/133938536">Zookeeper 和 Kafka 工作原理及如何搭建 Zookeeper集群 + Kafka集群_kafka集群安装部署-CSDN博客</a></p>
+<h2 id="2-zookeeper的部署与启动">
+<a class="header-anchor" href="#2-zookeeper%e7%9a%84%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%90%af%e5%8a%a8"></a>
+2. Zookeeper的部署与启动
+</h2><h3 id="21-添加集群信息">
+<a class="header-anchor" href="#21-%e6%b7%bb%e5%8a%a0%e9%9b%86%e7%be%a4%e4%bf%a1%e6%81%af"></a>
+2.1 添加集群信息
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /usr/local/zookeeper-3.5.7/conf/
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>在/usr/local/zookeeper-3.5.7/目录下输入./bin/zkCli.sh可进入客户端<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vim zoo.cfg
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#添加集群信息</span>
+</span></span><span style="display:flex;"><span>server.1<span style="color:#f92672">=</span>192.168.30.107:3188:3288
+</span></span><span style="display:flex;"><span>server.2<span style="color:#f92672">=</span>192.168.30.108:3188:3288
+</span></span><span style="display:flex;"><span>server.3<span style="color:#f92672">=</span>192.168.30.109:3188:3288
+</span></span></code></pre></div><h3 id="22-设置集群的节点">
+<a class="header-anchor" href="#22-%e8%ae%be%e7%bd%ae%e9%9b%86%e7%be%a4%e7%9a%84%e8%8a%82%e7%82%b9"></a>
+2.2 设置集群的节点
+</h3><p>在每个节点的dataDir指定的目录下创建一个 myid 的文件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#ae81ff">1</span> &gt; /usr/local/zookeeper-3.5.7/data/myid
+</span></span><span style="display:flex;"><span>echo <span style="color:#ae81ff">2</span> &gt; /usr/local/zookeeper-3.5.7/data/myid
+</span></span><span style="display:flex;"><span>echo <span style="color:#ae81ff">3</span> &gt; /usr/local/zookeeper-3.5.7/data/myid
+</span></span></code></pre></div><h3 id="23-启动节点查看状态">
+<a class="header-anchor" href="#23-%e5%90%af%e5%8a%a8%e8%8a%82%e7%82%b9%e6%9f%a5%e7%9c%8b%e7%8a%b6%e6%80%81"></a>
+2.3 启动节点、查看状态
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 启动节点</span>
+</span></span><span style="display:flex;"><span>service zookeeper start
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看当前状态</span>
+</span></span><span style="display:flex;"><span>service zookeeper status
+</span></span></code></pre></div><hr>
+<h2 id="3-kafka集群的部署与启动">
+<a class="header-anchor" href="#3-kafka%e9%9b%86%e7%be%a4%e7%9a%84%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%90%af%e5%8a%a8"></a>
+3. Kafka集群的部署与启动
+</h2><p>kafka路径在：<code>/usr/local/kafka/</code></p>
+<h3 id="31-指定集群节点指定zookeeper连接地址">
+<a class="header-anchor" href="#31-%e6%8c%87%e5%ae%9a%e9%9b%86%e7%be%a4%e8%8a%82%e7%82%b9%e6%8c%87%e5%ae%9azookeeper%e8%bf%9e%e6%8e%a5%e5%9c%b0%e5%9d%80"></a>
+3.1 指定集群节点、指定zookeeper连接地址
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /usr/local/kafka/config/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 修改配置文件</span>
+</span></span><span style="display:flex;"><span>vim server.properties
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>broker.id<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>    ●21行，broker的全局唯一编号，每个broker不能重复，因此要在其他机器上配置 broker.id<span style="color:#f92672">=</span>1、broker.id<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>zookeeper.connect<span style="color:#f92672">=</span>192.168.136.129:2181,192.168.136.132:2181,192.168.136.133:2181    ●123行，配置连接Zookeeper集群地址
+</span></span></code></pre></div><h3 id="32-设置环境变量">
+<a class="header-anchor" href="#32-%e8%ae%be%e7%bd%ae%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f"></a>
+3.2 设置环境变量
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim /etc/profile
+</span></span><span style="display:flex;"><span>export KAFKA_HOME<span style="color:#f92672">=</span>/usr/local/kafka
+</span></span><span style="display:flex;"><span>export PATH<span style="color:#f92672">=</span>$PATH:$KAFKA_HOME/bin
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>source /etc/profile
+</span></span></code></pre></div><h3 id="33-启动和查看状态">
+<a class="header-anchor" href="#33-%e5%90%af%e5%8a%a8%e5%92%8c%e6%9f%a5%e7%9c%8b%e7%8a%b6%e6%80%81"></a>
+3.3 启动和查看状态
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 分别启动kafka</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>service kafka start
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看状态</span>
+</span></span><span style="display:flex;"><span>service kafka status
+</span></span></code></pre></div><hr>
+<h2 id="4-常用端口">
+<a class="header-anchor" href="#4-%e5%b8%b8%e7%94%a8%e7%ab%af%e5%8f%a3"></a>
+4. 常用端口
+</h2><ul>
+<li><strong>9092端口</strong>：这是Kafka的默认端口，用于接收和处理来自生产者和消费者的请求。这个端口主要用于PLAINTEXT通信协议。如果您在Kafka的配置中更改了监听器（listeners）配置，那么这个端口可能会有所不同。</li>
+<li><strong>2181端口</strong>：如果您使用Zookeeper作为Kafka的集群协调服务，Zookeeper默认使用2181端口。所有的Kafka broker都需要与Zookeeper进行通信，来同步集群状态以及选举leader等。</li>
+</ul>
+<hr>
+<h2 id="5-生产者消费者模式测试">
+<a class="header-anchor" href="#5-%e7%94%9f%e4%ba%a7%e8%80%85%e6%b6%88%e8%b4%b9%e8%80%85%e6%a8%a1%e5%bc%8f%e6%b5%8b%e8%af%95"></a>
+5. 生产者消费者模式测试
+</h2><h3 id="51-创建topic">
+<a class="header-anchor" href="#51-%e5%88%9b%e5%bb%batopic"></a>
+5.1 创建topic
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kafka-topics.sh --create --zookeeper 192.168.136.129:2181,192.168.136.132:2181,192.168.136.133:2181 --replication-factor <span style="color:#ae81ff">2</span> --partitions <span style="color:#ae81ff">3</span> --topic test
+</span></span></code></pre></div><ul>
+<li>
+<p>&ndash;zookeeper：定义 zookeeper 集群服务器地址，如果有多个 IP 地址使用逗号分割，一般使用一个 IP 即可</p>
+</li>
+<li>
+<p>&ndash;replication-factor：定义分区副本数，1 代表单副本，建议为 2 &ndash;partitions：定义分区数</p>
+</li>
+<li>
+<p>&ndash;topic：定义 topic 名称</p>
+</li>
+</ul>
+<h3 id="52-查看当前服务器中的所有-topic">
+<a class="header-anchor" href="#52-%e6%9f%a5%e7%9c%8b%e5%bd%93%e5%89%8d%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%ad%e7%9a%84%e6%89%80%e6%9c%89-topic"></a>
+5.2 查看当前服务器中的所有 topic
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kafka-topics.sh --list --zookeeper 192.168.136.129:2181,192.168.136.132:2181,192.168.136.133:2181
+</span></span></code></pre></div><p>返回结果：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>test
+</span></span></code></pre></div><h3 id="53-查看某个topic的详情">
+<a class="header-anchor" href="#53-%e6%9f%a5%e7%9c%8b%e6%9f%90%e4%b8%aatopic%e7%9a%84%e8%af%a6%e6%83%85"></a>
+5.3 查看某个topic的详情
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kafka-topics.sh  --describe --zookeeper 192.168.136.129:2181,192.168.136.132:2181,192.168.136.133:2181结果：
+</span></span></code></pre></div><p>结果：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Topic: __consumer_offsets       PartitionCount: <span style="color:#ae81ff">50</span>      ReplicationFactor: <span style="color:#ae81ff">1</span>    Configs: compression.type<span style="color:#f92672">=</span>producer,cleanup.policy<span style="color:#f92672">=</span>compact,segment.bytes<span style="color:#f92672">=</span><span style="color:#ae81ff">104857600</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">0</span>    Leader: <span style="color:#ae81ff">2</span>       Replicas: <span style="color:#ae81ff">2</span>     Isr: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">1</span>    Leader: <span style="color:#ae81ff">0</span>       Replicas: <span style="color:#ae81ff">0</span>     Isr: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">2</span>    Leader: <span style="color:#ae81ff">1</span>       Replicas: <span style="color:#ae81ff">1</span>     Isr: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">3</span>    Leader: <span style="color:#ae81ff">2</span>       Replicas: <span style="color:#ae81ff">2</span>     Isr: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">4</span>    Leader: <span style="color:#ae81ff">0</span>       Replicas: <span style="color:#ae81ff">0</span>     Isr: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">5</span>    Leader: <span style="color:#ae81ff">1</span>       Replicas: <span style="color:#ae81ff">1</span>     Isr: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">6</span>    Leader: <span style="color:#ae81ff">2</span>       Replicas: <span style="color:#ae81ff">2</span>     Isr: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">7</span>    Leader: <span style="color:#ae81ff">0</span>       Replicas: <span style="color:#ae81ff">0</span>     Isr: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">8</span>    Leader: <span style="color:#ae81ff">1</span>       Replicas: <span style="color:#ae81ff">1</span>     Isr: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">9</span>    Leader: <span style="color:#ae81ff">2</span>       Replicas: <span style="color:#ae81ff">2</span>     Isr: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">10</span>   Leader: <span style="color:#ae81ff">0</span>       Replicas: <span style="color:#ae81ff">0</span>     Isr: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">11</span>   Leader: <span style="color:#ae81ff">1</span>       Replicas: <span style="color:#ae81ff">1</span>     Isr: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">12</span>   Leader: <span style="color:#ae81ff">2</span>       Replicas: <span style="color:#ae81ff">2</span>     Isr: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">13</span>   Leader: <span style="color:#ae81ff">0</span>       Replicas: <span style="color:#ae81ff">0</span>     Isr: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">14</span>   Leader: <span style="color:#ae81ff">1</span>       Replicas: <span style="color:#ae81ff">1</span>     Isr: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">15</span>   Leader: <span style="color:#ae81ff">2</span>       Replicas: <span style="color:#ae81ff">2</span>     Isr: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">16</span>   Leader: <span style="color:#ae81ff">0</span>       Replicas: <span style="color:#ae81ff">0</span>     Isr: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">17</span>   Leader: <span style="color:#ae81ff">1</span>       Replicas: <span style="color:#ae81ff">1</span>     Isr: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">18</span>   Leader: <span style="color:#ae81ff">2</span>       Replicas: <span style="color:#ae81ff">2</span>     Isr: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">19</span>   Leader: <span style="color:#ae81ff">0</span>       Replicas: <span style="color:#ae81ff">0</span>     Isr: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">20</span>   Leader: <span style="color:#ae81ff">1</span>       Replicas: <span style="color:#ae81ff">1</span>     Isr: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">21</span>   Leader: <span style="color:#ae81ff">2</span>       Replicas: <span style="color:#ae81ff">2</span>     Isr: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">22</span>   Leader: <span style="color:#ae81ff">0</span>       Replicas: <span style="color:#ae81ff">0</span>     Isr: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">23</span>   Leader: <span style="color:#ae81ff">1</span>       Replicas: <span style="color:#ae81ff">1</span>     Isr: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">24</span>   Leader: <span style="color:#ae81ff">2</span>       Replicas: <span style="color:#ae81ff">2</span>     Isr: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">25</span>   Leader: <span style="color:#ae81ff">0</span>       Replicas: <span style="color:#ae81ff">0</span>     Isr: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">26</span>   Leader: <span style="color:#ae81ff">1</span>       Replicas: <span style="color:#ae81ff">1</span>     Isr: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">27</span>   Leader: <span style="color:#ae81ff">2</span>       Replicas: <span style="color:#ae81ff">2</span>     Isr: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">28</span>   Leader: <span style="color:#ae81ff">0</span>       Replicas: <span style="color:#ae81ff">0</span>     Isr: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">29</span>   Leader: <span style="color:#ae81ff">1</span>       Replicas: <span style="color:#ae81ff">1</span>     Isr: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">30</span>   Leader: <span style="color:#ae81ff">2</span>       Replicas: <span style="color:#ae81ff">2</span>     Isr: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">31</span>   Leader: <span style="color:#ae81ff">0</span>       Replicas: <span style="color:#ae81ff">0</span>     Isr: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">32</span>   Leader: <span style="color:#ae81ff">1</span>       Replicas: <span style="color:#ae81ff">1</span>     Isr: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">33</span>   Leader: <span style="color:#ae81ff">2</span>       Replicas: <span style="color:#ae81ff">2</span>     Isr: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">34</span>   Leader: <span style="color:#ae81ff">0</span>       Replicas: <span style="color:#ae81ff">0</span>     Isr: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">35</span>   Leader: <span style="color:#ae81ff">1</span>       Replicas: <span style="color:#ae81ff">1</span>     Isr: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">36</span>   Leader: <span style="color:#ae81ff">2</span>       Replicas: <span style="color:#ae81ff">2</span>     Isr: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">37</span>   Leader: <span style="color:#ae81ff">0</span>       Replicas: <span style="color:#ae81ff">0</span>     Isr: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">38</span>   Leader: <span style="color:#ae81ff">1</span>       Replicas: <span style="color:#ae81ff">1</span>     Isr: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">39</span>   Leader: <span style="color:#ae81ff">2</span>       Replicas: <span style="color:#ae81ff">2</span>     Isr: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">40</span>   Leader: <span style="color:#ae81ff">0</span>       Replicas: <span style="color:#ae81ff">0</span>     Isr: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">41</span>   Leader: <span style="color:#ae81ff">1</span>       Replicas: <span style="color:#ae81ff">1</span>     Isr: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">42</span>   Leader: <span style="color:#ae81ff">2</span>       Replicas: <span style="color:#ae81ff">2</span>     Isr: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">43</span>   Leader: <span style="color:#ae81ff">0</span>       Replicas: <span style="color:#ae81ff">0</span>     Isr: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">44</span>   Leader: <span style="color:#ae81ff">1</span>       Replicas: <span style="color:#ae81ff">1</span>     Isr: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">45</span>   Leader: <span style="color:#ae81ff">2</span>       Replicas: <span style="color:#ae81ff">2</span>     Isr: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">46</span>   Leader: <span style="color:#ae81ff">0</span>       Replicas: <span style="color:#ae81ff">0</span>     Isr: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">47</span>   Leader: <span style="color:#ae81ff">1</span>       Replicas: <span style="color:#ae81ff">1</span>     Isr: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">48</span>   Leader: <span style="color:#ae81ff">2</span>       Replicas: <span style="color:#ae81ff">2</span>     Isr: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        Topic: __consumer_offsets       Partition: <span style="color:#ae81ff">49</span>   Leader: <span style="color:#ae81ff">0</span>       Replicas: <span style="color:#ae81ff">0</span>     Isr: <span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><h3 id="54-发布消息生产者进行">
+<a class="header-anchor" href="#54-%e5%8f%91%e5%b8%83%e6%b6%88%e6%81%af%e7%94%9f%e4%ba%a7%e8%80%85%e8%bf%9b%e8%a1%8c"></a>
+5.4 发布消息（生产者进行）
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kafka-console-producer.sh --broker-list 192.168.136.129:9092,192.168.136.132:9092,192.168.136.133:9092  --topic test
+</span></span></code></pre></div><p><code>kafka-console-producer.sh</code> 为Kafka提供的消费例子</p>
+<p>运行结果：此时用户可以在键盘上输入字符</p>
+<h3 id="55-消费消息生成者进行">
+<a class="header-anchor" href="#55-%e6%b6%88%e8%b4%b9%e6%b6%88%e6%81%af%e7%94%9f%e6%88%90%e8%80%85%e8%bf%9b%e8%a1%8c"></a>
+5.5 消费消息（生成者进行）
+</h3><p>此时生产者可以是kafka集群中的任意一个节点（包括与生产者同一个节点/主机）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kafka-console-consumer.sh --bootstrap-server 192.168.136.129:9092,192.168.136.132:9092,192.168.136.133:9092 --topic test --from-beginning
+</span></span></code></pre></div><p><code>--from-beginning</code>：会把主题中以往所有的数据都读取出来</p>
+<p>运行结果：此时会输出test主题以往生产者输入的全部数据</p>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap article-nav-link-left"><img
+            data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+            data-sizes="auto"
+            alt="判断字段是否非空不能用等号的原因"
+            class="lazyload"
+          /><a href="/post/%E5%88%A4%E6%96%AD%E5%AD%97%E6%AE%B5%E6%98%AF%E5%90%A6%E9%9D%9E%E7%A9%BA%E4%B8%8D%E8%83%BD%E7%94%A8%E7%AD%89%E5%8F%B7%E7%9A%84%E5%8E%9F%E5%9B%A0/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">判断字段是否非空不能用等号的原因</h3>
+      </div><div class="article-nav-link-wrap article-nav-link-right"><img
+            data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+            data-sizes="auto"
+            alt="抽象类和接口的异同"
+            class="lazyload"
+          /><a href="/post/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%BC%82%E5%90%8C/"></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">抽象类和接口的异同</h3>
+      </div></nav></article></section>
+        </div><footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2020-2025<span class="footer-info-sep rotate"></span>
+      meeting_smile
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;91.5k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;03:12</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-完整步骤">1. 完整步骤</a></li>
+    <li><a href="#2-zookeeper的部署与启动">2. Zookeeper的部署与启动</a>
+      <ul>
+        <li><a href="#21-添加集群信息">2.1 添加集群信息</a></li>
+        <li><a href="#22-设置集群的节点">2.2 设置集群的节点</a></li>
+        <li><a href="#23-启动节点查看状态">2.3 启动节点、查看状态</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-kafka集群的部署与启动">3. Kafka集群的部署与启动</a>
+      <ul>
+        <li><a href="#31-指定集群节点指定zookeeper连接地址">3.1 指定集群节点、指定zookeeper连接地址</a></li>
+        <li><a href="#32-设置环境变量">3.2 设置环境变量</a></li>
+        <li><a href="#33-启动和查看状态">3.3 启动和查看状态</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-常用端口">4. 常用端口</a></li>
+    <li><a href="#5-生产者消费者模式测试">5. 生产者消费者模式测试</a>
+      <ul>
+        <li><a href="#51-创建topic">5.1 创建topic</a></li>
+        <li><a href="#52-查看当前服务器中的所有-topic">5.2 查看当前服务器中的所有 topic</a></li>
+        <li><a href="#53-查看某个topic的详情">5.3 查看某个topic的详情</a></li>
+        <li><a href="#54-发布消息生产者进行">5.4 发布消息（生产者进行）</a></li>
+        <li><a href="#55-消费消息生成者进行">5.5 消费消息（生成者进行）</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="meeting_smile"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">meeting_smile</div>
+  <div class="sidebar-description">未来一定是要笑着谈的(*≧▽≦)ツ</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">23</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social"></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/js/main.js" ></script><script src="/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "",
+        apiKey: "",
+        indexName: "",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/instantsearch.js@4.56.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-hHJCflT4KBLQyHfKO9vpstIcFKn/Y&#43;KHTORelMMEn7mOp2AVPp&#43;7fr03dLgZiV3J" crossorigin="anonymous"></script><script src="/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (window.firework) {
+    const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+    options.excludeElements = options.excludeelements;
+    delete options.excludeelements;
+    window.firework(options);
+  }
+</script><script>
+  function initLive2d() {
+    live2d.init('https:\/\/fastly.jsdelivr.net\/gh\/D-Sketon\/plugin-live2d\/', {themeTipsPath: ""});
+  }
+</script><script
+    src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js"
+    asynconload="initLive2d()"></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "meeting_smile",
+          title: "Zookeeper\u002bKafka集群的部署与启动",
+          url: "http:\/\/localhost:1313\/post\/zookeeper\u002bkafka%E9%9B%86%E7%BE%A4%E7%9A%84%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%90%AF%E5%8A%A8\/",
+          description: " Zookeeper\u002bKafka集群的部署与启动 我使用的虚拟机内网IP分别为：192.168.136.129,192.168.136.132,192.168.136.133\n",
+          cover: "https:\/\/th.bing.com\/th\/id\/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg\u0026riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg\u0026ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d\u0026risl=\u0026pid=ImgRaw\u0026r=0",
+        };
+      </script><script src="/js/insert_highlight.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

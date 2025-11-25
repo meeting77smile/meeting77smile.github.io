@@ -12,7 +12,7 @@
     
     <copyright>本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</copyright>
     
-    <lastBuildDate>Wed, 25 Jun 2025 16:46:00 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 25 Nov 2025 16:46:00 -0700</lastBuildDate>
     
     
     <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss&#43;xml" />
@@ -22,35 +22,22 @@
     
 
     <item>
-      <title>使用Git贡献代码教程</title>
-      <link>http://localhost:1313/post/%E4%BD%BF%E7%94%A8git%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81%E6%95%99%E7%A8%8B/</link>
-      <pubDate>Tue, 24 Jun 2025 17:00:00 -0700</pubDate>
+      <title>使用IDEA的Maven导出jar包失败</title>
+      <link>http://localhost:1313/post/%E4%BD%BF%E7%94%A8idea%E7%9A%84maven%E5%AF%BC%E5%87%BAjar%E5%8C%85%E5%A4%B1%E8%B4%A5/</link>
+      <pubDate>Wed, 09 Jul 2025 17:00:00 -0700</pubDate>
       <author>2054865827@qq.com (meeting_smile)</author>
-      <guid>http://localhost:1313/post/%E4%BD%BF%E7%94%A8git%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81%E6%95%99%E7%A8%8B/</guid>
+      <guid>http://localhost:1313/post/%E4%BD%BF%E7%94%A8idea%E7%9A%84maven%E5%AF%BC%E5%87%BAjar%E5%8C%85%E5%A4%B1%E8%B4%A5/</guid>
       <description>
-        <![CDATA[<h1>使用Git贡献代码教程</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        <![CDATA[<h1>使用IDEA的Maven导出jar包失败</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
         
-          <h2 id="使用git贡献代码教程">
-<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8git%e8%b4%a1%e7%8c%ae%e4%bb%a3%e7%a0%81%e6%95%99%e7%a8%8b"></a>
-使用Git贡献代码教程
-</h2><hr>
-<h3 id="前言">
-<a class="header-anchor" href="#%e5%89%8d%e8%a8%80"></a>
-前言
-</h3><p>git适用于GitHub、Gitee、GitLab等主流托管平台，它们均使用git作为底层版本控制工具</p>
-<hr>
-<h3 id="git中的三个分区">
-<a class="header-anchor" href="#git%e4%b8%ad%e7%9a%84%e4%b8%89%e4%b8%aa%e5%88%86%e5%8c%ba"></a>
-Git中的三个分区
-</h3><ul>
-<li>Git有三个主要的工作区域：工作区（working directory）、暂存区（staging area）和版本库（repository）。</li>
-<li><strong>工作区</strong>是指您电脑文件系统上用于修改文件的目录。在这里，您可以创建、编辑和删除文件。</li>
-<li><strong>暂存区</strong>是一个中间状态，它充当了您提交更改的缓冲区。在Git中，您必须明确地将文件添加到暂存区，然后才能将其提交到版本库中。这样做的好处是，您可以对每个更改进行精细控制，并确保只提交需要保存的更改。</li>
-<li><strong>版本库</strong>包含Git存储库的所有历史记录和元数据。它是Git存储库的核心组成部分，是由Git自动维护的。</li>
-</ul>
-<p>简而言之，工作区是您正在处理的实际文件，而暂存区是下一次提交所需更改的文件列表。它们之间的区别在于，您可以对工作区中的任何文件进行修改，但只有将它们添加到暂存区并将其提交到版本库中，它们才会成为Git跟踪的部分。</p>
+          <h2 id="使用idea的maven导出jar包失败">
+<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8idea%e7%9a%84maven%e5%af%bc%e5%87%bajar%e5%8c%85%e5%a4%b1%e8%b4%a5"></a>
+使用IDEA的Maven导出jar包失败
+</h2><ul>
+<li>
+<p>错误还原：项目使用的是jdk1.8，先使用maven的Lifecycle中的clean，再package，当使用package时，报错：[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.6.1:compile (default-compile) on project cinema-manage-system: Fatal error compiling: java.lang.NoSuchFieldError: Class com.sun.tools.javac.tree.JCTree$JCImport does</p>
         
-        <hr><p>本文2025-06-24首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-06-25</p>]]>
+        <hr><p>本文2025-07-09首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
       
     </item>
@@ -58,35 +45,280 @@ Git中的三个分区
     
 
     <item>
-      <title>服务器项目部署</title>
-      <link>http://localhost:1313/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/</link>
-      <pubDate>Sat, 07 Jun 2025 14:26:00 -0700</pubDate>
+      <title>Java定时任务的实现</title>
+      <link>http://localhost:1313/post/java%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Mon, 15 Sep 2025 17:00:00 -0700</pubDate>
       <author>2054865827@qq.com (meeting_smile)</author>
-      <guid>http://localhost:1313/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/</guid>
+      <guid>http://localhost:1313/post/java%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
       <description>
-        <![CDATA[<h1>服务器项目部署</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        <![CDATA[<h1>Java定时任务的实现</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
         
-          <h1 id="服务器项目部署">
-<a class="header-anchor" href="#%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%a1%b9%e7%9b%ae%e9%83%a8%e7%bd%b2"></a>
-服务器项目部署
-</h1><h2 id="1-内网穿透">
-<a class="header-anchor" href="#1-%e5%86%85%e7%bd%91%e7%a9%bf%e9%80%8f"></a>
-1. 内网穿透
-</h2><h3 id="11-目的">
-<a class="header-anchor" href="#11-%e7%9b%ae%e7%9a%84"></a>
-1.1 目的
-</h3><p>为了让他人也能通过指定的url访问到自己启动的项目</p>
-<h3 id="12-实现步骤">
-<a class="header-anchor" href="#12-%e5%ae%9e%e7%8e%b0%e6%ad%a5%e9%aa%a4"></a>
-1.2 实现步骤
-</h3><h4 id="121-下载与配置">
-<a class="header-anchor" href="#121-%e4%b8%8b%e8%bd%bd%e4%b8%8e%e9%85%8d%e7%bd%ae"></a>
-1.2.1 下载与配置
+          <h1 id="java定时任务的实现">
+<a class="header-anchor" href="#java%e5%ae%9a%e6%97%b6%e4%bb%bb%e5%8a%a1%e7%9a%84%e5%ae%9e%e7%8e%b0"></a>
+Java定时任务的实现
+</h1><h2 id="1-scheduled注解">
+<a class="header-anchor" href="#1-scheduled%e6%b3%a8%e8%a7%a3"></a>
+1. @Scheduled注解
+</h2><h3 id="引入依赖">
+<a class="header-anchor" href="#%e5%bc%95%e5%85%a5%e4%be%9d%e8%b5%96"></a>
+引入依赖
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Spring Boot Schedule依赖 --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;artifactId&gt;</span>spring-boot-starter<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><h3 id="使用方法">
+<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95"></a>
+使用方法
+</h3><ul>
+<li>
+<p>首先，在定时任务方法所在的类加上 <strong>@Component</strong> 注解</p>
+        
+        <hr><p>本文2025-09-15首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>Set和Map的遍历</title>
+      <link>http://localhost:1313/post/set%E5%92%8Cmap%E7%9A%84%E9%81%8D%E5%8E%86/</link>
+      <pubDate>Thu, 16 Oct 2025 17:00:00 -0700</pubDate>
+      <author>2054865827@qq.com (meeting_smile)</author>
+      <guid>http://localhost:1313/post/set%E5%92%8Cmap%E7%9A%84%E9%81%8D%E5%8E%86/</guid>
+      <description>
+        <![CDATA[<h1>Set和Map的遍历</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        
+          <h1 id="set和map的遍历">
+<a class="header-anchor" href="#set%e5%92%8cmap%e7%9a%84%e9%81%8d%e5%8e%86"></a>
+Set和Map的遍历
+</h1><h2 id="1-set的遍历">
+<a class="header-anchor" href="#1-set%e7%9a%84%e9%81%8d%e5%8e%86"></a>
+1. Set的遍历
+</h2><p>遍历set并将其复制给新的数组ret</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> ret <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>n<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> cnt<span style="color:#f92672">=</span>0;
+</span></span><span style="display:flex;"><span>        Iterator<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> iterator <span style="color:#f92672">=</span> set.<span style="color:#a6e22e">iterator</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span>(iterator.<span style="color:#a6e22e">hasNext</span>()) {
+</span></span><span style="display:flex;"><span>            ret<span style="color:#f92672">[</span>cnt<span style="color:#f92672">++]</span> <span style="color:#f92672">=</span> iterator.<span style="color:#a6e22e">next</span>();<span style="color:#75715e">//next()：获取下一个值</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span></code></pre></div><h2 id="2-map的遍历">
+<a class="header-anchor" href="#2-map%e7%9a%84%e9%81%8d%e5%8e%86"></a>
+2. Map的遍历
+</h2><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(Map.<span style="color:#a6e22e">Entry</span><span style="color:#f92672">&lt;</span>Integer,Integer<span style="color:#f92672">&gt;</span> entry : map.<span style="color:#a6e22e">entrySet</span>()) {
+</span></span><span style="display:flex;"><span>    ret<span style="color:#f92672">[</span>cnt<span style="color:#f92672">++]</span> <span style="color:#f92672">=</span> entry.<span style="color:#a6e22e">getValue</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+        
+        <hr><p>本文2025-10-16首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
+      </description>
+      
+    </item>
+    
+    
+
+    <item>
+      <title>java基础——线程相关</title>
+      <link>http://localhost:1313/post/java%E5%9F%BA%E7%A1%80%E7%BA%BF%E7%A8%8B%E7%9B%B8%E5%85%B3/</link>
+      <pubDate>Thu, 16 Oct 2025 17:00:00 -0700</pubDate>
+      <author>2054865827@qq.com (meeting_smile)</author>
+      <guid>http://localhost:1313/post/java%E5%9F%BA%E7%A1%80%E7%BA%BF%E7%A8%8B%E7%9B%B8%E5%85%B3/</guid>
+      <description>
+        <![CDATA[<h1>java基础——线程相关</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        
+          <h1 id="java基础线程相关">
+<a class="header-anchor" href="#java%e5%9f%ba%e7%a1%80%e7%ba%bf%e7%a8%8b%e7%9b%b8%e5%85%b3"></a>
+java基础——线程相关
+</h1><p><strong>本人在阿里暑期实习单招落榜(2025.6.4)之后，下定决心补全java基础知识时做的笔记</strong></p>
+<h2 id="1多线程">
+<a class="header-anchor" href="#1%e5%a4%9a%e7%ba%bf%e7%a8%8b"></a>
+1.多线程
+</h2><h3 id="11-多线程实现的三种方式">
+<a class="header-anchor" href="#11-%e5%a4%9a%e7%ba%bf%e7%a8%8b%e5%ae%9e%e7%8e%b0%e7%9a%84%e4%b8%89%e7%a7%8d%e6%96%b9%e5%bc%8f"></a>
+1.1 多线程实现的三种方式
+</h3><h4 id="111-继承thread类">
+<a class="header-anchor" href="#111-%e7%bb%a7%e6%89%bfthread%e7%b1%bb"></a>
+1.1.1 继承Thread类
+</h4><ul>
+<li><strong>定义MyThread类，重写run方法：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyThread</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> 100; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Hello,&#34;</span><span style="color:#f92672">+</span> getName());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>实现多线程：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//1.创建MyThread对象</span>
+</span></span><span style="display:flex;"><span>        MyThread t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread();
+</span></span><span style="display:flex;"><span>        MyThread t2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread();
+</span></span><span style="display:flex;"><span>        t1.<span style="color:#a6e22e">setName</span>(<span style="color:#e6db74">&#34;线程1&#34;</span>);
+</span></span><span style="display:flex;"><span>        t2.<span style="color:#a6e22e">setName</span>(<span style="color:#e6db74">&#34;线程2&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//2.利用Thread对象启动线程</span>
+</span></span><span style="display:flex;"><span>        t1.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        t2.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h4 id="112-实现runnable接口">
+<a class="header-anchor" href="#112-%e5%ae%9e%e7%8e%b0runnable%e6%8e%a5%e5%8f%a3"></a>
+1.1.2 实现Runnable接口
+</h4><ul>
+<li><strong>定义MyRunnable接口，实现run方法：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyRunnable</span> <span style="color:#66d9ef">implements</span> Runnable{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//获取到当前执行该方法的Thread对象</span>
+</span></span><span style="display:flex;"><span>        Thread t <span style="color:#f92672">=</span> Thread.<span style="color:#a6e22e">currentThread</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> 100; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Hello,&#34;</span><span style="color:#f92672">+</span> t.<span style="color:#a6e22e">getName</span>());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>实现多线程：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//1.创建MyRunnable对象</span>
+</span></span><span style="display:flex;"><span>        MyRunnable myRunnable <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyRunnable();
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//2.利用MyRunnable对象创建Thread对象</span>
+</span></span><span style="display:flex;"><span>        Thread t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread(myRunnable);
+</span></span><span style="display:flex;"><span>        Thread t2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread(myRunnable);
+</span></span><span style="display:flex;"><span>        t1.<span style="color:#a6e22e">setName</span>(<span style="color:#e6db74">&#34;线程1&#34;</span>);
+</span></span><span style="display:flex;"><span>        t2.<span style="color:#a6e22e">setName</span>(<span style="color:#e6db74">&#34;线程2&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//3.利用Thread对象启动线程</span>
+</span></span><span style="display:flex;"><span>        t1.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        t2.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h4 id="112-实现callable接口可获取线程运行结果">
+<a class="header-anchor" href="#112-%e5%ae%9e%e7%8e%b0callable%e6%8e%a5%e5%8f%a3%e5%8f%af%e8%8e%b7%e5%8f%96%e7%ba%bf%e7%a8%8b%e8%bf%90%e8%a1%8c%e7%bb%93%e6%9e%9c"></a>
+1.1.2 实现Callable接口（可获取线程运行结果）
+</h4><ul>
+<li><strong>定义MyCallable类</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyCallable</span> <span style="color:#66d9ef">implements</span> Callable<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Integer <span style="color:#a6e22e">call</span>() <span style="color:#66d9ef">throws</span> Exception {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//求1~100的和</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> sum <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1; i <span style="color:#f92672">&lt;=</span> 100; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            sum<span style="color:#f92672">+=</span>i;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> sum;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>实现多线程</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> ExecutionException, InterruptedException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//1.创建MyCallable对象</span>
+</span></span><span style="display:flex;"><span>        MyCallable myCall <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyCallable();
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//2.创建FutureTask对象，用于管理单线程运行的结果</span>
+</span></span><span style="display:flex;"><span>        FutureTask<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> ft <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FutureTask<span style="color:#f92672">&lt;&gt;</span>(myCall);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//3.通过FutureTask对象来创建线程对象</span>
+</span></span><span style="display:flex;"><span>        Thread t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread(ft);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//4.利用Thread对象启动线程</span>
+</span></span><span style="display:flex;"><span>        t1.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//5.利用FutureTask的get()方法获取线程运行的结果</span>
+</span></span><span style="display:flex;"><span>        Integer result <span style="color:#f92672">=</span> ft.<span style="color:#a6e22e">get</span>();
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(result);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><hr>
+<h3 id="12-三种方式的比较">
+<a class="header-anchor" href="#12-%e4%b8%89%e7%a7%8d%e6%96%b9%e5%bc%8f%e7%9a%84%e6%af%94%e8%be%83"></a>
+1.2 三种方式的比较
+</h3><table>
+  <thead>
+      <tr>
+          <th>实现方式</th>
+          <th>优点</th>
+          <th>缺点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>继承Thread类</td>
+          <td>编程比较简单，可以直接使用Thread类中的方法</td>
+          <td>扩展性较差，不能再继承其他的类</td>
+      </tr>
+      <tr>
+          <td>实现Runnable接口</td>
+          <td>扩展性强，实现该接口的同时还可以继承其他的类</td>
+          <td>编程相对复杂，不能直接使用Thread类中的方法</td>
+      </tr>
+      <tr>
+          <td>实现Callable接口</td>
+          <td>- 扩展性强（同样可继承其他类）<!-- raw HTML omitted -->- 支持返回值（通过FutureTask获取）<!-- raw HTML omitted -->- 支持抛出检查异常</td>
+          <td>- 编程最复杂<!-- raw HTML omitted -->- 需配合ExecutorService使用<!-- raw HTML omitted -->- 不能直接使用Thread类方法</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="13-thread的常见成员方法">
+<a class="header-anchor" href="#13-thread%e7%9a%84%e5%b8%b8%e8%a7%81%e6%88%90%e5%91%98%e6%96%b9%e6%b3%95"></a>
+1.3 Thread的常见成员方法
+</h3><table>
+  <thead>
+      <tr>
+          <th>方法名称</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong><code>String getName()</code></strong></td>
+          <td>返回此线程的名称</td>
+      </tr>
+      <tr>
+          <td><strong><code>void setName(String name)</code></strong></td>
+          <td>设置线程的名字（构造方法也可以设置名字）</td>
+      </tr>
+      <tr>
+          <td><strong><code>static Thread currentThread()</code></strong></td>
+          <td>获取当前线程的对象</td>
+      </tr>
+      <tr>
+          <td><strong><code>static void sleep(long time)</code></strong></td>
+          <td>让线程休眠指定的时间，单位为毫秒</td>
+      </tr>
+      <tr>
+          <td><strong><code>setPriority(int newPriority)</code></strong></td>
+          <td>设置线程的优先级</td>
+      </tr>
+      <tr>
+          <td><strong><code>final int getPriority()</code></strong></td>
+          <td>获取线程的优先级</td>
+      </tr>
+      <tr>
+          <td><strong><code>final void setDaemon(boolean on)</code></strong></td>
+          <td>设置为守护线程</td>
+      </tr>
+      <tr>
+          <td><strong><code>public static void yield()</code></strong></td>
+          <td>出让线程/礼让线程</td>
+      </tr>
+      <tr>
+          <td><strong><code>public static void join()</code></strong></td>
+          <td>插入线程/插队线程</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="131-sleeplong-time">
+<a class="header-anchor" href="#131-sleeplong-time"></a>
+1.3.1 sleep(long time)
 </h4><ul>
 <li>
-<p>搜索 <strong><a href="https://www.cpolar.com">https://www.cpolar.com</a></strong> ，进入cpolar官网。</p>
+<p><strong>描述：</strong> 让使用当前函数的线程休眠指定时间。</p>
         
-        <hr><p>本文2025-06-07首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-06-07</p>]]>
+        <hr><p>本文2025-10-16首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
       
     </item>
@@ -94,29 +326,30 @@ Git中的三个分区
     
 
     <item>
-      <title>积语——云伴学</title>
-      <link>http://localhost:1313/post/jiyuguidebook/</link>
-      <pubDate>Sat, 15 Mar 2025 22:11:00 -0700</pubDate>
+      <title>Java的四种引用</title>
+      <link>http://localhost:1313/post/java%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8/java%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8/</link>
+      <pubDate>Thu, 16 Oct 2025 17:00:00 -0700</pubDate>
       <author>2054865827@qq.com (meeting_smile)</author>
-      <guid>http://localhost:1313/post/jiyuguidebook/</guid>
+      <guid>http://localhost:1313/post/java%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8/java%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8/</guid>
       <description>
-        <![CDATA[<h1>积语——云伴学</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        <![CDATA[<h1>Java的四种引用</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
         
-          <h2 id="仓库地址">
-<a class="header-anchor" href="#%e4%bb%93%e5%ba%93%e5%9c%b0%e5%9d%80"></a>
-仓库地址
-</h2><h3 id="网页端httpsgithubcommeeting77smilejiyulearning">
-<a class="header-anchor" href="#%e7%bd%91%e9%a1%b5%e7%ab%afhttpsgithubcommeeting77smilejiyulearning"></a>
-网页端：https://github.com/meeting77smile/JiYuLearning
-</h3><h3 id="移动端httpsgithubcommeeting77smilejiyulearning-app">
-<a class="header-anchor" href="#%e7%a7%bb%e5%8a%a8%e7%ab%afhttpsgithubcommeeting77smilejiyulearning-app"></a>
-移动端：https://github.com/meeting77smile/JiYuLearning-APP
-</h3><h1 id="使用指南">
-<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8%e6%8c%87%e5%8d%97"></a>
-<!-- raw HTML omitted --> <strong>使用指南</strong>
-</h1><p><strong>欢迎使用积语·云伴学——基于多智能体的个性化学习规划辅助定制平台</strong></p>
+          <h1 id="java的四种引用">
+<a class="header-anchor" href="#java%e7%9a%84%e5%9b%9b%e7%a7%8d%e5%bc%95%e7%94%a8"></a>
+Java的四种引用
+</h1><h2 id="1-强引用">
+<a class="header-anchor" href="#1-%e5%bc%ba%e5%bc%95%e7%94%a8"></a>
+1. 强引用
+</h2><h3 id="11-概念">
+<a class="header-anchor" href="#11-%e6%a6%82%e5%bf%b5"></a>
+1.1 概念
+</h3><p>被直接指向的对象实例，即使JVM的堆内存不足爆出OOM错误也不会释放强引用的对象。</p>
+<h3 id="12-强引用对象的回收">
+<a class="header-anchor" href="#12-%e5%bc%ba%e5%bc%95%e7%94%a8%e5%af%b9%e8%b1%a1%e7%9a%84%e5%9b%9e%e6%94%b6"></a>
+1.2 强引用对象的回收
+</h3><p>只有当对象无法通过GC Root找到（没有被引用），强引用的对象才可被回收</p>
         
-        <hr><p>本文2025-03-15首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
+        <hr><p>本文2025-10-16首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
       
     </item>
@@ -124,31 +357,30 @@ Git中的三个分区
     
 
     <item>
-      <title>HTML5&#43;CSS3入门</title>
-      <link>http://localhost:1313/post/html5&#43;css3%E5%85%A5%E9%97%A8/</link>
-      <pubDate>Fri, 01 Nov 2024 22:11:00 -0700</pubDate>
+      <title>Java 输入输出总结</title>
+      <link>http://localhost:1313/post/java-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Thu, 16 Oct 2025 17:00:00 -0700</pubDate>
       <author>2054865827@qq.com (meeting_smile)</author>
-      <guid>http://localhost:1313/post/html5&#43;css3%E5%85%A5%E9%97%A8/</guid>
+      <guid>http://localhost:1313/post/java-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%80%BB%E7%BB%93/</guid>
       <description>
-        <![CDATA[<h1>HTML5+CSS3入门</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        <![CDATA[<h1>Java 输入输出总结</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
         
-          <h1 id="html5css3">
-<a class="header-anchor" href="#html5css3"></a>
-HTML5+CSS3
-</h1><h2 id="1-基础知识">
-<a class="header-anchor" href="#1-%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86"></a>
-1. 基础知识
-</h2><h3 id="11-网页的相关概念">
-<a class="header-anchor" href="#11-%e7%bd%91%e9%a1%b5%e7%9a%84%e7%9b%b8%e5%85%b3%e6%a6%82%e5%bf%b5"></a>
-1.1 网页的相关概念
-</h3><ul>
-<li>
-<p>网站：指在因特网上根据一定的规则，使用HTML等制作的用于展示特定内容相关的网页集合。</p>
-</li>
-<li>
-<p>网页：是构成网站的基本元素，它通常由图片、链接、文字、声音、视频等元素组成。通常我们看到的网页，一般是以.htm或.html后缀结尾的文件，因此将其俗称为HTML文件。</p>
+          <h1 id="java-输入输出总结">
+<a class="header-anchor" href="#java-%e8%be%93%e5%85%a5%e8%be%93%e5%87%ba%e6%80%bb%e7%bb%93"></a>
+Java 输入输出总结
+</h1><h2 id="scanner中nextnextint和nextline的区别">
+<a class="header-anchor" href="#scanner%e4%b8%adnextnextint%e5%92%8cnextline%e7%9a%84%e5%8c%ba%e5%88%ab"></a>
+Scanner中，Next()、NextInt()和NextLine()的区别
+</h2><h3 id="next-方法">
+<a class="header-anchor" href="#next-%e6%96%b9%e6%b3%95"></a>
+next() 方法
+</h3><blockquote>
+<h4 id="空白字符是什么">
+<a class="header-anchor" href="#%e7%a9%ba%e7%99%bd%e5%ad%97%e7%ac%a6%e6%98%af%e4%bb%80%e4%b9%88"></a>
+空白字符是什么
+</h4><p><strong>空白字符</strong>是指在文本中不显示任何内容，但用于控制文本格式和布局的字符。它们在编程和文本处理过程中非常重要，尤其是在处理字符串和文件时。</p>
         
-        <hr><p>本文2024-11-01首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
+        <hr><p>本文2025-10-16首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
       
     </item>
@@ -156,34 +388,31 @@ HTML5+CSS3
     
 
     <item>
-      <title>Android笔记</title>
-      <link>http://localhost:1313/post/android_notes/</link>
-      <pubDate>Sat, 23 Nov 2024 11:54:00 -0700</pubDate>
+      <title>Linux/Unix shell命令的反斜杠是​​续行符​</title>
+      <link>http://localhost:1313/post/linux%E6%88%96unix%E7%9A%84shell%E5%91%BD%E4%BB%A4%E4%B8%AD%E7%9A%84%E5%8F%8D%E6%96%9C%E6%9D%A0%E6%98%AF%E7%BB%AD%E8%A1%8C%E7%AC%A6/</link>
+      <pubDate>Tue, 21 Oct 2025 17:00:00 -0700</pubDate>
       <author>2054865827@qq.com (meeting_smile)</author>
-      <guid>http://localhost:1313/post/android_notes/</guid>
+      <guid>http://localhost:1313/post/linux%E6%88%96unix%E7%9A%84shell%E5%91%BD%E4%BB%A4%E4%B8%AD%E7%9A%84%E5%8F%8D%E6%96%9C%E6%9D%A0%E6%98%AF%E7%BB%AD%E8%A1%8C%E7%AC%A6/</guid>
       <description>
-        <![CDATA[<h1>Android笔记</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        <![CDATA[<h1>Linux/Unix shell命令的反斜杠是​​续行符​</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
         
-          <h2 id="安卓基础">
-<a class="header-anchor" href="#%e5%ae%89%e5%8d%93%e5%9f%ba%e7%a1%80"></a>
-安卓基础
-</h2><h2 id="学习前的声明">
-<a class="header-anchor" href="#%e5%ad%a6%e4%b9%a0%e5%89%8d%e7%9a%84%e5%a3%b0%e6%98%8e"></a>
-学习前的声明
-</h2><h3 id="1-语言要求">
-<a class="header-anchor" href="#1-%e8%af%ad%e8%a8%80%e8%a6%81%e6%b1%82"></a>
-1. 语言要求
-</h3><ul>
-<li>本次学习用到的语言为<!-- raw HTML omitted -->Java<!-- raw HTML omitted -->。（<!-- raw HTML omitted -->Kotlin<!-- raw HTML omitted -->虽然为Android官方推荐语言，但Java与Kotlin的关系类似于C与C++的关系，学好了Java，便能比较快地上手Kotlin）</li>
-</ul>
-<h3 id="2-设置主界面">
-<a class="header-anchor" href="#2-%e8%ae%be%e7%bd%ae%e4%b8%bb%e7%95%8c%e9%9d%a2"></a>
-2. 设置主界面
-</h3><ul>
-<li>
-<p>在<!-- raw HTML omitted -->AndroidManifest.xml<!-- raw HTML omitted -->文件中，在如图所示的位置改为想要作为主界面的的java文件名（注意别忘了名称开头要加点）</p>
+          <h1 id="linuxunix-shell命令的反斜杠是续行符">
+<a class="header-anchor" href="#linuxunix-shell%e5%91%bd%e4%bb%a4%e7%9a%84%e5%8f%8d%e6%96%9c%e6%9d%a0%e6%98%af%e7%bb%ad%e8%a1%8c%e7%ac%a6"></a>
+Linux/Unix shell命令的反斜杠是​​续行符​
+</h1><h2 id="实例">
+<a class="header-anchor" href="#%e5%ae%9e%e4%be%8b"></a>
+实例
+</h2><p>如有以下配置JDK的命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./configure <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --with-debug-level<span style="color:#f92672">=</span>release <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --with-native-debug-symbols<span style="color:#f92672">=</span>internal <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  ...
+</span></span></code></pre></div><h2 id="解释">
+<a class="header-anchor" href="#%e8%a7%a3%e9%87%8a"></a>
+解释
+</h2><p>命令当中的 <strong>反斜杠&quot;&quot;</strong> 表示的是<strong>续行符</strong> ，用于告诉shell：该命令还没有结束，换到了下一行，shell应该从<strong>下一行接着读</strong>，在逻辑上这些行会被<strong>合并为一条完整命令</strong></p>
         
-        <hr><p>本文2024-11-23首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
+        <hr><p>本文2025-10-21首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
       
     </item>
@@ -191,34 +420,20 @@ HTML5+CSS3
     
 
     <item>
-      <title>电商秒杀项目</title>
-      <link>http://localhost:1313/post/secondkill/</link>
-      <pubDate>Sun, 06 Apr 2025 18:06:00 -0700</pubDate>
+      <title>判断字段是否非空不能用等号的原因</title>
+      <link>http://localhost:1313/post/%E5%88%A4%E6%96%AD%E5%AD%97%E6%AE%B5%E6%98%AF%E5%90%A6%E9%9D%9E%E7%A9%BA%E4%B8%8D%E8%83%BD%E7%94%A8%E7%AD%89%E5%8F%B7%E7%9A%84%E5%8E%9F%E5%9B%A0/</link>
+      <pubDate>Tue, 28 Oct 2025 17:00:00 -0700</pubDate>
       <author>2054865827@qq.com (meeting_smile)</author>
-      <guid>http://localhost:1313/post/secondkill/</guid>
+      <guid>http://localhost:1313/post/%E5%88%A4%E6%96%AD%E5%AD%97%E6%AE%B5%E6%98%AF%E5%90%A6%E9%9D%9E%E7%A9%BA%E4%B8%8D%E8%83%BD%E7%94%A8%E7%AD%89%E5%8F%B7%E7%9A%84%E5%8E%9F%E5%9B%A0/</guid>
       <description>
-        <![CDATA[<h1>电商秒杀项目</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        <![CDATA[<h1>判断字段是否非空不能用等号的原因</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
         
-          <h2 id="仓库地址httpsgithubcommeeting77smilesecondkill">
-<a class="header-anchor" href="#%e4%bb%93%e5%ba%93%e5%9c%b0%e5%9d%80httpsgithubcommeeting77smilesecondkill"></a>
-仓库地址：https://github.com/meeting77smile/SecondKill
-</h2><hr>
-<h2 id="项目介绍">
-<a class="header-anchor" href="#%e9%a1%b9%e7%9b%ae%e4%bb%8b%e7%bb%8d"></a>
-项目介绍：
-</h2><ul>
-<li>本人在学习高并发过程中制作的百万级别秒杀系统，包含了前端和后端代码。</li>
-</ul>
-<h2 id="项目亮点">
-<a class="header-anchor" href="#%e9%a1%b9%e7%9b%ae%e4%ba%ae%e7%82%b9"></a>
-项目亮点：
-</h2><ul>
-<li>通过redis预减+使用RabbitMQ处理订单请求，用户下单时的QPS提升接近4倍；</li>
-<li>通过redis执行lua脚本，避免库存超卖；</li>
-<li>通过生成uuid隐藏秒杀地址、easy-captcha生成验证码和计数器算法实现接口限流等操作，实现了防止恶意刷单的功能，从而增加了系统的抗压能力。</li>
-</ul>
+          <h1 id="判断字段是否非空不能用等号的原因">
+<a class="header-anchor" href="#%e5%88%a4%e6%96%ad%e5%ad%97%e6%ae%b5%e6%98%af%e5%90%a6%e9%9d%9e%e7%a9%ba%e4%b8%8d%e8%83%bd%e7%94%a8%e7%ad%89%e5%8f%b7%e7%9a%84%e5%8e%9f%e5%9b%a0"></a>
+判断字段是否非空不能用等号的原因
+</h1><p>在MySQL中，判断字段是否为空（<code>NULL</code>）必须使用 <code>IS NULL</code>或 <code>IS NOT NULL</code>，而不能使用等号（例如 <code>= NULL</code>或 <code>!= NULL</code>），这是因为 <code>NULL</code>在数据库里代表一个特殊概念。</p>
         
-        <hr><p>本文2025-04-06首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
+        <hr><p>本文2025-10-28首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
       
     </item>
@@ -226,36 +441,21 @@ HTML5+CSS3
     
 
     <item>
-      <title>星云好物——基于微服务架构的电商平台</title>
-      <link>http://localhost:1313/post/nebulamall/</link>
-      <pubDate>Mon, 12 May 2025 18:06:00 -0700</pubDate>
+      <title>Zookeeper&#43;Kafka集群的部署与启动</title>
+      <link>http://localhost:1313/post/zookeeper&#43;kafka%E9%9B%86%E7%BE%A4%E7%9A%84%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%90%AF%E5%8A%A8/</link>
+      <pubDate>Sat, 01 Nov 2025 17:00:00 -0700</pubDate>
       <author>2054865827@qq.com (meeting_smile)</author>
-      <guid>http://localhost:1313/post/nebulamall/</guid>
+      <guid>http://localhost:1313/post/zookeeper&#43;kafka%E9%9B%86%E7%BE%A4%E7%9A%84%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%90%AF%E5%8A%A8/</guid>
       <description>
-        <![CDATA[<h1>星云好物——基于微服务架构的电商平台</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        <![CDATA[<h1>Zookeeper+Kafka集群的部署与启动</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
         
-          <h2 id="仓库地址httpsgithubcommeeting77smilenebula-mall">
-<a class="header-anchor" href="#%e4%bb%93%e5%ba%93%e5%9c%b0%e5%9d%80httpsgithubcommeeting77smilenebula-mall"></a>
-仓库地址：https://github.com/meeting77smile/nebula-mall
-</h2><hr>
-<h2 id="项目介绍">
-<a class="header-anchor" href="#%e9%a1%b9%e7%9b%ae%e4%bb%8b%e7%bb%8d"></a>
-项目介绍：
-</h2><ul>
-<li>本人在学习微服务过程中制作的电商平台的后端代码。</li>
-</ul>
-<h2 id="项目亮点">
-<a class="header-anchor" href="#%e9%a1%b9%e7%9b%ae%e4%ba%ae%e7%82%b9"></a>
-项目亮点：
-</h2><ul>
-<li>服务间异步调用​​：利用RabbitMQ结合SpringAMQP代替OpenFeign从而实现服务间的异步调用，实现了降低服务间的耦合性、避免级联失败的效果。</li>
-<li>超时订单取消：通过DelayExchange插件，利用延迟消息实现订单超时取消功能。</li>
-<li>负载均衡：基于Nacos注册中心，利用DiscoveryClient和随机负载均衡算法，实现服务调用的负载均衡。</li>
-<li>网关登录校验：通过自定义GlobalFilter，结合JWT工具实现一个登录校验的过滤器，提高安全性和拓展性。</li>
-<li>微服务保护：利用Sentinel实现请求限流、线程隔离和服务熔断，通过Prometheus+Grafana监控平台可知系统可用性达99.9%。</li>
-</ul>
+          <h1 id="zookeeperkafka集群的部署与启动">
+<a class="header-anchor" href="#zookeeperkafka%e9%9b%86%e7%be%a4%e7%9a%84%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%90%af%e5%8a%a8"></a>
+Zookeeper+Kafka集群的部署与启动
+</h1><blockquote>
+<p>我使用的虚拟机内网IP分别为：192.168.136.129,192.168.136.132,192.168.136.133</p>
         
-        <hr><p>本文2025-05-12首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
+        <hr><p>本文2025-11-01首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
       
     </item>
@@ -263,35 +463,30 @@ HTML5+CSS3
     
 
     <item>
-      <title>亿级流量点赞系统</title>
-      <link>http://localhost:1313/post/likesystem/</link>
-      <pubDate>Mon, 19 May 2025 18:06:00 -0700</pubDate>
+      <title>抽象类和接口的异同</title>
+      <link>http://localhost:1313/post/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%BC%82%E5%90%8C/</link>
+      <pubDate>Wed, 05 Nov 2025 17:00:00 -0700</pubDate>
       <author>2054865827@qq.com (meeting_smile)</author>
-      <guid>http://localhost:1313/post/likesystem/</guid>
+      <guid>http://localhost:1313/post/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%BC%82%E5%90%8C/</guid>
       <description>
-        <![CDATA[<h1>亿级流量点赞系统</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
+        <![CDATA[<h1>抽象类和接口的异同</h1><p>作者：meeting_smile（2054865827@qq.com）</p>
         
-          <h2 id="仓库地址httpsgithubcommeeting77smilelike-system">
-<a class="header-anchor" href="#%e4%bb%93%e5%ba%93%e5%9c%b0%e5%9d%80httpsgithubcommeeting77smilelike-system"></a>
-仓库地址：https://github.com/meeting77smile/like-system
-</h2><hr>
-<h2 id="项目介绍">
-<a class="header-anchor" href="#%e9%a1%b9%e7%9b%ae%e4%bb%8b%e7%bb%8d"></a>
-项目介绍：
-</h2><ul>
-<li>本人在学习高并发项目过程中制作的亿级流量点赞系统，包含了后端代码。</li>
-</ul>
-<h2 id="项目亮点">
-<a class="header-anchor" href="#%e9%a1%b9%e7%9b%ae%e4%ba%ae%e7%82%b9"></a>
-项目亮点：
-</h2><ul>
-<li>高并发优化​​：设计Caffeine+Redis多级缓存架构，高并发情况下的接口响应时间降低92%（压测TPS达3000+）；利用HeavyKeeper热点探测算法将本地缓存命中率提升至92%</li>
-<li>异步处理系统：集成Pulsar消息队列实现批量消费（1000条/10秒），数据库写压力下降94%；通过Lua脚本保证原子操作+定时对账，数据一致性达99.99%</li>
-<li>分布式架构升级​​：从MySQL迁移至TiDB实现自动分片，写入吞吐量提升2倍</li>
-<li>高可用保障​​：搭建Prometheus+Grafana监控平台，故障定位效率提升70%，便于项目维护</li>
-</ul>
+          <h1 id="抽象类和接口的异同">
+<a class="header-anchor" href="#%e6%8a%bd%e8%b1%a1%e7%b1%bb%e5%92%8c%e6%8e%a5%e5%8f%a3%e7%9a%84%e5%bc%82%e5%90%8c"></a>
+抽象类和接口的异同
+</h1><h2 id="1-抽象类">
+<a class="header-anchor" href="#1-%e6%8a%bd%e8%b1%a1%e7%b1%bb"></a>
+1. 抽象类
+</h2><h3 id="11-概念">
+<a class="header-anchor" href="#11-%e6%a6%82%e5%bf%b5"></a>
+1.1 概念
+</h3><p><strong>含有抽象方法</strong>的类，在Java中使用abstract修饰</p>
+<h3 id="12-包含内容">
+<a class="header-anchor" href="#12-%e5%8c%85%e5%90%ab%e5%86%85%e5%ae%b9"></a>
+1.2 包含内容
+</h3><p>具有普通的类具有的所有内容，除此之外还具有抽象方法，说白了就是<strong>具有抽象方法的普通类（但是通过abstract修饰）</strong> ，具体可以包含的内容为：</p>
         
-        <hr><p>本文2025-05-19首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-05-23</p>]]>
+        <hr><p>本文2025-11-05首发于<a href='http://localhost:1313/'>meeting_smile's blog</a>，最后修改于2025-11-25</p>]]>
       </description>
       
     </item>

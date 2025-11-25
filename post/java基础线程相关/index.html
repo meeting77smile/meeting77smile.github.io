@@ -1,0 +1,2120 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="auto"
+  >
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  java基础——线程相关 | meeting_smile
+</title>
+<meta
+  name="description"
+  content="未来一定是要笑着谈的(*≧▽≦)ツ"
+/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1313/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_0khxww3tj3q9\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="java基础——线程相关 | meeting_smile" />
+  <meta
+    property="og:description"
+    content="未来一定是要笑着谈的(*≧▽≦)ツ"
+  />
+  <meta property="og:url" content="http://localhost:1313/post/java%E5%9F%BA%E7%A1%80%E7%BA%BF%E7%A8%8B%E7%9B%B8%E5%85%B3/" />
+  <meta
+    property="og:site_name"
+    content="meeting_smile&#39;s blog"
+  />
+  <meta
+    property="og:image"
+    content="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+  />
+  <meta property="article:author" content="meeting_smile" />
+  <meta property="article:published_time" content="2025-10-16T17:00:00-07:00" />
+  <meta property="article:modified_time" content="2025-11-25T16:46:00-07:00" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.11/dist/katex.min.css"
+    integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm&#43;ZU03BU6SQNC66uf4l5&#43;" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css"
+    integrity="sha384-4NN3fZ5AokFyHuoihl7A9qWaCt&#43;HsAtOaUsXwJGRb4/SMBtFr2vcNSHR5E8dg0Wk" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">马上就好~</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script><div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="lang-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+本文章没有找到对应的语言版本
+</div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav"><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/">首页</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/archives">归档</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/about">关于</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/friend">友链</a>
+      </span><a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a></nav></div>
+<header id="header"><picture></picture>
+    <img crossorigin="anonymous" fetchpriority="high" src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="java基础——线程相关"><div id="header-outer">
+    <div id="header-title"><a href="/" id="logo">
+            <h1 data-aos="slide-up">java基础——线程相关</h1>
+          </a><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          
+          class="sidebar-right"  ><aside id="sidebar"><div class="sidebar-wrapper wrap-sticky">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1多线程">1.多线程</a>
+      <ul>
+        <li><a href="#11-多线程实现的三种方式">1.1 多线程实现的三种方式</a></li>
+        <li><a href="#12-三种方式的比较">1.2 三种方式的比较</a></li>
+        <li><a href="#13-thread的常见成员方法">1.3 Thread的常见成员方法</a></li>
+        <li><a href="#14-线程安全">1.4 线程安全</a></li>
+        <li><a href="#15-等待唤醒机制">1.5 等待唤醒机制</a></li>
+        <li><a href="#16-综合练习">1.6 综合练习</a></li>
+        <li><a href="#17-线程池">1.7 线程池</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="meeting_smile"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">meeting_smile</div>
+  <div class="sidebar-description">未来一定是要笑着谈的(*≧▽≦)ツ</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">23</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social"></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div>
+
+  <div class="sidebar-widget"></div></aside>
+<section id="main"><article
+  class="h-entry article"
+  itemprop="blogPost"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-10-16 17:00:00 -0700 -0700" itemprop="datePublished"
+      >2025-10-16</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-11-25</time
+    >
+  </span>
+</div>
+<div class="article-category"></div>
+</div>
+    <div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="java基础线程相关">
+<a class="header-anchor" href="#java%e5%9f%ba%e7%a1%80%e7%ba%bf%e7%a8%8b%e7%9b%b8%e5%85%b3"></a>
+java基础——线程相关
+</h1><p><strong>本人在阿里暑期实习单招落榜(2025.6.4)之后，下定决心补全java基础知识时做的笔记</strong></p>
+<h2 id="1多线程">
+<a class="header-anchor" href="#1%e5%a4%9a%e7%ba%bf%e7%a8%8b"></a>
+1.多线程
+</h2><h3 id="11-多线程实现的三种方式">
+<a class="header-anchor" href="#11-%e5%a4%9a%e7%ba%bf%e7%a8%8b%e5%ae%9e%e7%8e%b0%e7%9a%84%e4%b8%89%e7%a7%8d%e6%96%b9%e5%bc%8f"></a>
+1.1 多线程实现的三种方式
+</h3><h4 id="111-继承thread类">
+<a class="header-anchor" href="#111-%e7%bb%a7%e6%89%bfthread%e7%b1%bb"></a>
+1.1.1 继承Thread类
+</h4><ul>
+<li><strong>定义MyThread类，重写run方法：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyThread</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> 100; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Hello,&#34;</span><span style="color:#f92672">+</span> getName());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>实现多线程：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//1.创建MyThread对象</span>
+</span></span><span style="display:flex;"><span>        MyThread t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread();
+</span></span><span style="display:flex;"><span>        MyThread t2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread();
+</span></span><span style="display:flex;"><span>        t1.<span style="color:#a6e22e">setName</span>(<span style="color:#e6db74">&#34;线程1&#34;</span>);
+</span></span><span style="display:flex;"><span>        t2.<span style="color:#a6e22e">setName</span>(<span style="color:#e6db74">&#34;线程2&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//2.利用Thread对象启动线程</span>
+</span></span><span style="display:flex;"><span>        t1.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        t2.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h4 id="112-实现runnable接口">
+<a class="header-anchor" href="#112-%e5%ae%9e%e7%8e%b0runnable%e6%8e%a5%e5%8f%a3"></a>
+1.1.2 实现Runnable接口
+</h4><ul>
+<li><strong>定义MyRunnable接口，实现run方法：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyRunnable</span> <span style="color:#66d9ef">implements</span> Runnable{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//获取到当前执行该方法的Thread对象</span>
+</span></span><span style="display:flex;"><span>        Thread t <span style="color:#f92672">=</span> Thread.<span style="color:#a6e22e">currentThread</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> 100; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Hello,&#34;</span><span style="color:#f92672">+</span> t.<span style="color:#a6e22e">getName</span>());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>实现多线程：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//1.创建MyRunnable对象</span>
+</span></span><span style="display:flex;"><span>        MyRunnable myRunnable <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyRunnable();
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//2.利用MyRunnable对象创建Thread对象</span>
+</span></span><span style="display:flex;"><span>        Thread t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread(myRunnable);
+</span></span><span style="display:flex;"><span>        Thread t2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread(myRunnable);
+</span></span><span style="display:flex;"><span>        t1.<span style="color:#a6e22e">setName</span>(<span style="color:#e6db74">&#34;线程1&#34;</span>);
+</span></span><span style="display:flex;"><span>        t2.<span style="color:#a6e22e">setName</span>(<span style="color:#e6db74">&#34;线程2&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//3.利用Thread对象启动线程</span>
+</span></span><span style="display:flex;"><span>        t1.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        t2.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h4 id="112-实现callable接口可获取线程运行结果">
+<a class="header-anchor" href="#112-%e5%ae%9e%e7%8e%b0callable%e6%8e%a5%e5%8f%a3%e5%8f%af%e8%8e%b7%e5%8f%96%e7%ba%bf%e7%a8%8b%e8%bf%90%e8%a1%8c%e7%bb%93%e6%9e%9c"></a>
+1.1.2 实现Callable接口（可获取线程运行结果）
+</h4><ul>
+<li><strong>定义MyCallable类</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyCallable</span> <span style="color:#66d9ef">implements</span> Callable<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Integer <span style="color:#a6e22e">call</span>() <span style="color:#66d9ef">throws</span> Exception {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//求1~100的和</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> sum <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1; i <span style="color:#f92672">&lt;=</span> 100; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            sum<span style="color:#f92672">+=</span>i;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> sum;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>实现多线程</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> ExecutionException, InterruptedException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//1.创建MyCallable对象</span>
+</span></span><span style="display:flex;"><span>        MyCallable myCall <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyCallable();
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//2.创建FutureTask对象，用于管理单线程运行的结果</span>
+</span></span><span style="display:flex;"><span>        FutureTask<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> ft <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FutureTask<span style="color:#f92672">&lt;&gt;</span>(myCall);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//3.通过FutureTask对象来创建线程对象</span>
+</span></span><span style="display:flex;"><span>        Thread t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread(ft);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//4.利用Thread对象启动线程</span>
+</span></span><span style="display:flex;"><span>        t1.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//5.利用FutureTask的get()方法获取线程运行的结果</span>
+</span></span><span style="display:flex;"><span>        Integer result <span style="color:#f92672">=</span> ft.<span style="color:#a6e22e">get</span>();
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(result);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><hr>
+<h3 id="12-三种方式的比较">
+<a class="header-anchor" href="#12-%e4%b8%89%e7%a7%8d%e6%96%b9%e5%bc%8f%e7%9a%84%e6%af%94%e8%be%83"></a>
+1.2 三种方式的比较
+</h3><table>
+  <thead>
+      <tr>
+          <th>实现方式</th>
+          <th>优点</th>
+          <th>缺点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>继承Thread类</td>
+          <td>编程比较简单，可以直接使用Thread类中的方法</td>
+          <td>扩展性较差，不能再继承其他的类</td>
+      </tr>
+      <tr>
+          <td>实现Runnable接口</td>
+          <td>扩展性强，实现该接口的同时还可以继承其他的类</td>
+          <td>编程相对复杂，不能直接使用Thread类中的方法</td>
+      </tr>
+      <tr>
+          <td>实现Callable接口</td>
+          <td>- 扩展性强（同样可继承其他类）<!-- raw HTML omitted -->- 支持返回值（通过FutureTask获取）<!-- raw HTML omitted -->- 支持抛出检查异常</td>
+          <td>- 编程最复杂<!-- raw HTML omitted -->- 需配合ExecutorService使用<!-- raw HTML omitted -->- 不能直接使用Thread类方法</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="13-thread的常见成员方法">
+<a class="header-anchor" href="#13-thread%e7%9a%84%e5%b8%b8%e8%a7%81%e6%88%90%e5%91%98%e6%96%b9%e6%b3%95"></a>
+1.3 Thread的常见成员方法
+</h3><table>
+  <thead>
+      <tr>
+          <th>方法名称</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong><code>String getName()</code></strong></td>
+          <td>返回此线程的名称</td>
+      </tr>
+      <tr>
+          <td><strong><code>void setName(String name)</code></strong></td>
+          <td>设置线程的名字（构造方法也可以设置名字）</td>
+      </tr>
+      <tr>
+          <td><strong><code>static Thread currentThread()</code></strong></td>
+          <td>获取当前线程的对象</td>
+      </tr>
+      <tr>
+          <td><strong><code>static void sleep(long time)</code></strong></td>
+          <td>让线程休眠指定的时间，单位为毫秒</td>
+      </tr>
+      <tr>
+          <td><strong><code>setPriority(int newPriority)</code></strong></td>
+          <td>设置线程的优先级</td>
+      </tr>
+      <tr>
+          <td><strong><code>final int getPriority()</code></strong></td>
+          <td>获取线程的优先级</td>
+      </tr>
+      <tr>
+          <td><strong><code>final void setDaemon(boolean on)</code></strong></td>
+          <td>设置为守护线程</td>
+      </tr>
+      <tr>
+          <td><strong><code>public static void yield()</code></strong></td>
+          <td>出让线程/礼让线程</td>
+      </tr>
+      <tr>
+          <td><strong><code>public static void join()</code></strong></td>
+          <td>插入线程/插队线程</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="131-sleeplong-time">
+<a class="header-anchor" href="#131-sleeplong-time"></a>
+1.3.1 sleep(long time)
+</h4><ul>
+<li>
+<p><strong>描述：</strong> 让使用当前函数的线程休眠指定时间。</p>
+</li>
+<li>
+<p><strong>代码示例：</strong></p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> InterruptedException {
+</span></span><span style="display:flex;"><span>        Thread currThread <span style="color:#f92672">=</span> Thread.<span style="color:#a6e22e">currentThread</span>();
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(currThread.<span style="color:#a6e22e">getName</span>());
+</span></span><span style="display:flex;"><span>        Thread.<span style="color:#a6e22e">sleep</span>(5000);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;111&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><ul>
+<li>输出结果：先输出main(执行当前main方法的是main线程)，5秒之后输出111。</li>
+</ul>
+<h4 id="132-线程的优先级">
+<a class="header-anchor" href="#132-%e7%ba%bf%e7%a8%8b%e7%9a%84%e4%bc%98%e5%85%88%e7%ba%a7"></a>
+1.3.2 线程的优先级
+</h4><ul>
+<li>
+<p><strong>描述：</strong> 表示线程抢占CPU的概率的大小，范围为1~10，默认为5。</p>
+</li>
+<li>
+<p><strong>注意</strong>：只能表示抢占到CPU的概率，如设置为10并不表示一定先抢占到CPU，只是概率较高</p>
+</li>
+</ul>
+<h4 id="133-守护线程daemon">
+<a class="header-anchor" href="#133-%e5%ae%88%e6%8a%a4%e7%ba%bf%e7%a8%8bdaemon"></a>
+1.3.3 守护线程（Daemon）
+</h4><ul>
+<li>
+<p><strong>描述：</strong></p>
+<ol>
+<li>
+<p>可以看作是备胎</p>
+</li>
+<li>
+<p>当非守护线程运行结束之后，守护线程会陆续结束（记忆：女神不存在了，备胎也没有存在的必要了）</p>
+</li>
+<li>
+<p>没有马上结束，是因为通知守护进程结束需要一定的时间，在这段时间内守护进程看继续执行</p>
+</li>
+<li>
+<p>守护进程也会抢占非守护进程的CPU使用权</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>代码示例：</strong></p>
+<ul>
+<li><strong>MyThread1类：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyThread1</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//继承父类的构造方法，实现通过构造方法设置线程名称</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyThread1</span>(String name) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>(name);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1; i <span style="color:#f92672">&lt;=</span> 10; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(getName()<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;@&#34;</span><span style="color:#f92672">+</span>i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>MyThread2类：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyThread2</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyThread2</span>(String name) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>(name);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1; i <span style="color:#f92672">&lt;=</span> 100; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(getName()<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;@&#34;</span><span style="color:#f92672">+</span>i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>测试：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        MyThread1 t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread1(<span style="color:#e6db74">&#34;女神&#34;</span>);
+</span></span><span style="display:flex;"><span>        MyThread2 t2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread2(<span style="color:#e6db74">&#34;备胎&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//设置t2为守护进程</span>
+</span></span><span style="display:flex;"><span>        t2.<span style="color:#a6e22e">setDaemon</span>(<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//结果：1.当“女神”进程打印到10结束之后，守护进程未打印到100也结束了</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//2.但是在“女神进程”打印过程中，备胎也有可能抢占CPU进行打印，不会完全让给“女神”进程</span>
+</span></span><span style="display:flex;"><span>        t1.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        t2.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="134-线程礼让-yield">
+<a class="header-anchor" href="#134-%e7%ba%bf%e7%a8%8b%e7%a4%bc%e8%ae%a9-yield"></a>
+1.3.4 线程礼让 ：yield()
+</h4><ul>
+<li>
+<p><strong>描述：</strong> Thread.yield()能够让出当前线程占用的CPU的使用权，调用该方法能使得多线程执行得比较均匀，但并<strong>不是完全均匀</strong>的。</p>
+</li>
+<li>
+<p><strong>注意：</strong> 让出CPU的使用权并不是当前线程之后就不会去抢占了，它下次还是会继续抢占的。</p>
+</li>
+<li>
+<p>代码示例：</p>
+<ul>
+<li><strong>MyThread类：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyThread</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1; i <span style="color:#f92672">&lt;=</span> 100 ; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(getName() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;@&#34;</span> <span style="color:#f92672">+</span> i);
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//礼让：让出CPU使用权</span>
+</span></span><span style="display:flex;"><span>            Thread.<span style="color:#a6e22e">yield</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>测试：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        MyThread mt1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread();
+</span></span><span style="display:flex;"><span>        MyThread mt2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread();
+</span></span><span style="display:flex;"><span>        mt1.<span style="color:#a6e22e">setName</span>(<span style="color:#e6db74">&#34;飞机&#34;</span>);
+</span></span><span style="display:flex;"><span>        mt2.<span style="color:#a6e22e">setName</span>(<span style="color:#e6db74">&#34;坦克&#34;</span>);
+</span></span><span style="display:flex;"><span>        mt1.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        mt2.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><ul>
+<li>结果：“坦克”和“飞机”出现得较为均匀。</li>
+</ul>
+</li>
+</ul>
+<h4 id="134-线程插入join">
+<a class="header-anchor" href="#134-%e7%ba%bf%e7%a8%8b%e6%8f%92%e5%85%a5join"></a>
+1.3.4 线程插入：join()
+</h4><ul>
+<li>
+<p><strong>描述：</strong> 实现把调用join方法的线程插入到当前方法对应线程之前。</p>
+</li>
+<li>
+<p>注意：join()方法要放在<strong>start()之后</strong>才会生效，以下是原因：</p>
+<ul>
+<li>
+<p><code>start()</code> 方法的作用是启动线程，使其进入​<strong>​就绪状态​</strong>​（Runnable），随后由JVM调度执行。</p>
+</li>
+<li>
+<p>如果在调用 <code>start()</code> 之前调用 <code>join()</code>，目标线程尚未启动（甚至未进入就绪队列），此时 <code>join()</code> 的等待毫无意义，因为线程根本不会执行。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>代码示例：</p>
+<ul>
+<li><strong>MyThread类：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyThread</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1; i <span style="color:#f92672">&lt;=</span> 100; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(getName()<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;@&#34;</span><span style="color:#f92672">+</span>i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>测试：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> InterruptedException {
+</span></span><span style="display:flex;"><span>        MyThread t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread();
+</span></span><span style="display:flex;"><span>        t1.<span style="color:#a6e22e">setName</span>(<span style="color:#e6db74">&#34;土豆&#34;</span>);
+</span></span><span style="display:flex;"><span>        t1.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        t1.<span style="color:#a6e22e">join</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1; i <span style="color:#f92672">&lt;=</span> 10 ; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(Thread.<span style="color:#a6e22e">currentThread</span>().<span style="color:#a6e22e">getName</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;@&#34;</span> <span style="color:#f92672">+</span>i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><ul>
+<li><strong>结果：</strong> “土豆”进程全部打印完之后才轮到main进程的main方法中的for循环进行打印。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="14-线程安全">
+<a class="header-anchor" href="#14-%e7%ba%bf%e7%a8%8b%e5%ae%89%e5%85%a8"></a>
+1.4 线程安全
+</h3><ul>
+<li>
+<p>引出：现在有一个需求：实现三个窗口一起卖100张票。</p>
+</li>
+<li>
+<p>实现：</p>
+<ul>
+<li>定义一个<strong>MyThread类：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyThread</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> ticket <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(ticket <span style="color:#f92672">&lt;</span> 100){<span style="color:#75715e">//让打印的过程慢一点</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                        Thread.<span style="color:#a6e22e">sleep</span>(10);
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(getName()<span style="color:#f92672">+</span><span style="color:#e6db74">&#34; sell ticket&#34;</span><span style="color:#f92672">+</span>ticket);
+</span></span><span style="display:flex;"><span>                    ticket<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>                }  <span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getTicket</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ticket;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>测试：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> InterruptedException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//需求：实现三个窗口一起卖100张票</span>
+</span></span><span style="display:flex;"><span>        MyThread my1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread();
+</span></span><span style="display:flex;"><span>        MyThread my2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread();
+</span></span><span style="display:flex;"><span>        MyThread my3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread();
+</span></span><span style="display:flex;"><span>        my1.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        my2.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        my3.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        my1.<span style="color:#a6e22e">join</span>();
+</span></span><span style="display:flex;"><span>        my2.<span style="color:#a6e22e">join</span>();
+</span></span><span style="display:flex;"><span>        my3.<span style="color:#a6e22e">join</span>();
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(my1.<span style="color:#a6e22e">getTicket</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><ul>
+<li>
+<p><strong>结果：</strong></p>
+<ul>
+<li>出现多个线程操作同一张票的现象：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Thread-2 sell ticket99
+</span></span><span style="display:flex;"><span>Thread-1 sell ticket99
+</span></span><span style="display:flex;"><span>Thread-0 sell ticket99
+</span></span></code></pre></div><ul>
+<li>出现<strong>超卖现象：</strong> 输出最终卖出票数为<strong>102</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>原因：</strong> 多个线程会随机抢占CPU的资源，导致每个线程执行run方法中扣减库存的操作未完成，CPU就马上被其他线程抢占了。</p>
+</li>
+<li>
+<p><strong>解决方法：</strong> 使用synchronized关键字，实现线程同步（一个一个线程按顺序来执行，一个线程执行完了，才轮到下一个线程执行）。使用synchronized之后，将为指定区域内的操作进行上锁，在次期间其他线程都不能抢占CPU，只能等待当前线程将指定区域内的操作执行完之后，<strong>锁会自动打开</strong>，此时其他线程才能抢占CPU使用权。分别有三种实现方式：<strong>同步代码块</strong> 、<strong>同步方法</strong> 和 <strong>加锁</strong>。</p>
+</li>
+</ul>
+<h4 id="141-同步代码块">
+<a class="header-anchor" href="#141-%e5%90%8c%e6%ad%a5%e4%bb%a3%e7%a0%81%e5%9d%97"></a>
+1.4.1 同步代码块
+</h4><ul>
+<li>实现：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">synchronized</span>(锁对象){
+</span></span><span style="display:flex;"><span>    需要上锁的操作...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>将上述<strong>MyThread类</strong>改造：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyThread</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> ticket <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Object myObj <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Object();<span style="color:#75715e">//当前示例的锁对象</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Object classObj <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Object();<span style="color:#75715e">//MyThread类的锁对象</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">synchronized</span> (MyThread.<span style="color:#a6e22e">class</span>){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(ticket <span style="color:#f92672">&lt;</span> 100){<span style="color:#75715e">//让打印的过程慢一点</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                        Thread.<span style="color:#a6e22e">sleep</span>(10);
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(getName()<span style="color:#f92672">+</span><span style="color:#e6db74">&#34; sell ticket&#34;</span><span style="color:#f92672">+</span>ticket);
+</span></span><span style="display:flex;"><span>                    ticket<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>                }  <span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getTicket</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ticket;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>
+<p><strong>范围控制：</strong> 其中，<strong>锁对象</strong>能够指定需要同步的范围，如：需要使同一类的所有对象都同步时，可以让锁对象为当前类的字节码（如MyThread.class）或者当前类的static对象（如上述代码中的classObj）；若使用上述代码中的myObj或this关键字，则只能将范围限制到当前线程对应的示例对象，即此时不同线程之间就无法实现同步了。</p>
+</li>
+<li>
+<p>运行结果：<strong>不同线程消费同一张票</strong>和<strong>库存超卖</strong>的现象均不出现了。</p>
+</li>
+</ul>
+<h4 id="142-同步方法">
+<a class="header-anchor" href="#142-%e5%90%8c%e6%ad%a5%e6%96%b9%e6%b3%95"></a>
+1.4.2 同步方法
+</h4><ul>
+<li>
+<p><strong>实现：</strong> 在方法前加上synchronized即可。</p>
+</li>
+<li>
+<p><strong>范围控制：</strong> 需要使<strong>同一类的所有对象</strong>都同步时，synchronized修饰的方法需要为整个类中所有对象共享的<strong>static方法</strong>；若修饰的是非静态方法，则设置同步的范围就为当前线程。</p>
+</li>
+<li>
+<p><strong>实现思路：</strong></p>
+<ul>
+<li>
+<p>先按照同步代码块的方式来写，则<strong>MyRunnable类</strong>一开始为：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyRunnable</span> <span style="color:#66d9ef">implements</span> Runnable{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> ticket <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">synchronized</span> (MyRunnable.<span style="color:#a6e22e">class</span>){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(ticket <span style="color:#f92672">&gt;=</span> 100){
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>                }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(Thread.<span style="color:#a6e22e">currentThread</span>().<span style="color:#a6e22e">getName</span>()<span style="color:#f92672">+</span><span style="color:#e6db74">&#34; sell ticket :&#34;</span><span style="color:#f92672">+</span>ticket);
+</span></span><span style="display:flex;"><span>                    ticket<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getTicket</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ticket;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>再选中synchronized修饰的代码块部分，按下ctrl+alt+m，即可将其剥离成一个方法：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyRunnable</span> <span style="color:#66d9ef">implements</span> Runnable{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> ticket <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (sellTicket()) <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">synchronized</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">sellTicket</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">synchronized</span> (MyRunnable.<span style="color:#a6e22e">class</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(ticket <span style="color:#f92672">&gt;=</span> 100){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>            }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(Thread.<span style="color:#a6e22e">currentThread</span>().<span style="color:#a6e22e">getName</span>()<span style="color:#f92672">+</span><span style="color:#e6db74">&#34; sell ticket :&#34;</span><span style="color:#f92672">+</span>ticket);
+</span></span><span style="display:flex;"><span>                ticket<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getTicket</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ticket;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>注意：</strong> 因为此时的MyRunnable类是实现Runnable类来构造的，因此在实际使用中<strong>只需要创建一个MyRunnable对象</strong>和三个Thread对象，故ticket只属于当前线程，并不是线程共享的，因此并不需要避免多个线程同时修改ticket，使用sellTicket方法也<strong>不需要设置为static</strong>。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>测试：</strong></p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> InterruptedException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//需求：实现三个窗口一起卖100张票</span>
+</span></span><span style="display:flex;"><span>        MyRunnable myRunnable <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyRunnable();
+</span></span><span style="display:flex;"><span>        Thread t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread(myRunnable);
+</span></span><span style="display:flex;"><span>        Thread t2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread(myRunnable);
+</span></span><span style="display:flex;"><span>        Thread t3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread(myRunnable);
+</span></span><span style="display:flex;"><span>        t1.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        t2.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        t3.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        t1.<span style="color:#a6e22e">join</span>();
+</span></span><span style="display:flex;"><span>        t2.<span style="color:#a6e22e">join</span>();
+</span></span><span style="display:flex;"><span>        t3.<span style="color:#a6e22e">join</span>();
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(myRunnable.<span style="color:#a6e22e">getTicket</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><ul>
+<li><strong>结果：</strong> 也没有出现<strong>不同线程消费同一张票</strong>和<strong>库存超卖</strong>的现象。</li>
+</ul>
+<h4 id="143-锁lock">
+<a class="header-anchor" href="#143-%e9%94%81lock"></a>
+1.4.3 锁lock
+</h4><ul>
+<li>
+<p><strong>原理：</strong> 在上述过程中，用synchronized实现线程安全，本质上也是加了锁，只是我们看不见这个过程：进入synchronized修饰的代码块或者方法时，会先上锁，退出时再解锁，因此我们也可以用java的<strong>Lock接口</strong>来保证线程安全。</p>
+</li>
+<li>
+<p><strong>实现：</strong> 由于Lock是接口，无法实例化，因此我们可以用实现了Lock接口的<strong>ReentrantLock</strong> 类来实例化对象：</p>
+<ul>
+<li><strong>MyThread类：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyThread</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> ticket <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> Lock lock <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ReentrantLock();<span style="color:#75715e">//实例化锁对象</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                lock.<span style="color:#a6e22e">lock</span>();<span style="color:#75715e">//上锁</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(ticket <span style="color:#f92672">&gt;=</span> 100){
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>                }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(getName()<span style="color:#f92672">+</span><span style="color:#e6db74">&#34; sell ticket:&#34;</span><span style="color:#f92672">+</span>ticket);
+</span></span><span style="display:flex;"><span>                    ticket<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">finally</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//最终一定会执行finally中的方法，即使提前break</span>
+</span></span><span style="display:flex;"><span>                lock.<span style="color:#a6e22e">unlock</span>();<span style="color:#75715e">//解锁</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getTicket</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ticket;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>测试：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> InterruptedException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//需求：实现三个窗口一起卖100张票</span>
+</span></span><span style="display:flex;"><span>        MyThread my1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread();
+</span></span><span style="display:flex;"><span>        MyThread my2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread();
+</span></span><span style="display:flex;"><span>        MyThread my3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread();
+</span></span><span style="display:flex;"><span>        my1.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        my2.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        my3.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//使得main方法能输出最终的票数</span>
+</span></span><span style="display:flex;"><span>        my1.<span style="color:#a6e22e">join</span>();
+</span></span><span style="display:flex;"><span>        my2.<span style="color:#a6e22e">join</span>();
+</span></span><span style="display:flex;"><span>        my3.<span style="color:#a6e22e">join</span>();
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(my1.<span style="color:#a6e22e">getTicket</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div></li>
+<li>
+<p><strong>结果：</strong> 也没有出现<strong>不同线程消费同一张票</strong>和<strong>库存超卖</strong>的现象。</p>
+</li>
+</ul>
+<hr>
+<h3 id="15-等待唤醒机制">
+<a class="header-anchor" href="#15-%e7%ad%89%e5%be%85%e5%94%a4%e9%86%92%e6%9c%ba%e5%88%b6"></a>
+1.5 等待唤醒机制
+</h3><h4 id="151-实现方式一生产者消费者模式">
+<a class="header-anchor" href="#151-%e5%ae%9e%e7%8e%b0%e6%96%b9%e5%bc%8f%e4%b8%80%e7%94%9f%e4%ba%a7%e8%80%85%e6%b6%88%e8%b4%b9%e8%80%85%e6%a8%a1%e5%bc%8f"></a>
+1.5.1 实现方式一：生产者消费者模式
+</h4><ul>
+<li>
+<p><strong>介绍：</strong> 生产者消费者模式是一个十分经典的<strong>多线程协作</strong>的模式。</p>
+</li>
+<li>
+<p><strong>实现思路：以消费者和厨师为例子</strong>，此时共有三个对象，分别是消费者，生产者（厨师）和 暂存产品的第三方（放食物的桌子），三者分别负责：</p>
+<ul>
+<li>
+<p><strong>消费者：</strong></p>
+<ol>
+<li>
+<p><strong>判断</strong>桌子上是否有食物</p>
+</li>
+<li>
+<p>如果没有，则<strong>等待</strong>生产者生产食物</p>
+</li>
+<li>
+<p>如果有，则<strong>消费</strong>食物并<strong>唤醒</strong>生产者继续生产食物（吃完了）</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>生产者：</strong></p>
+<ol>
+<li>
+<p><strong>判断</strong>桌子上是否有食物</p>
+</li>
+<li>
+<p>如果有，则<strong>等待</strong>消费者吃完</p>
+</li>
+<li>
+<p>如果没有，则<strong>生产</strong>食物，并唤醒消费者吃食物（有食物了）</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>第三方</strong>：</p>
+<ol>
+<li>
+<p>用于<strong>指定线程运行</strong>（如通过本例中的foodFlag）</p>
+</li>
+<li>
+<p>为多个线程<strong>提供共同的锁</strong>，实现<strong>wait()</strong> 与<strong>notify()</strong> 功能（如本例中的lock）</p>
+</li>
+<li>
+<p><strong>记录</strong>生产者与消费者需要的一些<strong>公共信息</strong>（如本例中的count）</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>代码实现：</strong></p>
+<ul>
+<li>
+<p><strong>Consumer类：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 消费者：用于消费食物
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Consumer</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (Desk.<span style="color:#a6e22e">count</span> <span style="color:#f92672">&gt;</span> 0){<span style="color:#75715e">//还能再吃食物，那就再吃</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">synchronized</span> (Desk.<span style="color:#a6e22e">lock</span>){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(Desk.<span style="color:#a6e22e">foodFlag</span> <span style="color:#f92672">==</span> 0){<span style="color:#75715e">//无食物</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                        Desk.<span style="color:#a6e22e">lock</span>.<span style="color:#a6e22e">wait</span>();<span style="color:#75715e">//等待生产者生产食物</span>
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }<span style="color:#66d9ef">else</span>{<span style="color:#75715e">//有食物</span>
+</span></span><span style="display:flex;"><span>                    Desk.<span style="color:#a6e22e">count</span><span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;消费者了食物，还能再吃：&#34;</span><span style="color:#f92672">+</span>Desk.<span style="color:#a6e22e">count</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;份&#34;</span>);
+</span></span><span style="display:flex;"><span>                    Desk.<span style="color:#a6e22e">foodFlag</span><span style="color:#f92672">=</span>0;<span style="color:#75715e">//改变桌子的状态</span>
+</span></span><span style="display:flex;"><span>                    Desk.<span style="color:#a6e22e">lock</span>.<span style="color:#a6e22e">notifyAll</span>();<span style="color:#75715e">//唤醒生产者，让生产者开始生产食物</span>
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Producer类：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 生产者：用于生产食物
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Producer</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (Desk.<span style="color:#a6e22e">count</span> <span style="color:#f92672">&gt;</span> 0 ){<span style="color:#75715e">//消费者还能再吃食物，那就再生产</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">synchronized</span> (Desk.<span style="color:#a6e22e">lock</span>){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(Desk.<span style="color:#a6e22e">foodFlag</span> <span style="color:#f92672">==</span> 0){<span style="color:#75715e">//没食物了，则生产食物</span>
+</span></span><span style="display:flex;"><span>                    Desk.<span style="color:#a6e22e">foodFlag</span> <span style="color:#f92672">=</span> 1;
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;生产者生产了食物&#34;</span>);
+</span></span><span style="display:flex;"><span>                    Desk.<span style="color:#a6e22e">lock</span>.<span style="color:#a6e22e">notifyAll</span>();<span style="color:#75715e">//唤醒消费者，让他来吃食物</span>
+</span></span><span style="display:flex;"><span>                }<span style="color:#66d9ef">else</span>{<span style="color:#75715e">//此时桌子还有食物，等待消费者吃食物</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                        Desk.<span style="color:#a6e22e">lock</span>.<span style="color:#a6e22e">wait</span>();
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Desk类：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 生产者与消费者的第三方，用于暂存食物
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Desk</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//设置为int类型是方便后续拓展功能，如2、3分别代表允许第3、4个进程运行</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> foodFlag <span style="color:#f92672">=</span> 0;<span style="color:#75715e">//0表示无食物，1表示有食物</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Object lock <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Object();<span style="color:#75715e">//锁对象</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> 10;<span style="color:#75715e">//表示消费者最多能吃的食物个数</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>测试：</strong></p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Consumer consumer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Consumer();
+</span></span><span style="display:flex;"><span>        Producer producer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Producer();
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        consumer.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><ul>
+<li><strong>运行结果：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>生产者生产了食物
+</span></span><span style="display:flex;"><span>消费者了食物，还能再吃：9份
+</span></span><span style="display:flex;"><span>生产者生产了食物
+</span></span><span style="display:flex;"><span>消费者了食物，还能再吃：8份
+</span></span><span style="display:flex;"><span>生产者生产了食物
+</span></span><span style="display:flex;"><span>消费者了食物，还能再吃：7份
+</span></span><span style="display:flex;"><span>生产者生产了食物
+</span></span><span style="display:flex;"><span>消费者了食物，还能再吃：6份
+</span></span><span style="display:flex;"><span>生产者生产了食物
+</span></span><span style="display:flex;"><span>消费者了食物，还能再吃：5份
+</span></span><span style="display:flex;"><span>生产者生产了食物
+</span></span><span style="display:flex;"><span>消费者了食物，还能再吃：4份
+</span></span><span style="display:flex;"><span>生产者生产了食物
+</span></span><span style="display:flex;"><span>消费者了食物，还能再吃：3份
+</span></span><span style="display:flex;"><span>生产者生产了食物
+</span></span><span style="display:flex;"><span>消费者了食物，还能再吃：2份
+</span></span><span style="display:flex;"><span>生产者生产了食物
+</span></span><span style="display:flex;"><span>消费者了食物，还能再吃：1份
+</span></span><span style="display:flex;"><span>生产者生产了食物
+</span></span><span style="display:flex;"><span>消费者了食物，还能再吃：0份
+</span></span></code></pre></div><ul>
+<li>可以看到二者是交替运行的，且消费者吃不下之后，两线程都停止运行了。</li>
+</ul>
+<h4 id="152-练习实现两线程交替打印01">
+<a class="header-anchor" href="#152-%e7%bb%83%e4%b9%a0%e5%ae%9e%e7%8e%b0%e4%b8%a4%e7%ba%bf%e7%a8%8b%e4%ba%a4%e6%9b%bf%e6%89%93%e5%8d%b001"></a>
+1.5.2 练习：实现两线程交替打印01
+</h4><ul>
+<li>
+<p><strong>Consumer类：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 消费者：负责打印1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Consumer</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">synchronized</span> (Desk.<span style="color:#a6e22e">lock</span>){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(Desk.<span style="color:#a6e22e">flag</span> <span style="color:#f92672">==</span> 0){<span style="color:#75715e">//消费者只能打印1</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                        Desk.<span style="color:#a6e22e">lock</span>.<span style="color:#a6e22e">wait</span>();<span style="color:#75715e">//此时等待生产者打印完1</span>
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }<span style="color:#66d9ef">else</span>{<span style="color:#75715e">//有食物</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                        Thread.<span style="color:#a6e22e">sleep</span>(100);<span style="color:#75715e">//打印得慢一点</span>
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;1&#34;</span>);
+</span></span><span style="display:flex;"><span>                    Desk.<span style="color:#a6e22e">flag</span> <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>                    Desk.<span style="color:#a6e22e">lock</span>.<span style="color:#a6e22e">notifyAll</span>();<span style="color:#75715e">//唤醒生产者，轮到他打印&#34;0&#34;</span>
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Producer类：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 生产者：负责打印0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Producer</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>){<span style="color:#75715e">//消费者还能再吃食物，那就再生产</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">synchronized</span> (Desk.<span style="color:#a6e22e">lock</span>){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(Desk.<span style="color:#a6e22e">flag</span> <span style="color:#f92672">==</span> 0){<span style="color:#75715e">//此时开始打印0</span>
+</span></span><span style="display:flex;"><span>                    Desk.<span style="color:#a6e22e">flag</span> <span style="color:#f92672">=</span> 1;
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;0&#34;</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                        Thread.<span style="color:#a6e22e">sleep</span>(100);<span style="color:#75715e">//打印得慢一点</span>
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    Desk.<span style="color:#a6e22e">lock</span>.<span style="color:#a6e22e">notifyAll</span>();<span style="color:#75715e">//唤醒消费者，让他来打印1</span>
+</span></span><span style="display:flex;"><span>                }<span style="color:#66d9ef">else</span>{<span style="color:#75715e">//生产者只能打印0，此时等待消费者打印完1</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                        Desk.<span style="color:#a6e22e">lock</span>.<span style="color:#a6e22e">wait</span>();
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Desk类：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Desk</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> flag <span style="color:#f92672">=</span> 0;<span style="color:#75715e">//0表示打印0，1表示打印1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Object lock <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Object();<span style="color:#75715e">//锁对象</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>运行：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Consumer consumer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Consumer();
+</span></span><span style="display:flex;"><span>        Producer producer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Producer();
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        consumer.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div></li>
+<li>
+<p><strong>运行结果：</strong> 持续、交替打印01。</p>
+</li>
+</ul>
+<h4 id="152-实现方式二阻塞队列">
+<a class="header-anchor" href="#152-%e5%ae%9e%e7%8e%b0%e6%96%b9%e5%bc%8f%e4%ba%8c%e9%98%bb%e5%a1%9e%e9%98%9f%e5%88%97"></a>
+1.5.2 实现方式二：阻塞队列
+</h4><ul>
+<li>
+<p><strong>介绍：</strong> 该方式与生产者消费者模式类似，只是第三方变成了阻塞队列，并且此时产品可以放置多个。生产者将生产的产品放入阻塞队列，消费者从阻塞队列接收产品。当阻塞队列满时，<strong>生产者等待</strong>；当阻塞队列空时，<strong>消费者等待</strong>。</p>
+</li>
+<li>
+<p>阻塞队列的<strong>两种实现方式：</strong></p>
+<ul>
+<li>
+<p><strong>ArrayBlockingQueue：</strong> 底层是<strong>数组</strong>，<strong>有界</strong>，初始化时需要指定数组大小。</p>
+</li>
+<li>
+<p><strong>LinkedBlockingQueue：</strong> 底层是<strong>链表</strong>，<strong>无界</strong>（但并不是真正的无界，最大值为int的最大值）。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>代码实现：</strong></p>
+<ul>
+<li>
+<p><strong>Consumer类：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 消费者：用于消费食物
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Consumer</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    ArrayBlockingQueue<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> queue;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Consumer</span>(ArrayBlockingQueue<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> queue) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">queue</span> <span style="color:#f92672">=</span> queue;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>){<span style="color:#75715e">//还能再吃食物，那就再吃</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                Thread.<span style="color:#a6e22e">sleep</span>(100);
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;消费者吃食物&#34;</span>);
+</span></span><span style="display:flex;"><span>                queue.<span style="color:#a6e22e">take</span>();
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Producer类：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 生产者：用于生产食物
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Producer</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    ArrayBlockingQueue<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> queue;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Producer</span>(ArrayBlockingQueue<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> queue) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">queue</span> <span style="color:#f92672">=</span> queue;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                Thread.<span style="color:#a6e22e">sleep</span>(100);
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;生产者生产了食物&#34;</span>);
+</span></span><span style="display:flex;"><span>                queue.<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;食物&#34;</span>);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>测试类：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        ArrayBlockingQueue<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> queue <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayBlockingQueue<span style="color:#f92672">&lt;&gt;</span>(1);
+</span></span><span style="display:flex;"><span>        Consumer consumer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Consumer(queue);
+</span></span><span style="display:flex;"><span>        Producer producer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Producer(queue);
+</span></span><span style="display:flex;"><span>        producer.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        consumer.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>运行结果：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>消费者吃食物
+</span></span><span style="display:flex;"><span>消费者吃食物
+</span></span><span style="display:flex;"><span>生产者生产了食物
+</span></span><span style="display:flex;"><span>消费者吃食物
+</span></span><span style="display:flex;"><span>生产者生产了食物
+</span></span><span style="display:flex;"><span>生产者生产了食物
+</span></span><span style="display:flex;"><span>消费者吃食物
+</span></span><span style="display:flex;"><span>消费者吃食物
+</span></span><span style="display:flex;"><span>生产者生产了食物
+</span></span></code></pre></div></li>
+<li>
+<p>解释：</p>
+<ul>
+<li>
+<p>首先，读者可能会疑惑：“在上述两个类中分别加个put()和take()方法就可以了，那么简单吗？难道不用加锁或者用synchronized吗？“，是的，直接调用put()和take()方法就可以了，因为两方法的源码已经实现了加锁的过程：</p>
+<ul>
+<li>
+<p><strong>ArrayBlockingQueue.take()源码</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> E <span style="color:#a6e22e">take</span>() <span style="color:#66d9ef">throws</span> InterruptedException {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">final</span> ReentrantLock lock <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">lock</span>;
+</span></span><span style="display:flex;"><span>        lock.<span style="color:#a6e22e">lockInterruptibly</span>(<span style="color:#75715e">//与lock()类似，但是可中断地获取锁);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> (count <span style="color:#f92672">==</span> 0)<span style="color:#75715e">//队列为空，即无产品</span>
+</span></span><span style="display:flex;"><span>                notEmpty.<span style="color:#a6e22e">await</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> dequeue();<span style="color:#75715e">//消费产品</span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">finally</span> {
+</span></span><span style="display:flex;"><span>            lock.<span style="color:#a6e22e">unlock</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div></li>
+<li>
+<p><strong>ArrayBlockingQueue.put()源码</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">put</span>(E e) <span style="color:#66d9ef">throws</span> InterruptedException {
+</span></span><span style="display:flex;"><span>        Objects.<span style="color:#a6e22e">requireNonNull</span>(e);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">final</span> ReentrantLock lock <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">lock</span>;
+</span></span><span style="display:flex;"><span>        lock.<span style="color:#a6e22e">lockInterruptibly</span>();<span style="color:#75715e">//与lock()类似，但是可中断地获取锁​​</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> (count <span style="color:#f92672">==</span> items.<span style="color:#a6e22e">length</span>)<span style="color:#75715e">//队列已满，即产品已满</span>
+</span></span><span style="display:flex;"><span>                notFull.<span style="color:#a6e22e">await</span>();
+</span></span><span style="display:flex;"><span>            enqueue(e);<span style="color:#75715e">//放入产品</span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">finally</span> {
+</span></span><span style="display:flex;"><span>            lock.<span style="color:#a6e22e">unlock</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div></li>
+<li>
+<p>可以发现，上述两个方法的操作与生产者消费者模式类似：</p>
+<ul>
+<li>
+<p>当进行生产（调用put方法）和消费（调用take方法）时，均进行了上锁，当操作结束均会释放锁，<strong>与synchronized功能一致</strong>；</p>
+</li>
+<li>
+<p>对于消费者使用的take()方法，当队列为空时，消费者会等待；反之消费者会消费产品。</p>
+</li>
+<li>
+<p>对于生产者使用的put()方法，当队列已满时，生产者会等待；反之生产者会生产产品并放入队列take。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>其次，为了让生产者和消费者两个线程用的是同一个阻塞队列，需要在main方法中创建一个公共的阻塞队列，分别传入生产者与消费者的构造方法中（引用传递）。</p>
+</li>
+<li>
+<p>读者还可能疑惑：”为什么输出结果中生产者与消费者不会交替出现呢？“。因为此时的<strong>打印操作是在put与take方法之外</strong>的，即在上锁或者synchronized之外的，因此打印操作不能实现线程同步，但是实际上生产者与消费者通过阻塞队列生产和消费产品的操作是同步的，只是我们看不见罢了。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="16-综合练习">
+<a class="header-anchor" href="#16-%e7%bb%bc%e5%90%88%e7%bb%83%e4%b9%a0"></a>
+1.6 综合练习
+</h3><h4 id="161-分发礼物">
+<a class="header-anchor" href="#161-%e5%88%86%e5%8f%91%e7%a4%bc%e7%89%a9"></a>
+1.6.1 分发礼物
+</h4><ul>
+<li>
+<p><strong>需求：</strong> 由两人同时发送100份礼物，当剩下的礼物小于10份时不再送出；利用多线程模拟该过程并将线程的名字和礼物的剩余数量打印出来</p>
+</li>
+<li>
+<p><strong>代码实现：</strong></p>
+<ul>
+<li>
+<p><strong>MyThread类：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyThread</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> 100;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> Lock lock <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ReentrantLock();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyThread</span>(String name) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>(name);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                lock.<span style="color:#a6e22e">lock</span>();
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(cnt <span style="color:#f92672">&lt;</span> 10){
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>                }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>                    cnt<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(getName()<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;发送礼物&#34;</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;，剩余礼物：&#34;</span><span style="color:#f92672">+</span>cnt);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//Thread.sleep(1); //便于观察打印结果</span>
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>            }<span style="color:#66d9ef">finally</span> {
+</span></span><span style="display:flex;"><span>                lock.<span style="color:#a6e22e">unlock</span>();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>测试：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//需求：由两人同时发送100份礼物，当剩下的礼物小于10份时不再送出</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//利用多线程模拟该过程并将线程的名字和礼物的剩余数量打印出来</span>
+</span></span><span style="display:flex;"><span>        MyThread my1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread(<span style="color:#e6db74">&#34;线程1&#34;</span>);
+</span></span><span style="display:flex;"><span>        MyThread my2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread(<span style="color:#e6db74">&#34;线程2&#34;</span>);
+</span></span><span style="display:flex;"><span>        my1.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        my2.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//输出结果：</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 首位两条分别为：线程1发送礼物，剩余礼物：99 和 线程2发送礼物，剩余礼物：9</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//且线程1和线程2随机发送礼物</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h4 id="162-发红包">
+<a class="header-anchor" href="#162-%e5%8f%91%e7%ba%a2%e5%8c%85"></a>
+1.6.2 发红包
+</h4><ul>
+<li>
+<p><strong>需求：</strong> 将100元红包分成3份，一共有五个人去抢。打印最终结果</p>
+</li>
+<li>
+<p><strong>代码实现：</strong></p>
+<ul>
+<li><strong>MyThread类：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyThread</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">double</span> money <span style="color:#f92672">=</span> 100;<span style="color:#75715e">//红包总金额</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> 1;<span style="color:#75715e">//表示第几个人抢红包</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span> minNum <span style="color:#f92672">=</span> 0.<span style="color:#a6e22e">01</span>;<span style="color:#75715e">//红包的最小金额</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyThread</span>(String name) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>(name);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">synchronized</span> (MyThread.<span style="color:#a6e22e">class</span>){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">double</span> randomNum;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(cnt <span style="color:#f92672">&gt;</span> 3){
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(getName()<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;抢红包失败&#34;</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>                }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span>(cnt <span style="color:#f92672">==</span> 3){<span style="color:#75715e">//此时是最后一个红包</span>
+</span></span><span style="display:flex;"><span>                        randomNum <span style="color:#f92672">=</span> money;
+</span></span><span style="display:flex;"><span>                    }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>                        Random random <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Random();
+</span></span><span style="display:flex;"><span>                        randomNum <span style="color:#f92672">=</span> random.<span style="color:#a6e22e">nextDouble</span>(money<span style="color:#f92672">-</span>minNum<span style="color:#f92672">+</span>1)<span style="color:#f92672">+</span>minNum;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(getName()<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;第&#34;</span><span style="color:#f92672">+</span>cnt<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;个抢到了红包，金额为：&#34;</span><span style="color:#f92672">+</span>randomNum);
+</span></span><span style="display:flex;"><span>                    money<span style="color:#f92672">-=</span>randomNum;
+</span></span><span style="display:flex;"><span>                    cnt<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                Thread.<span style="color:#a6e22e">sleep</span>(100);<span style="color:#75715e">//避免一个线程由于执行迅速，将所有红包同时抢完</span>
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>测试：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//需求：将100元红包分成3份，一共有五个人去抢。打印最终结果</span>
+</span></span><span style="display:flex;"><span>        MyThread m1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread(<span style="color:#e6db74">&#34;线程1&#34;</span>);
+</span></span><span style="display:flex;"><span>        MyThread m2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread(<span style="color:#e6db74">&#34;线程2&#34;</span>);
+</span></span><span style="display:flex;"><span>        MyThread m3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread(<span style="color:#e6db74">&#34;线程3&#34;</span>);
+</span></span><span style="display:flex;"><span>        MyThread m4 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread(<span style="color:#e6db74">&#34;线程4&#34;</span>);
+</span></span><span style="display:flex;"><span>        MyThread m5 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread(<span style="color:#e6db74">&#34;线程5&#34;</span>);
+</span></span><span style="display:flex;"><span>        m1.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        m2.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        m3.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        m4.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        m5.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><ul>
+<li><strong>结果：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>线程1第1个抢到了红包，金额为：7.062189430902235
+</span></span><span style="display:flex;"><span>线程4第2个抢到了红包，金额为：5.080076826933999
+</span></span><span style="display:flex;"><span>线程5第3个抢到了红包，金额为：87.85773374216376
+</span></span><span style="display:flex;"><span>线程3抢红包失败
+</span></span><span style="display:flex;"><span>线程2抢红包失败
+</span></span><span style="display:flex;"><span>线程1抢红包失败
+</span></span><span style="display:flex;"><span>线程4抢红包失败
+</span></span><span style="display:flex;"><span>线程5抢红包失败
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="163-抽奖功能基本实现">
+<a class="header-anchor" href="#163-%e6%8a%bd%e5%a5%96%e5%8a%9f%e8%83%bd%e5%9f%ba%e6%9c%ac%e5%ae%9e%e7%8e%b0"></a>
+1.6.3 抽奖功能（基本实现）
+</h4><ul>
+<li>
+<p><strong>需求：</strong> 有一个抽奖池，其中存放了奖励的金额，该抽奖池的奖项为{10,5,20,50,100,200,500,800,2,80,300,700}。创建两个抽奖箱，随机从奖池中获取奖项元素并打印在控制台上，格式为：“抽奖箱x产生了一个 xxx元大奖”</p>
+</li>
+<li>
+<p><strong>代码实现：</strong></p>
+<ul>
+<li><strong>MyThread类</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyThread</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyThread</span>(List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">list</span> <span style="color:#f92672">=</span> list;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">synchronized</span> (MyThread.<span style="color:#a6e22e">class</span>){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(list.<span style="color:#a6e22e">size</span>() <span style="color:#f92672">==</span> 0){
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>                }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>                    Collections.<span style="color:#a6e22e">shuffle</span>(list);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">int</span> money <span style="color:#f92672">=</span> list.<span style="color:#a6e22e">remove</span>(0);
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(getName() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;产生了一个&#34;</span><span style="color:#f92672">+</span>money<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;元大奖&#34;</span>);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                Thread.<span style="color:#a6e22e">sleep</span>(100);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>测试：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//需求：有一个抽奖池，其中存放了奖励的金额，该抽奖池的奖项为{10,5,20,50,100,200,500,800,2,80,300,700}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//创建两个抽奖箱，随机从奖池中获取奖项元素并打印在控制台上，格式为：“抽奖箱x产生了一个 xxx元大奖”</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        Collections.<span style="color:#a6e22e">addAll</span>(list,10,5,20,50,100,200,500,800,2,80,300,700);
+</span></span><span style="display:flex;"><span>        MyThread mt1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread(list);
+</span></span><span style="display:flex;"><span>        MyThread mt2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread(list);
+</span></span><span style="display:flex;"><span>        mt1.<span style="color:#a6e22e">setName</span>(<span style="color:#e6db74">&#34;抽奖箱1&#34;</span>);
+</span></span><span style="display:flex;"><span>        mt2.<span style="color:#a6e22e">setName</span>(<span style="color:#e6db74">&#34;抽奖箱2&#34;</span>);
+</span></span><span style="display:flex;"><span>        mt1.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        mt2.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><ul>
+<li><strong>结果：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>抽奖箱1产生了一个5元大奖
+</span></span><span style="display:flex;"><span>抽奖箱2产生了一个700元大奖
+</span></span><span style="display:flex;"><span>抽奖箱1产生了一个100元大奖
+</span></span><span style="display:flex;"><span>抽奖箱2产生了一个20元大奖
+</span></span><span style="display:flex;"><span>抽奖箱1产生了一个500元大奖
+</span></span><span style="display:flex;"><span>抽奖箱2产生了一个800元大奖
+</span></span><span style="display:flex;"><span>抽奖箱1产生了一个200元大奖
+</span></span><span style="display:flex;"><span>抽奖箱2产生了一个300元大奖
+</span></span><span style="display:flex;"><span>抽奖箱1产生了一个80元大奖
+</span></span><span style="display:flex;"><span>抽奖箱2产生了一个2元大奖
+</span></span><span style="display:flex;"><span>抽奖箱1产生了一个50元大奖
+</span></span><span style="display:flex;"><span>抽奖箱2产生了一个10元大奖
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="164-抽奖功能多线程之间的比较">
+<a class="header-anchor" href="#164-%e6%8a%bd%e5%a5%96%e5%8a%9f%e8%83%bd%e5%a4%9a%e7%ba%bf%e7%a8%8b%e4%b9%8b%e9%97%b4%e7%9a%84%e6%af%94%e8%be%83"></a>
+1.6.4 抽奖功能（多线程之间的比较）
+</h4><ul>
+<li>
+<p><strong>需求：</strong> 在上一题的基础上进行改造。每次抽的过程中不打印，抽完一次性打印（随机），如：在此次抽奖过程中，抽奖箱1共产生了x个奖项，分别为&hellip;，总金额为xx元。</p>
+</li>
+<li>
+<p><strong>代码实现：</strong></p>
+<ul>
+<li><strong>MyThread类：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyThread</span> <span style="color:#66d9ef">extends</span> Thread{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> 0;<span style="color:#75715e">//总共产生的奖项个数</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> amount <span style="color:#f92672">=</span> 0;<span style="color:#75715e">//抽到的总金额</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> String maxThreadName;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> maxAmount;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyThread</span>(List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">list</span> <span style="color:#f92672">=</span> list;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> myList <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">true</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">synchronized</span> (MyThread.<span style="color:#a6e22e">class</span>){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(list.<span style="color:#a6e22e">size</span>() <span style="color:#f92672">==</span> 0){
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">int</span> maxValue <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(getName() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;共产生了&#34;</span><span style="color:#f92672">+</span>cnt<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;个奖项，分别为：&#34;</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>0;i<span style="color:#f92672">&lt;</span>myList.<span style="color:#a6e22e">size</span>();i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>                        maxValue <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">max</span>(maxValue,myList.<span style="color:#a6e22e">get</span>(i));
+</span></span><span style="display:flex;"><span>                        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">printf</span>(myList.<span style="color:#a6e22e">get</span>(i)<span style="color:#f92672">+</span><span style="color:#e6db74">&#34; , &#34;</span>);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span>(maxThreadName <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>){
+</span></span><span style="display:flex;"><span>                        maxThreadName <span style="color:#f92672">=</span> getName();
+</span></span><span style="display:flex;"><span>                        maxAmount <span style="color:#f92672">=</span> maxValue;
+</span></span><span style="display:flex;"><span>                    }<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(maxValue <span style="color:#f92672">&gt;</span> maxAmount){
+</span></span><span style="display:flex;"><span>                        maxThreadName <span style="color:#f92672">=</span> getName();
+</span></span><span style="display:flex;"><span>                        maxAmount <span style="color:#f92672">=</span> maxValue;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;最高金额为:&#34;</span><span style="color:#f92672">+</span>maxValue<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;元,总金额为：&#34;</span><span style="color:#f92672">+</span>amount);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>                }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>                    cnt<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>                    Collections.<span style="color:#a6e22e">shuffle</span>(list);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">int</span> money <span style="color:#f92672">=</span> list.<span style="color:#a6e22e">remove</span>(0);
+</span></span><span style="display:flex;"><span>                    myList.<span style="color:#a6e22e">add</span>(money);
+</span></span><span style="display:flex;"><span>                    amount<span style="color:#f92672">+=</span>money;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                Thread.<span style="color:#a6e22e">sleep</span>(100);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">catch</span> (InterruptedException e) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printMaxAmount</span>(){
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(maxThreadName<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;产生了最大奖项，该金额为&#34;</span><span style="color:#f92672">+</span>maxAmount<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;元&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>测试：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> InterruptedException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//需求：在上一题的基础上进行改造：</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//每次抽的过程中不打印，抽完一次性打印（随机）</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//如：在此次抽奖过程中，抽奖箱1共产生了x个奖项，分别为...，总金额为xx元</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        Collections.<span style="color:#a6e22e">addAll</span>(list,10,5,20,50,100,200,500,800,2,80,300,700);
+</span></span><span style="display:flex;"><span>        MyThread mt1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread(list);
+</span></span><span style="display:flex;"><span>        MyThread mt2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyThread(list);
+</span></span><span style="display:flex;"><span>        mt1.<span style="color:#a6e22e">setName</span>(<span style="color:#e6db74">&#34;抽奖箱1&#34;</span>);
+</span></span><span style="display:flex;"><span>        mt2.<span style="color:#a6e22e">setName</span>(<span style="color:#e6db74">&#34;抽奖箱2&#34;</span>);
+</span></span><span style="display:flex;"><span>        mt1.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        mt2.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>        mt1.<span style="color:#a6e22e">join</span>();
+</span></span><span style="display:flex;"><span>        mt2.<span style="color:#a6e22e">join</span>();
+</span></span><span style="display:flex;"><span>        MyThread.<span style="color:#a6e22e">printMaxAmount</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><ul>
+<li><strong>结果：</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>抽奖箱2共产生了6个奖项<span style="color:#960050;background-color:#1e0010">，</span>分别为<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>50 , 800 , 80 , 100 , 2 , 700 , 最高金额为:800元,总金额为<span style="color:#960050;background-color:#1e0010">：</span>1732
+</span></span><span style="display:flex;"><span>抽奖箱1共产生了6个奖项<span style="color:#960050;background-color:#1e0010">，</span>分别为<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>500 , 300 , 10 , 200 , 20 , 5 , 最高金额为:500元,总金额为<span style="color:#960050;background-color:#1e0010">：</span>1035
+</span></span><span style="display:flex;"><span>抽奖箱2产生了最大奖项<span style="color:#960050;background-color:#1e0010">，</span>该金额为800元
+</span></span></code></pre></div><ul>
+<li><strong>备注：</strong> 若<strong>不想</strong>两个线程抽到的奖品数如此<strong>均匀</strong>，可以将<strong>sleep去掉</strong>。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="17-线程池">
+<a class="header-anchor" href="#17-%e7%ba%bf%e7%a8%8b%e6%b1%a0"></a>
+1.7 线程池
+</h3><p>为什么要用线程池：为了复用线程，避免每次执行一个任务都要创建销毁线程，造成资源和时间的浪费。</p>
+<h4 id="171-线程池的分类">
+<a class="header-anchor" href="#171-%e7%ba%bf%e7%a8%8b%e6%b1%a0%e7%9a%84%e5%88%86%e7%b1%bb"></a>
+1.7.1 线程池的分类
+</h4><ul>
+<li>
+<p>线程数没有上限的线程池（实际上还是有上限的，上限为Integer.MAX_VALUE，但是由于二十多亿过于庞大，当创建完这么多数量之前，电脑就会先崩溃了，因此可视为没有上限）</p>
+</li>
+<li>
+<p>线程数有上限的线程池（上限一般可以自己设定）</p>
+</li>
+</ul>
+<h4 id="172-线程池的代码实现">
+<a class="header-anchor" href="#172-%e7%ba%bf%e7%a8%8b%e6%b1%a0%e7%9a%84%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0"></a>
+1.7.2 线程池的代码实现
+</h4><ul>
+<li>
+<p>利用<strong>Executors</strong>类（线程池的工具类）</p>
+</li>
+<li>
+<p>步骤：</p>
+<p>首先自定义myRunnable()类：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">myRunnable</span> <span style="color:#66d9ef">implements</span> Runnable{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>0;i<span style="color:#f92672">&lt;</span>100;i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(Thread.<span style="color:#a6e22e">currentThread</span>().<span style="color:#a6e22e">getName</span>()<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;:&#34;</span><span style="color:#f92672">+</span>i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol>
+<li>
+<p>创建线程池：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//没有上限的线程池</span>
+</span></span><span style="display:flex;"><span>ExecutorService executorService <span style="color:#f92672">=</span> Executors.<span style="color:#a6e22e">newCachedThreadPool</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//有上限的线程池，此时指定线程数上限为3</span>
+</span></span><span style="display:flex;"><span>ExecutorService executorService <span style="color:#f92672">=</span> Executors.<span style="color:#a6e22e">newFixedThreadPool</span>(3);
+</span></span></code></pre></div></li>
+<li>
+<p>提交任务：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//submit的参数可为Runnable或者Callable</span>
+</span></span><span style="display:flex;"><span>executorService.<span style="color:#a6e22e">submit</span>(<span style="color:#66d9ef">new</span> myRunnable());
+</span></span></code></pre></div></li>
+<li>
+<p>所有任务都结束之后，关闭线程池：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>executorService.<span style="color:#a6e22e">close</span>();
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ul>
+<h4 id="173-初次尝试">
+<a class="header-anchor" href="#173-%e5%88%9d%e6%ac%a1%e5%b0%9d%e8%af%95"></a>
+1.7.3 初次尝试
+</h4><ul>
+<li>
+<p>没有上限的线程池：</p>
+<ul>
+<li>
+<p>创建线程池：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ExecutorService executorService <span style="color:#f92672">=</span> Executors.<span style="color:#a6e22e">newCachedThreadPool</span>();
+</span></span></code></pre></div></li>
+<li>
+<p>提交多个任务：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>executorService.<span style="color:#a6e22e">submit</span>(<span style="color:#66d9ef">new</span> myRunnable());
+</span></span><span style="display:flex;"><span>executorService.<span style="color:#a6e22e">submit</span>(<span style="color:#66d9ef">new</span> myRunnable());
+</span></span><span style="display:flex;"><span>executorService.<span style="color:#a6e22e">submit</span>(<span style="color:#66d9ef">new</span> myRunnable());
+</span></span><span style="display:flex;"><span>executorService.<span style="color:#a6e22e">submit</span>(<span style="color:#66d9ef">new</span> myRunnable());
+</span></span><span style="display:flex;"><span>executorService.<span style="color:#a6e22e">submit</span>(<span style="color:#66d9ef">new</span> myRunnable());
+</span></span></code></pre></div></li>
+<li>
+<p>结果（截取部分内容）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pool-1-thread-3:0
+</span></span><span style="display:flex;"><span>pool-1-thread-3:1
+</span></span><span style="display:flex;"><span>pool-1-thread-3:2
+</span></span><span style="display:flex;"><span>pool-1-thread-3:3
+</span></span><span style="display:flex;"><span>pool-1-thread-3:4
+</span></span><span style="display:flex;"><span>pool-1-thread-3:7
+</span></span><span style="display:flex;"><span>pool-1-thread-1:0
+</span></span><span style="display:flex;"><span>pool-1-thread-5:0
+</span></span><span style="display:flex;"><span>pool-1-thread-4:0
+</span></span><span style="display:flex;"><span>pool-1-thread-4:1
+</span></span></code></pre></div></li>
+<li>
+<p>分析：此时发现线程池自动为我们创建了多个线程来执行任务（如thread-3,thread-1,thread-5,thread-4），且似乎没有上限。（若想让多个任务共同复用一个线程，可以在submit之间加上：<strong>Thread.sleep(100)</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>有上限的线程池：</p>
+<ul>
+<li>
+<p>创建线程池：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//指定线程池上限为3</span>
+</span></span><span style="display:flex;"><span>ExecutorService executorService <span style="color:#f92672">=</span> Executors.<span style="color:#a6e22e">newFixedThreadPool</span>(3);
+</span></span></code></pre></div></li>
+<li>
+<p>执行多个任务（此时为5个，超过线程池上限）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>executorService.<span style="color:#a6e22e">submit</span>(<span style="color:#66d9ef">new</span> myRunnable());
+</span></span><span style="display:flex;"><span>executorService.<span style="color:#a6e22e">submit</span>(<span style="color:#66d9ef">new</span> myRunnable());
+</span></span><span style="display:flex;"><span>executorService.<span style="color:#a6e22e">submit</span>(<span style="color:#66d9ef">new</span> myRunnable());
+</span></span><span style="display:flex;"><span>executorService.<span style="color:#a6e22e">submit</span>(<span style="color:#66d9ef">new</span> myRunnable());
+</span></span><span style="display:flex;"><span>executorService.<span style="color:#a6e22e">submit</span>(<span style="color:#66d9ef">new</span> myRunnable());
+</span></span></code></pre></div></li>
+<li>
+<p>结果（截取部分内容）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pool-1-thread-1:0
+</span></span><span style="display:flex;"><span>pool-1-thread-1:1
+</span></span><span style="display:flex;"><span>pool-1-thread-1:2
+</span></span><span style="display:flex;"><span>pool-1-thread-1:3
+</span></span><span style="display:flex;"><span>pool-1-thread-1:4
+</span></span><span style="display:flex;"><span>pool-1-thread-1:5
+</span></span><span style="display:flex;"><span>pool-1-thread-3:0
+</span></span></code></pre></div></li>
+<li>
+<p>分析：发现始终都只是在复用thread-1、2、3，始终不超过thread-3。</p>
+</li>
+<li>
+<p>补充：若想看到有限线程池排队的现象，可在第一个executorService.submit(new myRunnable())之前打断点，之后开启debug模式，此时关注executorService的两个参数：<strong>pool size</strong>和<strong>workQueue</strong> ，最开始时二者都为0，当开始执行到第一、二、三个submit时pool size依次为1，2，3，此时<strong>workQueue</strong> 仍为0，当执行到第四、五个submit时，若线程池的三个任务还没结束，则第四、五个线程仍需等待，且workQueue依次变为1、2 。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="174-自定义线程池">
+<a class="header-anchor" href="#174-%e8%87%aa%e5%ae%9a%e4%b9%89%e7%ba%bf%e7%a8%8b%e6%b1%a0"></a>
+1.7.4 自定义线程池
+</h4><ul>
+<li>
+<p>上文使用的newCachedThreadPool()和newFixedThreadPool(3)的底层原理也是帮我们自定义一个线程池：</p>
+<ul>
+<li>
+<p>newCachedThreadPool()：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ExecutorService <span style="color:#a6e22e">newCachedThreadPool</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> ThreadPoolExecutor(0, Integer.<span style="color:#a6e22e">MAX_VALUE</span>,
+</span></span><span style="display:flex;"><span>                                      60L, TimeUnit.<span style="color:#a6e22e">SECONDS</span>,
+</span></span><span style="display:flex;"><span>                                      <span style="color:#66d9ef">new</span> SynchronousQueue<span style="color:#f92672">&lt;</span>Runnable<span style="color:#f92672">&gt;</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div></li>
+<li>
+<p>newFixedThreadPool(3):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ExecutorService <span style="color:#a6e22e">newFixedThreadPool</span>(<span style="color:#66d9ef">int</span> nThreads) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> ThreadPoolExecutor(nThreads, nThreads,
+</span></span><span style="display:flex;"><span>                                      0L, TimeUnit.<span style="color:#a6e22e">MILLISECONDS</span>,
+</span></span><span style="display:flex;"><span>                                      <span style="color:#66d9ef">new</span> LinkedBlockingQueue<span style="color:#f92672">&lt;</span>Runnable<span style="color:#f92672">&gt;</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>因此，想要自定义线程池可以new一个ThreadPoolExecutor，其有七个参数：</p>
+<p>以饭店为例：</p>
+<p><img src="images/2025-07-21-22-43-41-image.png" alt=""></p>
+</li>
+<li>
+<p>其中：</p>
+<ul>
+<li>
+<p>不能为空的参数为 ​<strong>​<code>workQueue</code>、<code>threadFactory</code>、<code>handler</code>​</strong>​（即后三者），其他参数需满足数值合法性要求。在实际使用中，若未显式指定后两者，线程池会使用默认实现，但任务队列必须明确提供。</p>
+</li>
+<li>
+<p>临时线程数＝最大线程数-核心线程数。因此最大线程数应该≥核心线程数</p>
+</li>
+<li>
+<p>临时线程和核心线程的关系：<strong>核心线程</strong>永远不会消失，只有当<strong>线程池</strong>消失的时候才会随着线程池消失而一起消失；<strong>临时线程</strong> 在达到规定的时间就会消失（空闲时间）。</p>
+</li>
+<li>
+<p>任务调用的顺序：先调用核心线程，当任务数超过核心线程时，多余的任务会放在阻塞队列当中；当任务数又超过 <strong>核心线程数</strong> + <strong>阻塞队列长度</strong> 时，多余的任务才会被临时线程执行。即<strong>临时线程是最后执行</strong>的。</p>
+</li>
+<li>
+<p>这里创建线程池的方式指的是线程工厂Executors.defaultThreadFactory()，只有这一种方式创建线程，其底层原理其实也是new 一个线程：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ThreadFactory <span style="color:#a6e22e">defaultThreadFactory</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> DefaultThreadFactory();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>DefaultThreadFactory() {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@SuppressWarnings</span>(<span style="color:#e6db74">&#34;removal&#34;</span>)
+</span></span><span style="display:flex;"><span>            SecurityManager s <span style="color:#f92672">=</span> System.<span style="color:#a6e22e">getSecurityManager</span>();
+</span></span><span style="display:flex;"><span>            group <span style="color:#f92672">=</span> (s <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) <span style="color:#f92672">?</span> s.<span style="color:#a6e22e">getThreadGroup</span>() :
+</span></span><span style="display:flex;"><span>                                  Thread.<span style="color:#a6e22e">currentThread</span>().<span style="color:#a6e22e">getThreadGroup</span>();
+</span></span><span style="display:flex;"><span>            namePrefix <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pool-&#34;</span> <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>                          poolNumber.<span style="color:#a6e22e">getAndIncrement</span>() <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>                         <span style="color:#e6db74">&#34;-thread-&#34;</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> Thread <span style="color:#a6e22e">newThread</span>(Runnable r) {
+</span></span><span style="display:flex;"><span>            Thread t <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread(group, r,
+</span></span><span style="display:flex;"><span>                                  namePrefix <span style="color:#f92672">+</span> threadNumber.<span style="color:#a6e22e">getAndIncrement</span>(),
+</span></span><span style="display:flex;"><span>                                  0);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (t.<span style="color:#a6e22e">isDaemon</span>())
+</span></span><span style="display:flex;"><span>                t.<span style="color:#a6e22e">setDaemon</span>(<span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (t.<span style="color:#a6e22e">getPriority</span>() <span style="color:#f92672">!=</span> Thread.<span style="color:#a6e22e">NORM_PRIORITY</span>)
+</span></span><span style="display:flex;"><span>                t.<span style="color:#a6e22e">setPriority</span>(Thread.<span style="color:#a6e22e">NORM_PRIORITY</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> t;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div></li>
+<li>
+<p>线程拒绝策略主要有以下四种：</p>
+<p><img src="images/2025-07-21-23-16-45-image.png" alt=""></p>
+<ul>
+<li>
+<p>第一种策略的示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> InterruptedException {
+</span></span><span style="display:flex;"><span>        ThreadPoolExecutor threadPool <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ThreadPoolExecutor(
+</span></span><span style="display:flex;"><span>                2,
+</span></span><span style="display:flex;"><span>                2,
+</span></span><span style="display:flex;"><span>                60,
+</span></span><span style="display:flex;"><span>                TimeUnit.<span style="color:#a6e22e">SECONDS</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">new</span> LinkedBlockingDeque<span style="color:#f92672">&lt;&gt;</span>(),
+</span></span><span style="display:flex;"><span>                Executors.<span style="color:#a6e22e">defaultThreadFactory</span>(),
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">new</span> ThreadPoolExecutor.<span style="color:#a6e22e">AbortPolicy</span>()
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>        threadPool.<span style="color:#a6e22e">submit</span>(<span style="color:#66d9ef">new</span> myRunnable());
+</span></span><span style="display:flex;"><span>        Thread.<span style="color:#a6e22e">sleep</span>(200);
+</span></span><span style="display:flex;"><span>        threadPool.<span style="color:#a6e22e">submit</span>(<span style="color:#66d9ef">new</span> myRunnable());
+</span></span><span style="display:flex;"><span>        Thread.<span style="color:#a6e22e">sleep</span>(200);
+</span></span><span style="display:flex;"><span>        threadPool.<span style="color:#a6e22e">submit</span>(<span style="color:#66d9ef">new</span> myRunnable());
+</span></span><span style="display:flex;"><span>        Thread.<span style="color:#a6e22e">sleep</span>(200);
+</span></span><span style="display:flex;"><span>        threadPool.<span style="color:#a6e22e">submit</span>(<span style="color:#66d9ef">new</span> myRunnable());
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div></li>
+<li>
+<p>结果：之后运行两个线程来执行前两个任务，说明由于线程数不足，只能将第三个线程丢弃了。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap article-nav-link-left"><img
+            data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+            data-sizes="auto"
+            alt="Set和Map的遍历"
+            class="lazyload"
+          /><a href="/post/set%E5%92%8Cmap%E7%9A%84%E9%81%8D%E5%8E%86/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">Set和Map的遍历</h3>
+      </div><div class="article-nav-link-wrap article-nav-link-right"><img
+            data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+            data-sizes="auto"
+            alt="Java的四种引用"
+            class="lazyload"
+          /><a href="/post/java%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8/java%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8/"></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">Java的四种引用</h3>
+      </div></nav></article></section>
+        </div><footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2020-2025<span class="footer-info-sep rotate"></span>
+      meeting_smile
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;91.5k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;03:12</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1多线程">1.多线程</a>
+      <ul>
+        <li><a href="#11-多线程实现的三种方式">1.1 多线程实现的三种方式</a></li>
+        <li><a href="#12-三种方式的比较">1.2 三种方式的比较</a></li>
+        <li><a href="#13-thread的常见成员方法">1.3 Thread的常见成员方法</a></li>
+        <li><a href="#14-线程安全">1.4 线程安全</a></li>
+        <li><a href="#15-等待唤醒机制">1.5 等待唤醒机制</a></li>
+        <li><a href="#16-综合练习">1.6 综合练习</a></li>
+        <li><a href="#17-线程池">1.7 线程池</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="meeting_smile"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">meeting_smile</div>
+  <div class="sidebar-description">未来一定是要笑着谈的(*≧▽≦)ツ</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">23</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social"></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/js/main.js" ></script><script src="/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "",
+        apiKey: "",
+        indexName: "",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/instantsearch.js@4.56.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-hHJCflT4KBLQyHfKO9vpstIcFKn/Y&#43;KHTORelMMEn7mOp2AVPp&#43;7fr03dLgZiV3J" crossorigin="anonymous"></script><script src="/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (window.firework) {
+    const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+    options.excludeElements = options.excludeelements;
+    delete options.excludeelements;
+    window.firework(options);
+  }
+</script><script>
+  function initLive2d() {
+    live2d.init('https:\/\/fastly.jsdelivr.net\/gh\/D-Sketon\/plugin-live2d\/', {themeTipsPath: ""});
+  }
+</script><script
+    src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js"
+    asynconload="initLive2d()"></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "meeting_smile",
+          title: "java基础——线程相关",
+          url: "http:\/\/localhost:1313\/post\/java%E5%9F%BA%E7%A1%80%E7%BA%BF%E7%A8%8B%E7%9B%B8%E5%85%B3\/",
+          description: " java基础——线程相关 本人在阿里暑期实习单招落榜(2025.6.4)之后，下定决心补全java基础知识时做的笔记\n1.多线程 1.1 多线程实现的三种方式 1.1.1 继承Thread类 定义MyThread类，重写run方法： public class MyThread extends Thread{ @Override public void run() { for (int i = 0; i \u0026lt; 100; i\u002b\u002b) { System.out.println(\u0026#34;Hello,\u0026#34;\u002b getName()); } } } 实现多线程： public static …",
+          cover: "https:\/\/th.bing.com\/th\/id\/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg\u0026riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg\u0026ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d\u0026risl=\u0026pid=ImgRaw\u0026r=0",
+        };
+      </script><script src="/js/insert_highlight.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

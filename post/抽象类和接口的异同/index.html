@@ -1,0 +1,774 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="auto"
+  >
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  抽象类和接口的异同 | meeting_smile
+</title>
+<meta
+  name="description"
+  content="未来一定是要笑着谈的(*≧▽≦)ツ"
+/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1313/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_0khxww3tj3q9\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="抽象类和接口的异同 | meeting_smile" />
+  <meta
+    property="og:description"
+    content="未来一定是要笑着谈的(*≧▽≦)ツ"
+  />
+  <meta property="og:url" content="http://localhost:1313/post/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%BC%82%E5%90%8C/" />
+  <meta
+    property="og:site_name"
+    content="meeting_smile&#39;s blog"
+  />
+  <meta
+    property="og:image"
+    content="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+  />
+  <meta property="article:author" content="meeting_smile" />
+  <meta property="article:published_time" content="2025-11-05T17:00:00-07:00" />
+  <meta property="article:modified_time" content="2025-11-25T16:46:00-07:00" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.11/dist/katex.min.css"
+    integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm&#43;ZU03BU6SQNC66uf4l5&#43;" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css"
+    integrity="sha384-4NN3fZ5AokFyHuoihl7A9qWaCt&#43;HsAtOaUsXwJGRb4/SMBtFr2vcNSHR5E8dg0Wk" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">马上就好~</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script><div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="lang-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+本文章没有找到对应的语言版本
+</div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav"><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/">首页</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/archives">归档</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/about">关于</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/friend">友链</a>
+      </span><a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a></nav></div>
+<header id="header"><picture></picture>
+    <img crossorigin="anonymous" fetchpriority="high" src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="抽象类和接口的异同"><div id="header-outer">
+    <div id="header-title"><a href="/" id="logo">
+            <h1 data-aos="slide-up">抽象类和接口的异同</h1>
+          </a><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          
+          class="sidebar-right"  ><aside id="sidebar"><div class="sidebar-wrapper wrap-sticky">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-抽象类">1. 抽象类</a>
+      <ul>
+        <li><a href="#11-概念">1.1 概念</a></li>
+        <li><a href="#12-包含内容">1.2 包含内容</a></li>
+        <li><a href="#13-继承">1.3 继承</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-接口">2. 接口</a>
+      <ul>
+        <li><a href="#21-概念及包含内容">2.1 概念及包含内容</a></li>
+        <li><a href="#22-实现关系">2.2 实现关系</a></li>
+        <li><a href="#23-多实现">2.3 多实现</a></li>
+        <li><a href="#24-实现接口方法">2.4 实现接口方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-接口和抽象类的区别">3. 接口和抽象类的区别</a>
+      <ul>
+        <li><a href="#31-抽象类比接口多了构造方法">3.1 抽象类比接口多了构造方法</a></li>
+        <li><a href="#32-接口的方法默认均为public的">3.2 接口的方法默认均为public的</a></li>
+        <li><a href="#33-接口和抽象类的选择">3.3 接口和抽象类的选择</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="meeting_smile"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">meeting_smile</div>
+  <div class="sidebar-description">未来一定是要笑着谈的(*≧▽≦)ツ</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">23</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social"></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div>
+
+  <div class="sidebar-widget"></div></aside>
+<section id="main"><article
+  class="h-entry article"
+  itemprop="blogPost"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-11-05 17:00:00 -0700 -0700" itemprop="datePublished"
+      >2025-11-05</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-11-25</time
+    >
+  </span>
+</div>
+<div class="article-category"></div>
+</div>
+    <div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="抽象类和接口的异同">
+<a class="header-anchor" href="#%e6%8a%bd%e8%b1%a1%e7%b1%bb%e5%92%8c%e6%8e%a5%e5%8f%a3%e7%9a%84%e5%bc%82%e5%90%8c"></a>
+抽象类和接口的异同
+</h1><h2 id="1-抽象类">
+<a class="header-anchor" href="#1-%e6%8a%bd%e8%b1%a1%e7%b1%bb"></a>
+1. 抽象类
+</h2><h3 id="11-概念">
+<a class="header-anchor" href="#11-%e6%a6%82%e5%bf%b5"></a>
+1.1 概念
+</h3><p><strong>含有抽象方法</strong>的类，在Java中使用abstract修饰</p>
+<h3 id="12-包含内容">
+<a class="header-anchor" href="#12-%e5%8c%85%e5%90%ab%e5%86%85%e5%ae%b9"></a>
+1.2 包含内容
+</h3><p>具有普通的类具有的所有内容，除此之外还具有抽象方法，说白了就是<strong>具有抽象方法的普通类（但是通过abstract修饰）</strong> ，具体可以包含的内容为：</p>
+<ul>
+<li>
+<p><strong><!-- raw HTML omitted -->（任意修饰符的）抽象方法<!-- raw HTML omitted --></strong></p>
+</li>
+<li>
+<p>（任意修饰符的）的具体、静态方法</p>
+</li>
+<li>
+<p>（任意修饰符的）普通、静态成员变量</p>
+</li>
+<li>
+<p>（任意修饰符的）常量</p>
+</li>
+<li>
+<p><strong><!-- raw HTML omitted -->（任意修饰符的）含有/不含 方法体构造方法<!-- raw HTML omitted --></strong></p>
+</li>
+</ul>
+<p>例子（试过了没有发生报错）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AAbstract</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 抽象方法可以具有以下内容（普通类可以有的抽象类都有，且抽象类还能具有抽象方法）：
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">      */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//1.（任意修饰符的普通）成员变量</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> i;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//2.（任意修饰符的静态）成员变量</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//3.含有/不含方法体的构造方法</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">AAbstract</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> 1;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//4.（任意修饰符的）抽象方法</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">a</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//5.（任意修饰符的）具体方法</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">b</span>(){
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="13-继承">
+<a class="header-anchor" href="#13-%e7%bb%a7%e6%89%bf"></a>
+1.3 继承
+</h3><h4 id="131-子类与父类">
+<a class="header-anchor" href="#131-%e5%ad%90%e7%b1%bb%e4%b8%8e%e7%88%b6%e7%b1%bb"></a>
+1.3.1 子类与父类
+</h4><ul>
+<li>在Java中，<strong>子类</strong> 可以通过关键字<strong>extends</strong> 抽象类，来实现对<strong>抽象类的继承</strong> ，在继承这一层关系中，才有<strong>子类</strong> 与<strong>父类</strong> 的概念</li>
+</ul>
+<h4 id="132-单继承">
+<a class="header-anchor" href="#132-%e5%8d%95%e7%bb%a7%e6%89%bf"></a>
+1.3.2 单继承
+</h4><ul>
+<li>
+<p>一般来说，一个类（包括抽象类）只能实现<strong>单继承</strong></p>
+</li>
+<li>
+<p>特殊情况，<strong><!-- raw HTML omitted -->接口可以实现多继承<!-- raw HTML omitted --></strong> ，但是 <strong><!-- raw HTML omitted -->继承的只能也是接口<!-- raw HTML omitted --></strong></p>
+</li>
+</ul>
+<h4 id="133-什么类可以被继承">
+<a class="header-anchor" href="#133-%e4%bb%80%e4%b9%88%e7%b1%bb%e5%8f%af%e4%bb%a5%e8%a2%ab%e7%bb%a7%e6%89%bf"></a>
+1.3.3 什么类可以被继承
+</h4><ul>
+<li>所有的类（接口不行）都可以被继承，但是 <strong><!-- raw HTML omitted -->声明了final的类不能被继承<!-- raw HTML omitted --></strong></li>
+</ul>
+<h4 id="134-重写父类方法">
+<a class="header-anchor" href="#134-%e9%87%8d%e5%86%99%e7%88%b6%e7%b1%bb%e6%96%b9%e6%b3%95"></a>
+1.3.4 重写父类方法
+</h4><ul>
+<li>
+<p>子类如果继承了父类，必须重写父类的<strong>所有抽象方法</strong> （普通方法可选，不强制要求）；<strong><!-- raw HTML omitted -->但是如果子类为抽象类，则不强制要求重写父类的抽象方法<!-- raw HTML omitted --></strong></p>
+</li>
+<li>
+<p><strong><!-- raw HTML omitted -->子类不能重写父类用final、private和static修饰的方法<!-- raw HTML omitted --></strong> ，其中：</p>
+<ul>
+<li>
+<p><strong>父类的final方法</strong> 只能被子类继承，不能被重写，但是可以被子类的实例使用</p>
+</li>
+<li>
+<p><strong>父类的private方法</strong> 只能被子类继承、不能被重写，也<strong>不能被子类内部和子类实例使用使用</strong>，相当于子类完全用不了也看不见。这是因为private修饰符只允许该方法在父类内部使用。</p>
+</li>
+<li>
+<p><strong>父类的static方法</strong> 可以被子类继承、子类的内部和子类实例使用，但<strong>不能被重写</strong> ，因为static方法属于父类，而不属于子类的单个实例（子类的内容就是实例的内容）</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-接口">
+<a class="header-anchor" href="#2-%e6%8e%a5%e5%8f%a3"></a>
+2. 接口
+</h2><h3 id="21-概念及包含内容">
+<a class="header-anchor" href="#21-%e6%a6%82%e5%bf%b5%e5%8f%8a%e5%8c%85%e5%90%ab%e5%86%85%e5%ae%b9"></a>
+2.1 概念及包含内容
+</h3><p>接口是为了方便对外提供API接口为产生的（因此<strong>所有方法均为public</strong>），只包含 <strong><!-- raw HTML omitted -->静态<!-- raw HTML omitted -->常量</strong> 和<strong>抽象方法</strong>（不能包含final方法）。在JDK 8之后，接口的内容新增了<strong>static方法</strong>和<strong>default方法</strong>，在JDK 9之后又允许含有<strong>private方法</strong>，以下是具体说明：</p>
+<ul>
+<li>
+<p>注意，此处的<strong>default方法</strong> 并不是只方法权限修饰符，而是指 <strong><!-- raw HTML omitted -->默认实现<!-- raw HTML omitted --></strong>。与抽象方法不同，<strong><!-- raw HTML omitted -->接口并不要求子类一定要实现default方法<!-- raw HTML omitted --></strong>，如果为实现则子类将继承default方法的已有默认内容。default方法的诞生初衷是：开发人员如果想在已有接口新增一些新的方法来实现新的功能，则主要会遇到两个问题：</p>
+<ul>
+<li>
+<p>原先的接口只允许存在抽象方法，抽象方法不允许有方法体，故不能实现功能。</p>
+</li>
+<li>
+<p>如果原有接口新增了方法，则大量相关子类也必须实现这些方法，那么这样造成的变动是很大的。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>private方法</strong>是为了方便接口内能够调用内部的方法。</p>
+</li>
+</ul>
+<h3 id="22-实现关系">
+<a class="header-anchor" href="#22-%e5%ae%9e%e7%8e%b0%e5%85%b3%e7%b3%bb"></a>
+2.2 实现关系
+</h3><ul>
+<li>Java中，<strong>实现类</strong> 可以用关键字<strong>implements</strong> 来 <strong>实现接口</strong></li>
+</ul>
+<h3 id="23-多实现">
+<a class="header-anchor" href="#23-%e5%a4%9a%e5%ae%9e%e7%8e%b0"></a>
+2.3 多实现
+</h3><ul>
+<li>Java中 <strong><!-- raw HTML omitted -->一个类（包括抽象类）支持多实现<!-- raw HTML omitted --></strong>（多个接口之前用逗号分割开），但是 <strong><!-- raw HTML omitted -->一个接口不能实现其他接口（单实现也不行）<!-- raw HTML omitted --></strong>，实例如下：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AAbstract</span> <span style="color:#66d9ef">implements</span> AInterface,BInterface {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="24-实现接口方法">
+<a class="header-anchor" href="#24-%e5%ae%9e%e7%8e%b0%e6%8e%a5%e5%8f%a3%e6%96%b9%e6%b3%95"></a>
+2.4 实现接口方法
+</h3><ul>
+<li>类似的，实现类必须实现接口的抽象方法，其他的<strong>static方法</strong> 、<strong>private方法</strong> 和<strong>default方法</strong> 不强制要求实现类来实现。</li>
+</ul>
+<h2 id="3-接口和抽象类的区别">
+<a class="header-anchor" href="#3-%e6%8e%a5%e5%8f%a3%e5%92%8c%e6%8a%bd%e8%b1%a1%e7%b1%bb%e7%9a%84%e5%8c%ba%e5%88%ab"></a>
+3. 接口和抽象类的区别
+</h2><h3 id="31-抽象类比接口多了构造方法">
+<a class="header-anchor" href="#31-%e6%8a%bd%e8%b1%a1%e7%b1%bb%e6%af%94%e6%8e%a5%e5%8f%a3%e5%a4%9a%e4%ba%86%e6%9e%84%e9%80%a0%e6%96%b9%e6%b3%95"></a>
+3.1 抽象类比接口多了构造方法
+</h3><p>抽象类多了构造方法主要是为了能够规范子类的行为，如父类Animal类为了能够要求子类Dog构造时也能初始化name属性，则可以这么做：</p>
+<p>在Animal类当中：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#a6e22e">Animal</span>(String name) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>则子类Dog的构造方法必须为：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Dog</span> <span style="color:#66d9ef">extends</span> Animal{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#a6e22e">Dog</span>(String name) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>(name);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>如果子类Dog的构造方法为：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Dog</span> <span style="color:#66d9ef">extends</span> Animal{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#a6e22e">Dog</span>() {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>则会报错：<!-- raw HTML omitted --><em>There is no default constructor available in &lsquo;interfaceAndAbstract.Animal&rsquo;</em><!-- raw HTML omitted --></p>
+<p>若父类Animal只有上述有参构造方法而子类Dog没有实现对应的有参构造方法，则也会报出上述错误。</p>
+<p>子类Dog要想也保留空参构造方法，则父类也需要有空参构造方法，总之父类有哪种构造方法，则子类也需要有对应的构造方法，从而实现父类对子类构造方法的约束行为。</p>
+<h3 id="32-接口的方法默认均为public的">
+<a class="header-anchor" href="#32-%e6%8e%a5%e5%8f%a3%e7%9a%84%e6%96%b9%e6%b3%95%e9%bb%98%e8%ae%a4%e5%9d%87%e4%b8%bapublic%e7%9a%84"></a>
+3.2 接口的方法默认均为public的
+</h3><ul>
+<li>
+<p>Java的接口的初衷是为了向外部提供接口，即对外部类公开，因此接口所有的方法 <strong><!-- raw HTML omitted -->无论是否显示声明，均为public<!-- raw HTML omitted --></strong>，已确保实现类能够被外部统一调用。</p>
+</li>
+<li>
+<p>Java 8之后接口支持static方法和default方法，默认也均为public的。注意：此时default表示的并不是访问权限，指的是默认方法，此外还有这几个细节需要注意：</p>
+<ul>
+<li>
+<p>Java 9 之后接口支持private方法，因此可以在static之前加上private或者public，因为static并不是访问权限符，并不会冲突：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//这两种方式都不会报错（但是没必要再写一个public，因为default方法默认就是public的，再加一个public就显得冗余了）</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">b</span>(){
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;这是接口A的静态方法&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>private static void b(){
+System.out.println(&ldquo;这是接口A的静态方法&rdquo;);
+}</p>
+<pre tabindex="0"><code></code></pre></li>
+</ul>
+</li>
+<li>
+<p>Java 9之后接口支持private方法，由于private和public都表示访问权限修饰符，因此不能混用，因此以下使用方式是错的：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">d</span>(){
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;这是接口A的私有方法&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div></li>
+<li>
+<p>因此，该说法是<strong>错误</strong> 的：<strong><!-- raw HTML omitted -->Java 9之后，接口的所有方法都是public<!-- raw HTML omitted --></strong> 。因为Java 9之后的private方法，也允许接口通过私有接口方法向外隐藏内部的实现细节。</p>
+</li>
+</ul>
+<h3 id="33-接口和抽象类的选择">
+<a class="header-anchor" href="#33-%e6%8e%a5%e5%8f%a3%e5%92%8c%e6%8a%bd%e8%b1%a1%e7%b1%bb%e7%9a%84%e9%80%89%e6%8b%a9"></a>
+3.3 接口和抽象类的选择
+</h3><ul>
+<li>
+<p>当需要 <strong><!-- raw HTML omitted -->子类继承父类的成员变量(属性)<!-- raw HTML omitted --></strong> ，或者需要 <strong><!-- raw HTML omitted -->父类约束子类的构造方法（控制子类的实例化）<!-- raw HTML omitted --></strong> 时，就使用抽象类+继承</p>
+</li>
+<li>
+<p>除此之外的其他情况，均用接口，因为<strong>接口支持多实现</strong>。</p>
+</li>
+</ul>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap article-nav-link-left"><img
+            data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+            data-sizes="auto"
+            alt="Zookeeper&#43;Kafka集群的部署与启动"
+            class="lazyload"
+          /><a href="/post/zookeeper&#43;kafka%E9%9B%86%E7%BE%A4%E7%9A%84%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%90%AF%E5%8A%A8/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">Zookeeper&#43;Kafka集群的部署与启动</h3>
+      </div><div class="article-nav-link-wrap article-nav-link-right"><img
+            data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+            data-sizes="auto"
+            alt="sum和count的区别"
+            class="lazyload"
+          /><a href="/post/sum%E5%92%8Ccount%E7%9A%84%E5%8C%BA%E5%88%AB/"></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">sum和count的区别</h3>
+      </div></nav></article></section>
+        </div><footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2020-2025<span class="footer-info-sep rotate"></span>
+      meeting_smile
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;91.5k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;03:12</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-抽象类">1. 抽象类</a>
+      <ul>
+        <li><a href="#11-概念">1.1 概念</a></li>
+        <li><a href="#12-包含内容">1.2 包含内容</a></li>
+        <li><a href="#13-继承">1.3 继承</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-接口">2. 接口</a>
+      <ul>
+        <li><a href="#21-概念及包含内容">2.1 概念及包含内容</a></li>
+        <li><a href="#22-实现关系">2.2 实现关系</a></li>
+        <li><a href="#23-多实现">2.3 多实现</a></li>
+        <li><a href="#24-实现接口方法">2.4 实现接口方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-接口和抽象类的区别">3. 接口和抽象类的区别</a>
+      <ul>
+        <li><a href="#31-抽象类比接口多了构造方法">3.1 抽象类比接口多了构造方法</a></li>
+        <li><a href="#32-接口的方法默认均为public的">3.2 接口的方法默认均为public的</a></li>
+        <li><a href="#33-接口和抽象类的选择">3.3 接口和抽象类的选择</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="meeting_smile"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">meeting_smile</div>
+  <div class="sidebar-description">未来一定是要笑着谈的(*≧▽≦)ツ</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">23</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social"></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/js/main.js" ></script><script src="/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "",
+        apiKey: "",
+        indexName: "",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/instantsearch.js@4.56.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-hHJCflT4KBLQyHfKO9vpstIcFKn/Y&#43;KHTORelMMEn7mOp2AVPp&#43;7fr03dLgZiV3J" crossorigin="anonymous"></script><script src="/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (window.firework) {
+    const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+    options.excludeElements = options.excludeelements;
+    delete options.excludeelements;
+    window.firework(options);
+  }
+</script><script>
+  function initLive2d() {
+    live2d.init('https:\/\/fastly.jsdelivr.net\/gh\/D-Sketon\/plugin-live2d\/', {themeTipsPath: ""});
+  }
+</script><script
+    src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js"
+    asynconload="initLive2d()"></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "meeting_smile",
+          title: "抽象类和接口的异同",
+          url: "http:\/\/localhost:1313\/post\/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%BC%82%E5%90%8C\/",
+          description: " 抽象类和接口的异同 1. 抽象类 1.1 概念 含有抽象方法的类，在Java中使用abstract修饰\n1.2 包含内容 具有普通的类具有的所有内容，除此之外还具有抽象方法，说白了就是具有抽象方法的普通类（但是通过abstract修饰） ，具体可以包含的内容为：\n",
+          cover: "https:\/\/th.bing.com\/th\/id\/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg\u0026riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg\u0026ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d\u0026risl=\u0026pid=ImgRaw\u0026r=0",
+        };
+      </script><script src="/js/insert_highlight.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

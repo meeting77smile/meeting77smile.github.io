@@ -53,8 +53,8 @@
     content="/"
   />
   <meta property="article:author" content="meeting_smile" />
-  <meta property="article:published_time" content="2025-06-24T17:00:00-07:00" />
-  <meta property="article:modified_time" content="2025-06-25T16:46:00-07:00" /><meta name="twitter:card" content="summary" />
+  <meta property="article:published_time" content="2025-11-11T17:00:00-07:00" />
+  <meta property="article:modified_time" content="2025-11-25T16:46:00-07:00" /><meta name="twitter:card" content="summary" />
   <meta name="twitter:image" content="/" /><link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml" title="meeting_smile's blog">
 <link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.css" />
 <link
@@ -152,7 +152,7 @@
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">8</div>
+    <div>文章</div><div class="sidebar-state-number">23</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -210,15 +210,15 @@
       <h3 class="widget-title">最新文章</h3>
       <div class="widget">
         <ul><li>
-              <a href="/post/%E4%BD%BF%E7%94%A8git%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81%E6%95%99%E7%A8%8B/">使用Git贡献代码教程</a>
+              <a href="/post/jmh%E7%9A%84%E4%BD%BF%E7%94%A8/">JMH的使用</a>
             </li><li>
-              <a href="/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/">服务器项目部署</a>
+              <a href="/post/ssl%E4%B8%8Etls/ssl%E4%B8%8Etls/">SSL/TLS</a>
             </li><li>
-              <a href="/post/likesystem/">亿级流量点赞系统</a>
+              <a href="/post/@requestpart%E4%B8%8E%E5%85%B6%E4%BB%96%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8C%BA%E5%88%86/">@RequestPart与其他注解的区分</a>
             </li><li>
-              <a href="/post/nebulamall/">星云好物——基于微服务架构的电商平台</a>
+              <a href="/post/join%E6%98%AF%E5%90%A6%E5%BF%85%E9%A1%BB%E6%8C%87%E5%AE%9A%E8%BF%9E%E6%8E%A5%E6%9D%A1%E4%BB%B6/">join是否必须指定连接条件</a>
             </li><li>
-              <a href="/post/secondkill/">电商秒杀项目</a>
+              <a href="/post/sum%E5%92%8Ccount%E7%9A%84%E5%8C%BA%E5%88%AB/">sum和count的区别</a>
             </li></ul>
       </div>
     </div>
@@ -231,15 +231,15 @@
     data-aos="fade-up"
   ><a
         class="post-link"
-        href="/post/%E4%BD%BF%E7%94%A8git%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81%E6%95%99%E7%A8%8B/"
-        aria-label="使用Git贡献代码教程"
+        href="/post/jmh%E7%9A%84%E4%BD%BF%E7%94%A8/"
+        aria-label="JMH的使用"
       >
       </a><div
       class="
         post-cover-left
       "
     ><img
-          data-src="https://th.bing.com/th/id/R.70f46d4888a9775dd8ace52e226ff9e2?rik=nFVQslreAAScHw&amp;riu=http%3a%2f%2finews.gtimg.com%2fnewsapp_bt%2f0%2f13132631335%2f1000.jpg&amp;ehk=cxJRXjOjUtqzoia6qDIhCvfPIf0I7rBJTpuG6RtBvOw%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+          data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
           data-sizes="auto"
           alt=""
           class="lazyload"
@@ -248,20 +248,104 @@
       <div class="post-meta">
         <span
           ><span class="icon-calendar"></span
-          >2025-06-24</span
+          >2025-11-11</span
         >
         <span
           ><span class="icon-pencil"></span
-          >1717 字</span
+          >4476 字</span
+        >
+        <span
+          ><span class="icon-clock"></span
+          >9 分钟</span
+        >
+      </div>
+      <h2 class="post-title">JMH的使用</h2>
+      <article class="post-article"> JMH的使用 1. 与JMeter的区别 1.1 核心区别和选择 特性 JMH JMeter 测试类型 微基准测试（Microbenchmark） 负载测试、压力测试（Load/Stress Test） 测试粒度 方法级别，代码级 系统级别，接口/服务级 测试精度 毫秒级/微秒级 秒级 主要用途 测试和优化代码片段的性能 评估系统在高并发下的整体性能 执行方式 在JVM内部运行，需要编写Java代码 从外部模拟用户请求，通过GUI（图形用户界面）配置 典型问题 ArrayList和LinkedList的遍历哪个更快 我的网站能否承受 1000 个用户同时访问？ 1.2 …</article>
+    </div>
+  </div>
+</div>
+<div class="post-wrapper">
+  <div
+    class="
+      post-wrap-right
+    "
+    data-aos="fade-up"
+  ><a
+        class="post-link"
+        href="/post/ssl%E4%B8%8Etls/ssl%E4%B8%8Etls/"
+        aria-label="SSL/TLS"
+      >
+      </a><div
+      class="
+        post-cover-right
+      "
+    ><img
+          data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+          data-sizes="auto"
+          alt=""
+          class="lazyload"
+        /></div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span
+          ><span class="icon-calendar"></span
+          >2025-11-10</span
+        >
+        <span
+          ><span class="icon-pencil"></span
+          >3702 字</span
+        >
+        <span
+          ><span class="icon-clock"></span
+          >8 分钟</span
+        >
+      </div>
+      <h2 class="post-title">SSL/TLS</h2>
+      <article class="post-article"> SSL/TLS 1. 概念 SSL（Secure Socket Layer）全称安全套接字层协议，是Netscape公司率先采用的网络安全协议。它是在传输通信协议（TCP/IP）上实现的一种安全协议，采用公开密钥技术。SSL广泛支持各种类型的网络。
+TLS（Transport Layer Security）全称传输层安全协议，前身为SSL协议。
+</article>
+    </div>
+  </div>
+</div>
+<div class="post-wrapper">
+  <div
+    class="
+      post-wrap-left
+    "
+    data-aos="fade-up"
+  ><a
+        class="post-link"
+        href="/post/@requestpart%E4%B8%8E%E5%85%B6%E4%BB%96%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8C%BA%E5%88%86/"
+        aria-label="@RequestPart与其他注解的区分"
+      >
+      </a><div
+      class="
+        post-cover-left
+      "
+    ><img
+          data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+          data-sizes="auto"
+          alt=""
+          class="lazyload"
+        /></div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span
+          ><span class="icon-calendar"></span
+          >2025-11-08</span
+        >
+        <span
+          ><span class="icon-pencil"></span
+          >1993 字</span
         >
         <span
           ><span class="icon-clock"></span
           >4 分钟</span
         >
       </div>
-      <h2 class="post-title">使用Git贡献代码教程</h2>
-      <article class="post-article"> 使用Git贡献代码教程 前言 git适用于GitHub、Gitee、GitLab等主流托管平台，它们均使用git作为底层版本控制工具
-Git中的三个分区 Git有三个主要的工作区域：工作区（working directory）、暂存区（staging area）和版本库（repository）。 工作区是指您电脑文件系统上用于修改文件的目录。在这里，您可以创建、编辑和删除文件。 暂存区是一个中间状态，它充当了您提交更改的缓冲区。在Git中，您必须明确地将文件添加到暂存区，然后才能将其提交到版本库中。这样做的好处是，您可以对每个更改进行精细控制，并确保只提交需要保存的更改。 版本库包含Git存 …</article>
+      <h2 class="post-title">@RequestPart与其他注解的区分</h2>
+      <article class="post-article"> @RequestPart与其他注解的区分 1. enctype的常见类型 HTML 表单的 enctype属性主要用于定义表单数据在发送到服务器之前的编码方式，这对于确保数据（尤其是文件）能正确传输至关重要。它主要有以下三种类型：
+</article>
     </div>
   </div>
 </div>
@@ -273,15 +357,15 @@ Git中的三个分区 Git有三个主要的工作区域：工作区（working di
     data-aos="fade-up"
   ><a
         class="post-link"
-        href="/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/"
-        aria-label="服务器项目部署"
+        href="/post/join%E6%98%AF%E5%90%A6%E5%BF%85%E9%A1%BB%E6%8C%87%E5%AE%9A%E8%BF%9E%E6%8E%A5%E6%9D%A1%E4%BB%B6/"
+        aria-label="join是否必须指定连接条件"
       >
       </a><div
       class="
         post-cover-right
       "
     ><img
-          data-src="https://th.bing.com/th/id/R.e8ab8c5dad85f2c536f853be81a3dbfd?rik=CRYc8q0N5uem3w&amp;pid=ImgRaw&amp;r=0"
+          data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
           data-sizes="auto"
           alt=""
           class="lazyload"
@@ -290,20 +374,19 @@ Git中的三个分区 Git有三个主要的工作区域：工作区（working di
       <div class="post-meta">
         <span
           ><span class="icon-calendar"></span
-          >2025-06-07</span
+          >2025-11-05</span
         >
         <span
           ><span class="icon-pencil"></span
-          >4747 字</span
+          >877 字</span
         >
         <span
           ><span class="icon-clock"></span
-          >10 分钟</span
+          >2 分钟</span
         >
       </div>
-      <h2 class="post-title">服务器项目部署</h2>
-      <article class="post-article"> 服务器项目部署 1. 内网穿透 1.1 目的 为了让他人也能通过指定的url访问到自己启动的项目
-1.2 实现步骤 1.2.1 下载与配置 搜索 https://www.cpolar.com ，进入cpolar官网。
+      <h2 class="post-title">join是否必须指定连接条件</h2>
+      <article class="post-article"> join是否必须指定连接条件 不指定连接条件通常不会直接导致数据库报语法错误，但绝大多数情况下会产生一个你可能并不期望的结果——笛卡尔积（Cart卡尔积）。
 </article>
     </div>
   </div>
@@ -316,15 +399,15 @@ Git中的三个分区 Git有三个主要的工作区域：工作区（working di
     data-aos="fade-up"
   ><a
         class="post-link"
-        href="/post/likesystem/"
-        aria-label="亿级流量点赞系统"
+        href="/post/sum%E5%92%8Ccount%E7%9A%84%E5%8C%BA%E5%88%AB/"
+        aria-label="sum和count的区别"
       >
       </a><div
       class="
         post-cover-left
       "
     ><img
-          data-src="https://img1.baidu.com/it/u=2454867920,2504574413&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=802&amp;h=800"
+          data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
           data-sizes="auto"
           alt=""
           class="lazyload"
@@ -333,19 +416,20 @@ Git中的三个分区 Git有三个主要的工作区域：工作区（working di
       <div class="post-meta">
         <span
           ><span class="icon-calendar"></span
-          >2025-05-19</span
+          >2025-11-05</span
         >
         <span
           ><span class="icon-pencil"></span
-          >359 字</span
+          >906 字</span
         >
         <span
           ><span class="icon-clock"></span
-          >1 分钟</span
+          >2 分钟</span
         >
       </div>
-      <h2 class="post-title">亿级流量点赞系统</h2>
-      <article class="post-article"> 仓库地址：https://github.com/meeting77smile/like-system 项目介绍： 本人在学习高并发项目过程中制作的亿级流量点赞系统，包含了后端代码。 项目亮点： 高并发优化​​：设计Caffeine+Redis多级缓存架构，高并发情况下的接口响应时间降低92%（压测TPS达3000+）；利用HeavyKeeper热点探测算法将本地缓存命中率提升至92% 异步处理系统：集成Pulsar消息队列实现批量消费（1000条/10秒），数据库写压力下降94%；通过Lua脚本保证原子操作+定时对账，数据一致性达99.99% 分布式架构升级​​：从MySQL迁移至TiDB实 …</article>
+      <h2 class="post-title">sum和count的区别</h2>
+      <article class="post-article"> sum和count的区别 SQL 中的 SUM和 COUNT是两个最常用的聚合函数，但它们的计算目标和适用场景有本质区别。简单来说，COUNT用于“数个数”，而 SUM用于“算总和”。
+</article>
     </div>
   </div>
 </div>
@@ -357,15 +441,15 @@ Git中的三个分区 Git有三个主要的工作区域：工作区（working di
     data-aos="fade-up"
   ><a
         class="post-link"
-        href="/post/nebulamall/"
-        aria-label="星云好物——基于微服务架构的电商平台"
+        href="/post/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%BC%82%E5%90%8C/"
+        aria-label="抽象类和接口的异同"
       >
       </a><div
       class="
         post-cover-right
       "
     ><img
-          data-src="https://img0.baidu.com/it/u=1174429826,2561145711&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=640&amp;h=457"
+          data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
           data-sizes="auto"
           alt=""
           class="lazyload"
@@ -374,101 +458,20 @@ Git中的三个分区 Git有三个主要的工作区域：工作区（working di
       <div class="post-meta">
         <span
           ><span class="icon-calendar"></span
-          >2025-05-12</span
+          >2025-11-05</span
         >
         <span
           ><span class="icon-pencil"></span
-          >387 字</span
+          >2412 字</span
         >
         <span
           ><span class="icon-clock"></span
-          >1 分钟</span
+          >5 分钟</span
         >
       </div>
-      <h2 class="post-title">星云好物——基于微服务架构的电商平台</h2>
-      <article class="post-article"> 仓库地址：https://github.com/meeting77smile/nebula-mall 项目介绍： 本人在学习微服务过程中制作的电商平台的后端代码。 项目亮点： 服务间异步调用​​：利用RabbitMQ结合SpringAMQP代替OpenFeign从而实现服务间的异步调用，实现了降低服务间的耦合性、避免级联失败的效果。 超时订单取消：通过DelayExchange插件，利用延迟消息实现订单超时取消功能。 负载均衡：基于Nacos注册中心，利用DiscoveryClient和随机负载均衡算法，实现服务调用的负载均衡。 网关登录校验：通过自定义GlobalFilter，结合JWT工 …</article>
-    </div>
-  </div>
-</div>
-<div class="post-wrapper">
-  <div
-    class="
-      post-wrap-left
-    "
-    data-aos="fade-up"
-  ><a
-        class="post-link"
-        href="/post/secondkill/"
-        aria-label="电商秒杀项目"
-      >
-      </a><div
-      class="
-        post-cover-left
-      "
-    ><img
-          data-src="https://img1.baidu.com/it/u=3137591651,3259634186&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=825&amp;h=500"
-          data-sizes="auto"
-          alt=""
-          class="lazyload"
-        /></div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span
-          ><span class="icon-calendar"></span
-          >2025-04-06</span
-        >
-        <span
-          ><span class="icon-pencil"></span
-          >232 字</span
-        >
-        <span
-          ><span class="icon-clock"></span
-          >1 分钟</span
-        >
-      </div>
-      <h2 class="post-title">电商秒杀项目</h2>
-      <article class="post-article"> 仓库地址：https://github.com/meeting77smile/SecondKill 项目介绍： 本人在学习高并发过程中制作的百万级别秒杀系统，包含了前端和后端代码。 项目亮点： 通过redis预减+使用RabbitMQ处理订单请求，用户下单时的QPS提升接近4倍； 通过redis执行lua脚本，避免库存超卖； 通过生成uuid隐藏秒杀地址、easy-captcha生成验证码和计数器算法实现接口限流等操作，实现了防止恶意刷单的功能，从而增加了系统的抗压能力。 </article>
-    </div>
-  </div>
-</div>
-<div class="post-wrapper">
-  <div
-    class="
-      post-wrap-right
-    "
-    data-aos="fade-up"
-  ><a
-        class="post-link"
-        href="/post/jiyuguidebook/"
-        aria-label="积语——云伴学"
-      >
-      </a><div
-      class="
-        post-cover-right
-      "
-    ><img
-          data-src="https://img0.baidu.com/it/u=545831937,3950968936&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=800&amp;h=1422"
-          data-sizes="auto"
-          alt=""
-          class="lazyload"
-        /></div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span
-          ><span class="icon-calendar"></span
-          >2025-03-15</span
-        >
-        <span
-          ><span class="icon-pencil"></span
-          >3169 字</span
-        >
-        <span
-          ><span class="icon-clock"></span
-          >7 分钟</span
-        >
-      </div>
-      <h2 class="post-title">积语——云伴学</h2>
-      <article class="post-article"> 仓库地址 网页端：https://github.com/meeting77smile/JiYuLearning 移动端：https://github.com/meeting77smile/JiYuLearning-APP 使用指南 欢迎使用积语·云伴学——基于多智能体的个性化学习规划辅助定制平台
+      <h2 class="post-title">抽象类和接口的异同</h2>
+      <article class="post-article"> 抽象类和接口的异同 1. 抽象类 1.1 概念 含有抽象方法的类，在Java中使用abstract修饰
+1.2 包含内容 具有普通的类具有的所有内容，除此之外还具有抽象方法，说白了就是具有抽象方法的普通类（但是通过abstract修饰） ，具体可以包含的内容为：
 </article>
     </div>
   </div>
@@ -481,15 +484,15 @@ Git中的三个分区 Git有三个主要的工作区域：工作区（working di
     data-aos="fade-up"
   ><a
         class="post-link"
-        href="/post/android_notes/"
-        aria-label="Android笔记"
+        href="/post/zookeeper&#43;kafka%E9%9B%86%E7%BE%A4%E7%9A%84%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%90%AF%E5%8A%A8/"
+        aria-label="Zookeeper&#43;Kafka集群的部署与启动"
       >
       </a><div
       class="
         post-cover-left
       "
     ><img
-          data-src="https://img2.baidu.com/it/u=2940854202,2684708212&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=800&amp;h=800"
+          data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
           data-sizes="auto"
           alt=""
           class="lazyload"
@@ -498,19 +501,19 @@ Git中的三个分区 Git有三个主要的工作区域：工作区（working di
       <div class="post-meta">
         <span
           ><span class="icon-calendar"></span
-          >2024-11-23</span
+          >2025-11-01</span
         >
         <span
           ><span class="icon-pencil"></span
-          >29849 字</span
+          >1701 字</span
         >
         <span
           ><span class="icon-clock"></span
-          >60 分钟</span
+          >4 分钟</span
         >
       </div>
-      <h2 class="post-title">Android笔记</h2>
-      <article class="post-article"> 安卓基础 学习前的声明 1. 语言要求 本次学习用到的语言为Java。（Kotlin虽然为Android官方推荐语言，但Java与Kotlin的关系类似于C与C++的关系，学好了Java，便能比较快地上手Kotlin） 2. 设置主界面 在AndroidManifest.xml文件中，在如图所示的位置改为想要作为主界面的的java文件名（注意别忘了名称开头要加点）
+      <h2 class="post-title">Zookeeper&#43;Kafka集群的部署与启动</h2>
+      <article class="post-article"> Zookeeper+Kafka集群的部署与启动 我使用的虚拟机内网IP分别为：192.168.136.129,192.168.136.132,192.168.136.133
 </article>
     </div>
   </div>
@@ -523,15 +526,15 @@ Git中的三个分区 Git有三个主要的工作区域：工作区（working di
     data-aos="fade-up"
   ><a
         class="post-link"
-        href="/post/html5&#43;css3%E5%85%A5%E9%97%A8/"
-        aria-label="HTML5&#43;CSS3入门"
+        href="/post/%E5%88%A4%E6%96%AD%E5%AD%97%E6%AE%B5%E6%98%AF%E5%90%A6%E9%9D%9E%E7%A9%BA%E4%B8%8D%E8%83%BD%E7%94%A8%E7%AD%89%E5%8F%B7%E7%9A%84%E5%8E%9F%E5%9B%A0/"
+        aria-label="判断字段是否非空不能用等号的原因"
       >
       </a><div
       class="
         post-cover-right
       "
     ><img
-          data-src="https://img0.baidu.com/it/u=523234089,1058084480&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=800&amp;h=1029"
+          data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
           data-sizes="auto"
           alt=""
           class="lazyload"
@@ -540,25 +543,111 @@ Git中的三个分区 Git有三个主要的工作区域：工作区（working di
       <div class="post-meta">
         <span
           ><span class="icon-calendar"></span
-          >2024-11-01</span
+          >2025-10-28</span
         >
         <span
           ><span class="icon-pencil"></span
-          >10999 字</span
+          >872 字</span
         >
         <span
           ><span class="icon-clock"></span
-          >22 分钟</span
+          >2 分钟</span
         >
       </div>
-      <h2 class="post-title">HTML5&#43;CSS3入门</h2>
-      <article class="post-article"> HTML5+CSS3 1. 基础知识 1.1 网页的相关概念 网站：指在因特网上根据一定的规则，使用HTML等制作的用于展示特定内容相关的网页集合。
-网页：是构成网站的基本元素，它通常由图片、链接、文字、声音、视频等元素组成。通常我们看到的网页，一般是以.htm或.html后缀结尾的文件，因此将其俗称为HTML文件。
+      <h2 class="post-title">判断字段是否非空不能用等号的原因</h2>
+      <article class="post-article"> 判断字段是否非空不能用等号的原因 在MySQL中，判断字段是否为空（NULL）必须使用 IS NULL或 IS NOT NULL，而不能使用等号（例如 = NULL或 != NULL），这是因为 NULL在数据库里代表一个特殊概念。
 </article>
     </div>
   </div>
 </div>
-<nav id="page-nav" data-aos="fade-up"><span class="page-number current">1</span></nav>
+<div class="post-wrapper">
+  <div
+    class="
+      post-wrap-left
+    "
+    data-aos="fade-up"
+  ><a
+        class="post-link"
+        href="/post/linux%E6%88%96unix%E7%9A%84shell%E5%91%BD%E4%BB%A4%E4%B8%AD%E7%9A%84%E5%8F%8D%E6%96%9C%E6%9D%A0%E6%98%AF%E7%BB%AD%E8%A1%8C%E7%AC%A6/"
+        aria-label="Linux/Unix shell命令的反斜杠是​​续行符​"
+      >
+      </a><div
+      class="
+        post-cover-left
+      "
+    ><img
+          data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+          data-sizes="auto"
+          alt=""
+          class="lazyload"
+        /></div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span
+          ><span class="icon-calendar"></span
+          >2025-10-21</span
+        >
+        <span
+          ><span class="icon-pencil"></span
+          >259 字</span
+        >
+        <span
+          ><span class="icon-clock"></span
+          >1 分钟</span
+        >
+      </div>
+      <h2 class="post-title">Linux/Unix shell命令的反斜杠是​​续行符​</h2>
+      <article class="post-article"> Linux/Unix shell命令的反斜杠是​​续行符​ 实例 如有以下配置JDK的命令：
+./configure \ --with-debug-level=release \ --with-native-debug-symbols=internal \ ... 解释 命令当中的 反斜杠&quot;&quot; 表示的是续行符 ，用于告诉shell：该命令还没有结束，换到了下一行，shell应该从下一行接着读，在逻辑上这些行会被合并为一条完整命令
+</article>
+    </div>
+  </div>
+</div>
+<div class="post-wrapper">
+  <div
+    class="
+      post-wrap-right
+    "
+    data-aos="fade-up"
+  ><a
+        class="post-link"
+        href="/post/java-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%80%BB%E7%BB%93/"
+        aria-label="Java 输入输出总结"
+      >
+      </a><div
+      class="
+        post-cover-right
+      "
+    ><img
+          data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+          data-sizes="auto"
+          alt=""
+          class="lazyload"
+        /></div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span
+          ><span class="icon-calendar"></span
+          >2025-10-16</span
+        >
+        <span
+          ><span class="icon-pencil"></span
+          >1543 字</span
+        >
+        <span
+          ><span class="icon-clock"></span
+          >4 分钟</span
+        >
+      </div>
+      <h2 class="post-title">Java 输入输出总结</h2>
+      <article class="post-article"> Java 输入输出总结 Scanner中，Next()、NextInt()和NextLine()的区别 next() 方法 空白字符是什么 空白字符是指在文本中不显示任何内容，但用于控制文本格式和布局的字符。它们在编程和文本处理过程中非常重要，尤其是在处理字符串和文件时。
+</article>
+    </div>
+  </div>
+</div>
+<nav id="page-nav" data-aos="fade-up"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">
+      下一页 &raquo;
+    </a></nav>
 </section>
         </div><footer id="footer">
   <div style="width: 100%; overflow: hidden">
@@ -579,10 +668,10 @@ Git中的三个分区 Git有三个主要的工作区域：工作区（working di
         >
       </div><div>
         <span class="icon-brush"
-          >&nbsp;51.5k</span
+          >&nbsp;91.5k</span
         >
         &nbsp;|&nbsp;
-        <span class="icon-coffee">&nbsp;01:46</span>
+        <span class="icon-coffee">&nbsp;03:12</span>
       </div><div>
         <span class="icon-eye"></span>
         <span id="busuanzi_container_site_pv"
@@ -616,7 +705,7 @@ Git中的三个分区 Git有三个主要的工作区域：工作区（working di
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
-    <div>文章</div><div class="sidebar-state-number">8</div>
+    <div>文章</div><div class="sidebar-state-number">23</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>

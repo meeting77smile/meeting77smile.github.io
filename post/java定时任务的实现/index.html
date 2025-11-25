@@ -1,0 +1,1053 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="auto"
+  >
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  Java定时任务的实现 | meeting_smile
+</title>
+<meta
+  name="description"
+  content="未来一定是要笑着谈的(*≧▽≦)ツ"
+/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1313/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_0khxww3tj3q9\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="Java定时任务的实现 | meeting_smile" />
+  <meta
+    property="og:description"
+    content="未来一定是要笑着谈的(*≧▽≦)ツ"
+  />
+  <meta property="og:url" content="http://localhost:1313/post/java%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E5%AE%9E%E7%8E%B0/" />
+  <meta
+    property="og:site_name"
+    content="meeting_smile&#39;s blog"
+  />
+  <meta
+    property="og:image"
+    content="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+  />
+  <meta property="article:author" content="meeting_smile" />
+  <meta property="article:published_time" content="2025-09-15T17:00:00-07:00" />
+  <meta property="article:modified_time" content="2025-11-25T16:46:00-07:00" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.11/dist/katex.min.css"
+    integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm&#43;ZU03BU6SQNC66uf4l5&#43;" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css"
+    integrity="sha384-4NN3fZ5AokFyHuoihl7A9qWaCt&#43;HsAtOaUsXwJGRb4/SMBtFr2vcNSHR5E8dg0Wk" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">马上就好~</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script><div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="lang-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+本文章没有找到对应的语言版本
+</div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav"><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/">首页</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/archives">归档</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/about">关于</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/friend">友链</a>
+      </span><a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a></nav></div>
+<header id="header"><picture></picture>
+    <img crossorigin="anonymous" fetchpriority="high" src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="Java定时任务的实现"><div id="header-outer">
+    <div id="header-title"><a href="/" id="logo">
+            <h1 data-aos="slide-up">Java定时任务的实现</h1>
+          </a><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          
+          class="sidebar-right"  ><aside id="sidebar"><div class="sidebar-wrapper wrap-sticky">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-scheduled注解">1. @Scheduled注解</a>
+      <ul>
+        <li><a href="#引入依赖">引入依赖</a></li>
+        <li><a href="#使用方法">使用方法</a></li>
+        <li><a href="#注解参数">注解参数</a></li>
+        <li><a href="#通过配置指定参数值">通过配置指定参数值</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-quartz框架">2. Quartz框架</a>
+      <ul>
+        <li><a href="#核心类">核心类</a></li>
+        <li><a href="#引入依赖-1">引入依赖</a></li>
+        <li><a href="#21-简单使用方法利用simpletrigger">2.1 简单使用方法(利用SimpleTrigger)</a></li>
+        <li><a href="#22-三者之间的关系">2.2 三者之间的关系</a></li>
+        <li><a href="#23-使用cron表达式利用crontrigger">2.3 使用Cron表达式（利用CronTrigger）</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="meeting_smile"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">meeting_smile</div>
+  <div class="sidebar-description">未来一定是要笑着谈的(*≧▽≦)ツ</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">23</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social"></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div>
+
+  <div class="sidebar-widget"></div></aside>
+<section id="main"><article
+  class="h-entry article"
+  itemprop="blogPost"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-09-15 17:00:00 -0700 -0700" itemprop="datePublished"
+      >2025-09-15</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-11-25</time
+    >
+  </span>
+</div>
+<div class="article-category"></div>
+</div>
+    <div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="java定时任务的实现">
+<a class="header-anchor" href="#java%e5%ae%9a%e6%97%b6%e4%bb%bb%e5%8a%a1%e7%9a%84%e5%ae%9e%e7%8e%b0"></a>
+Java定时任务的实现
+</h1><h2 id="1-scheduled注解">
+<a class="header-anchor" href="#1-scheduled%e6%b3%a8%e8%a7%a3"></a>
+1. @Scheduled注解
+</h2><h3 id="引入依赖">
+<a class="header-anchor" href="#%e5%bc%95%e5%85%a5%e4%be%9d%e8%b5%96"></a>
+引入依赖
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Spring Boot Schedule依赖 --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;artifactId&gt;</span>spring-boot-starter<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><h3 id="使用方法">
+<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95"></a>
+使用方法
+</h3><ul>
+<li>
+<p>首先，在定时任务方法所在的类加上 <strong>@Component</strong> 注解</p>
+</li>
+<li>
+<p>接着，在实现定时任务的方法上加上 <strong>@Scheduled</strong> 注解</p>
+<p>DemoScheduler.java：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Component</span>  <span style="color:#75715e">// 标记为Spring组件，使其被扫描并管理</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DemoScheduler</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 日期格式化工具</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> SimpleDateFormat dateFormat <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SimpleDateFormat(<span style="color:#e6db74">&#34;yyyy-MM-dd HH:mm:ss&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 示例1：固定延迟执行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 上一次任务执行完毕后，延迟固定时间再执行下一次
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Scheduled</span>(fixedDelay <span style="color:#f92672">=</span> 5000)  <span style="color:#75715e">// 单位：毫秒，即5秒</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">scheduleTaskWithFixedDelay</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;固定延迟任务执行时间: &#34;</span> <span style="color:#f92672">+</span> dateFormat.<span style="color:#a6e22e">format</span>(<span style="color:#66d9ef">new</span> Date()));
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;这是一个固定延迟执行的任务（上一次执行完毕后5秒再次执行）&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>最后，在启动类加上 <strong>@EnableScheduling</strong> 表示启用定时任务</p>
+<p>TimerApplication.java：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// @SpringBootApplication 注解标记这是一个Spring Boot应用</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// @EnableScheduling 注解启用定时任务功能</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@SpringBootApplication</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@EnableScheduling</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TimerApplication</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 启动Spring Boot应用</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// main方法是Java程序的入口点，args是命令行参数</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// SpringApplication.run()方法用于启动Spring Boot应用</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 第一个参数是当前类的Class对象，第二个参数是命令行参数</span>
+</span></span><span style="display:flex;"><span>        SpringApplication.<span style="color:#a6e22e">run</span>(TimerApplication.<span style="color:#a6e22e">class</span>, args);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>程序启动之后，执行流程如下：</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>TimerApplication（@SpringBootApplication）
+</span></span><span style="display:flex;"><span>       ↓
+</span></span><span style="display:flex;"><span>包含@EnableScheduling → 开启定时任务功能
+</span></span><span style="display:flex;"><span>       ↓
+</span></span><span style="display:flex;"><span>包含@ComponentScan → 扫描到DemoScheduler（@Component）
+</span></span><span style="display:flex;"><span>       ↓
+</span></span><span style="display:flex;"><span>发现DemoScheduler中带@Scheduled的方法
+</span></span><span style="display:flex;"><span>       ↓
+</span></span><span style="display:flex;"><span>Spring自动按照调度规则执行这些方法
+</span></span></code></pre></div><p><strong>总结：</strong></p>
+<p>Spring 通过 &ldquo;组件扫描 + 注解驱动&rdquo; 的方式，实现了 &ldquo;约定优于配置&rdquo; 的设计理念。只要类和方法上标注了正确的注解，即使没有显式的代码调用，Spring 也能自动识别并执行相应的逻辑，这也是 Spring 框架的核心特性之一。</p>
+<h3 id="注解参数">
+<a class="header-anchor" href="#%e6%b3%a8%e8%a7%a3%e5%8f%82%e6%95%b0"></a>
+注解参数
+</h3><p>@Scheduled注解主要有三个如下的常用参数（参数的值都需要引号包裹）：</p>
+<h4 id="cron">
+<a class="header-anchor" href="#cron"></a>
+cron
+</h4><ul>
+<li>
+<p>用法：可以接收一个cron表达式。表达式总共有六个位置，从左到右分别表示：秒、分、时、日、月、周和年。基本用法如：在秒的位置上，如果为10，即表示每分钟的第10秒执行一次定时任务；如果为5/10，则表示从每分钟的第5秒开始，每10秒执行一次。如果太麻烦，可通过网站<a href="https://cron.ciding.cc/">Cron - 在线Cron表达式生成器</a> 进行转换和反解析</p>
+</li>
+<li>
+<p>例子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 示例：Cron表达式执行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 使用Cron表达式定义更复杂的执行计划
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 这里的表达式表示每分钟的第10秒执行一次
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Scheduled</span>(cron <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;10 * * * * *&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">scheduleTaskWithCronExpression</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;\nCron任务执行时间: &#34;</span> <span style="color:#f92672">+</span> dateFormat.<span style="color:#a6e22e">format</span>(<span style="color:#66d9ef">new</span> Date()));
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;这是一个使用Cron表达式的任务（每分钟的第10秒执行）&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="fixeddelay">
+<a class="header-anchor" href="#fixeddelay"></a>
+fixedDelay
+</h4><ul>
+<li>
+<p>用法：上一次任务执行完毕后，延迟固定时间再执行下一次，主要涉及两种参数：fixedDelay/fixedDelayString和initialDelay，分别表示每几秒执行一次和程序启动后延迟几秒执行(initialDelay可省略）。其中fixedDelayString与fixedDelay的效果一致，只是一个只能接收String类型，一个只能接收long类型</p>
+</li>
+<li>
+<p>例子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 示例：初始延迟后执行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 应用启动后，延迟指定时间开始第一次执行，之后按照固定速率执行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Scheduled</span>(initialDelay <span style="color:#f92672">=</span> 10000, fixedRate <span style="color:#f92672">=</span> 6000)  <span style="color:#75715e">// 初始延迟10秒，之后每6秒执行一次</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">scheduleTaskWithInitialDelay</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;\n初始延迟任务执行时间: &#34;</span> <span style="color:#f92672">+</span> dateFormat.<span style="color:#a6e22e">format</span>(<span style="color:#66d9ef">new</span> Date()));
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;这是一个带初始延迟的任务（启动后10秒首次执行，之后每6秒执行一次）&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="fixedrate">
+<a class="header-anchor" href="#fixedrate"></a>
+fixedRate
+</h4><ul>
+<li>
+<p>用法：以固定的时间间隔执行，不管上一次任务是否完成，只有一中参数fixedRate / fixedRateString。</p>
+</li>
+<li>
+<p>例子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    /**
+</span></span><span style="display:flex;"><span>     * 示例：固定速率执行
+</span></span><span style="display:flex;"><span>     * 以固定的时间间隔执行，不管上一次任务是否完成
+</span></span><span style="display:flex;"><span>     */
+</span></span><span style="display:flex;"><span>    @Scheduled<span style="color:#f92672">(</span>fixedRate <span style="color:#f92672">=</span> 3000<span style="color:#f92672">)</span>  // 单位：毫秒，即3秒
+</span></span><span style="display:flex;"><span>    public void scheduleTaskWithFixedRate<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System.out.println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\n固定速率任务执行时间: &#34;</span> + dateFormat.format<span style="color:#f92672">(</span>new Date<span style="color:#f92672">()))</span>;
+</span></span><span style="display:flex;"><span>        System.out.println<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;这是一个固定速率执行的任务（每3秒执行一次）&#34;</span><span style="color:#f92672">)</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="通过配置指定参数值">
+<a class="header-anchor" href="#%e9%80%9a%e8%bf%87%e9%85%8d%e7%bd%ae%e6%8c%87%e5%ae%9a%e5%8f%82%e6%95%b0%e5%80%bc"></a>
+通过配置指定参数值
+</h3><p>在实际应用场景中，如果程序已经启动了，但是想控制定时任务的执行速率，或者想开关定时任务，可以通过application配置文件中的值来指定为注解参数的值。接着可通过修改nacos中的配置文件的值来控制定时任务的速率已经开关，这样就不需要修改代码，也不需要修改代码后重启应用程序来修改定时任务了。</p>
+<p>例如：</p>
+<ul>
+<li>
+<p>application.yml：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># 应用名称</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spring</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">application</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">spring-schedule-demo</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 定时任务配置</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">task</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">scheduling</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">enable</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">useDemo = false</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">cron</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">cornParam</span>: <span style="color:#ae81ff">0</span><span style="color:#ae81ff">/5 * * * * *</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">fixeDelaydParm</span>: <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 服务器端口</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">server</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">port</span>: <span style="color:#ae81ff">8080</span>
+</span></span></code></pre></div></li>
+<li>
+<p>DemoScheduler.java：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Component</span>  <span style="color:#75715e">// 标记为Spring组件，使其被扫描并管理</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//使用@ConditionalOnProperty注解来控制是否启用定时任务</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@ConditionalOnProperty</span>(prefix <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;spring.task.enable&#34;</span>,name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;userDemo&#34;</span>,havingValue <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;${spring.task.enable.userDemo&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DemoScheduler</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 日期格式化工具</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> SimpleDateFormat dateFormat <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SimpleDateFormat(<span style="color:#e6db74">&#34;yyyy-MM-dd HH:mm:ss&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 示例1：Cron表达式(application参数)执行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 使用Cron表达式定义更复杂的执行计划
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * application的表达式表示从每分钟0秒开始，每5秒执行一次
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Scheduled</span>(cron <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;${spring.task.cron.cornParam}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">scheduleTaskWithCornApplicationParam</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;\nCron任务(application参数）执行时间: &#34;</span> <span style="color:#f92672">+</span> dateFormat.<span style="color:#a6e22e">format</span>(<span style="color:#66d9ef">new</span> Date()));
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;这是一个使用Cron表达式（application参数的任务（从每分钟0秒开始，每5秒执行一次）&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 示例2：固定延迟执行(application参数)执行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * 上一次任务执行完毕后，延迟固定时间再执行下一次
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * fixedDelayString与fixedDelay的效果一致，只是一个只能接收String类型，一个只能接收long类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Scheduled</span>(fixedDelayString <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;${spring.task.cron.fixeDelaydParm}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">scheduleTaskWithFixedDelayApplicationParam</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;\n初始延迟任务执行时间: &#34;</span> <span style="color:#f92672">+</span> dateFormat.<span style="color:#a6e22e">format</span>(<span style="color:#66d9ef">new</span> Date()));
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;这是一个带初始延迟的任务（启动后4秒首次执行，之后每8秒执行一次）&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ul>
+<p>其中@ConditionalOnProperty注解、cron参数和fixedDelayString参数的值都是使用配置的值。</p>
+<hr>
+<h2 id="2-quartz框架">
+<a class="header-anchor" href="#2-quartz%e6%a1%86%e6%9e%b6"></a>
+2. Quartz框架
+</h2><h3 id="核心类">
+<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e7%b1%bb"></a>
+核心类
+</h3><p>Quartz的核心类有以下三部分：</p>
+<ul>
+<li>
+<p>任务<code>Job</code>：需要实现的任务类,实现<code>execute()</code>方法，执行后完成任务。（可自定义执行的任务内容）</p>
+</li>
+<li>
+<p>触发器<code>Trigger</code> ：包括<code>SimpleTrigger</code>和<code>CronTrigger</code> 。（可自定义执行任务的频率）</p>
+</li>
+<li>
+<p>调度器<code>Scheduler</code> :任务调度器，负责基于Trigger触发器，来执行Job任务。</p>
+</li>
+</ul>
+<p>在 Quartz 框架中，​<strong>​JobDetail 和 Trigger 的 <code>name</code>是必须提供的，而 <code>group</code>是可选的​</strong>​。如果你不显式指定 <code>group</code>，Quartz 会为它们分配一个默认的组名，即 <code>DEFAULT</code></p>
+<h3 id="引入依赖-1">
+<a class="header-anchor" href="#%e5%bc%95%e5%85%a5%e4%be%9d%e8%b5%96-1"></a>
+引入依赖
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!--Quartz依赖--&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;groupId&gt;</span>org.quartz-scheduler<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;artifactId&gt;</span>quartz<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;version&gt;</span>2.3.2<span style="color:#f92672">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;groupId&gt;</span>org.springframework<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;artifactId&gt;</span>spring-context-support<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><h3 id="21-简单使用方法利用simpletrigger">
+<a class="header-anchor" href="#21-%e7%ae%80%e5%8d%95%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95%e5%88%a9%e7%94%a8simpletrigger"></a>
+2.1 简单使用方法(利用SimpleTrigger)
+</h3><p>首先实现一个任务类<code>TestJob</code> ，自定义任务内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> org.example.quartz;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.quartz.Job;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.quartz.JobExecutionContext;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.quartz.JobExecutionException;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestJob</span> <span style="color:#66d9ef">implements</span> Job {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">execute</span>(JobExecutionContext jobExecutionContext) <span style="color:#66d9ef">throws</span> JobExecutionException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//通过继承Job类、重写方法自定义任务内容</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Quartz定时任务执行~&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>接着在main方法中，创建任务、创建触发器、创建调度器：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> org.example.quartz;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.quartz.JobDetail;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.quartz.Scheduler;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.quartz.SchedulerException;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.quartz.Trigger;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.quartz.impl.StdSchedulerFactory;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.scheduling.annotation.Scheduled;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.stereotype.Component;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Date;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import static</span> org.quartz.JobBuilder.newJob;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import static</span> org.quartz.SimpleScheduleBuilder.simpleSchedule;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import static</span> org.quartz.TriggerBuilder.newTrigger;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Component</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestQuartz</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> SchedulerException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//创建任务调度器</span>
+</span></span><span style="display:flex;"><span>        Scheduler scheduler <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StdSchedulerFactory().<span style="color:#a6e22e">getScheduler</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//创建任务</span>
+</span></span><span style="display:flex;"><span>        JobDetail job <span style="color:#f92672">=</span> newJob(TestJob.<span style="color:#a6e22e">class</span>)<span style="color:#75715e">//自定义任务内容</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">withIdentity</span>(<span style="color:#e6db74">&#34;myJob&#34;</span>,<span style="color:#e6db74">&#34;group1&#34;</span>)<span style="color:#75715e">//定义任务名称与组织名称</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>();<span style="color:#75715e">//创建</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//创建触发器</span>
+</span></span><span style="display:flex;"><span>        Trigger trigger <span style="color:#f92672">=</span> newTrigger()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">withIdentity</span>(<span style="color:#e6db74">&#34;myTigger&#34;</span>,<span style="color:#e6db74">&#34;group1&#34;</span>)<span style="color:#75715e">//自定义任务内容</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">startNow</span>()<span style="color:#75715e">//设置开始时间</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">withSchedule</span>(simpleSchedule()<span style="color:#75715e">//利用静态方法指定任务执行频率</span>
+</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">withIntervalInSeconds</span>(5)<span style="color:#75715e">//间隔五秒执行一次</span>
+</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">repeatForever</span>())<span style="color:#75715e">//永久循环</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>();<span style="color:#75715e">//创建</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//将任务和触发器注册到调度器中</span>
+</span></span><span style="display:flex;"><span>        scheduler.<span style="color:#a6e22e">scheduleJob</span>(job,trigger);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//启动调度器</span>
+</span></span><span style="display:flex;"><span>        scheduler.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="22-三者之间的关系">
+<a class="header-anchor" href="#22-%e4%b8%89%e8%80%85%e4%b9%8b%e9%97%b4%e7%9a%84%e5%85%b3%e7%b3%bb"></a>
+2.2 三者之间的关系
+</h3><h4 id="221-多个trigger能够调度同一个jobdetail一个scheduler可以调度多个触发器trigger">
+<a class="header-anchor" href="#221-%e5%a4%9a%e4%b8%aatrigger%e8%83%bd%e5%a4%9f%e8%b0%83%e5%ba%a6%e5%90%8c%e4%b8%80%e4%b8%aajobdetail%e4%b8%80%e4%b8%aascheduler%e5%8f%af%e4%bb%a5%e8%b0%83%e5%ba%a6%e5%a4%9a%e4%b8%aa%e8%a7%a6%e5%8f%91%e5%99%a8trigger"></a>
+2.2.1 多个Trigger能够调度同一个JobDetail，一个Scheduler可以调度多个触发器Trigger
+</h4><p>测试代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> SchedulerException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//创建任务调度器</span>
+</span></span><span style="display:flex;"><span>        Scheduler scheduler <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StdSchedulerFactory().<span style="color:#a6e22e">getScheduler</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//创建任务</span>
+</span></span><span style="display:flex;"><span>        JobDetail job <span style="color:#f92672">=</span> newJob(TestJob.<span style="color:#a6e22e">class</span>)<span style="color:#75715e">//自定义任务内容</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">withIdentity</span>(<span style="color:#e6db74">&#34;myJob&#34;</span>,<span style="color:#e6db74">&#34;group2&#34;</span>)<span style="color:#75715e">//定义任务名称与组织名称</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>();<span style="color:#75715e">//创建</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//创建多个触发器</span>
+</span></span><span style="display:flex;"><span>        Trigger trigger <span style="color:#f92672">=</span> newTrigger()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">withIdentity</span>(<span style="color:#e6db74">&#34;myTigger&#34;</span>,<span style="color:#e6db74">&#34;group2&#34;</span>)<span style="color:#75715e">//自定义任务内容</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">startNow</span>()<span style="color:#75715e">//设置开始时间</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">withSchedule</span>(simpleSchedule()<span style="color:#75715e">//利用静态方法指定任务执行频率</span>
+</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">withIntervalInSeconds</span>(5)<span style="color:#75715e">//间隔五秒执行一次</span>
+</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">repeatForever</span>())<span style="color:#75715e">//永久循环</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>();<span style="color:#75715e">//创建</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Trigger trigger2 <span style="color:#f92672">=</span> newTrigger()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">withIdentity</span>(<span style="color:#e6db74">&#34;myTigger2&#34;</span>,<span style="color:#e6db74">&#34;group2&#34;</span>)<span style="color:#75715e">//自定义任务内容</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">startNow</span>()<span style="color:#75715e">//设置开始时间</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">forJob</span>(<span style="color:#e6db74">&#34;myJob&#34;</span>,<span style="color:#e6db74">&#34;group2&#34;</span>)<span style="color:#75715e">//无需重复注册时，用该方法绑定</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">withSchedule</span>(simpleSchedule()<span style="color:#75715e">//利用静态方法指定任务执行频率</span>
+</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">withIntervalInSeconds</span>(3)<span style="color:#75715e">//间隔五秒执行一次</span>
+</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">repeatForever</span>())<span style="color:#75715e">//永久循环</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>();<span style="color:#75715e">//创建</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//将任务和触发器注册到调度器中</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//同时也证明了一个调度器可以调度多个触发器Trigger</span>
+</span></span><span style="display:flex;"><span>        scheduler.<span style="color:#a6e22e">scheduleJob</span>(job,trigger);
+</span></span><span style="display:flex;"><span>        scheduler.<span style="color:#a6e22e">scheduleJob</span>(trigger2);<span style="color:#75715e">//主要：Job已经注册过一次了，无需重复利用scheduleJob方法注册</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//启动调度器</span>
+</span></span><span style="display:flex;"><span>        scheduler.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>成功运行：</p>
+<p>Job相同的任务内容成功按照trigger1和trigger2的频率运行。</p>
+<h4 id="222-多个jobdetail不能使用同一个trigger多个jobdetail能够使用同一个job">
+<a class="header-anchor" href="#222-%e5%a4%9a%e4%b8%aajobdetail%e4%b8%8d%e8%83%bd%e4%bd%bf%e7%94%a8%e5%90%8c%e4%b8%80%e4%b8%aatrigger%e5%a4%9a%e4%b8%aajobdetail%e8%83%bd%e5%a4%9f%e4%bd%bf%e7%94%a8%e5%90%8c%e4%b8%80%e4%b8%aajob"></a>
+2.2.2 多个JobDetail不能使用同一个Trigger，多个JobDetail能够使用同一个Job
+</h4><p>测试代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> SchedulerException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//创建任务调度器</span>
+</span></span><span style="display:flex;"><span>        Scheduler scheduler <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StdSchedulerFactory().<span style="color:#a6e22e">getScheduler</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//创建多个任务</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//同时也证明了：多个JobDetail能够使用同一个Job</span>
+</span></span><span style="display:flex;"><span>        JobDetail job1 <span style="color:#f92672">=</span> newJob(TestJob.<span style="color:#a6e22e">class</span>)<span style="color:#75715e">//自定义任务内容</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">withIdentity</span>(<span style="color:#e6db74">&#34;myJob1&#34;</span>,<span style="color:#e6db74">&#34;group3&#34;</span>)<span style="color:#75715e">//定义任务名称与组织名称</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>();<span style="color:#75715e">//创建</span>
+</span></span><span style="display:flex;"><span>        JobDetail job2 <span style="color:#f92672">=</span> newJob(TestJob.<span style="color:#a6e22e">class</span>)<span style="color:#75715e">//自定义任务内容</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">withIdentity</span>(<span style="color:#e6db74">&#34;myJob2&#34;</span>,<span style="color:#e6db74">&#34;group3&#34;</span>)<span style="color:#75715e">//定义任务名称与组织名称</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>();<span style="color:#75715e">//创建</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//创建触发器</span>
+</span></span><span style="display:flex;"><span>        Trigger trigger <span style="color:#f92672">=</span> newTrigger()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">withIdentity</span>(<span style="color:#e6db74">&#34;myTigger&#34;</span>,<span style="color:#e6db74">&#34;group3&#34;</span>)<span style="color:#75715e">//自定义任务内容</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">startNow</span>()<span style="color:#75715e">//设置开始时间</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">withSchedule</span>(simpleSchedule()<span style="color:#75715e">//利用静态方法指定任务执行频率</span>
+</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">withIntervalInSeconds</span>(5)<span style="color:#75715e">//间隔五秒执行一次</span>
+</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">repeatForever</span>())<span style="color:#75715e">//永久循环</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>();<span style="color:#75715e">//创建</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//将任务和触发器注册到调度器中</span>
+</span></span><span style="display:flex;"><span>        scheduler.<span style="color:#a6e22e">scheduleJob</span>(job1,trigger);
+</span></span><span style="display:flex;"><span>        scheduler.<span style="color:#a6e22e">scheduleJob</span>(job2,trigger);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//启动调度器</span>
+</span></span><span style="display:flex;"><span>        scheduler.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>报错：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Exception in thread <span style="color:#e6db74">&#34;main&#34;</span> org.quartz.SchedulerException: Trigger does not reference given job!
+</span></span><span style="display:flex;"><span>    at org.quartz.core.QuartzScheduler.scheduleJob<span style="color:#f92672">(</span>QuartzScheduler.java:838<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    at org.quartz.impl.StdScheduler.scheduleJob<span style="color:#f92672">(</span>StdScheduler.java:249<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    at org.example.quartz._03_TestMultiJob.main<span style="color:#f92672">(</span>_03_TestMultiJob.java:41<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>原因：</p>
+<ul>
+<li>
+<p><code>scheduler.scheduleJob(job1, trigger)</code>已经将 <code>trigger</code>绑定到 <code>job1</code>。</p>
+</li>
+<li>
+<p>再次调用 <code>scheduler.scheduleJob(job2, trigger)</code>时，Quartz 发现 <code>trigger</code>已经关联了 <code>job1</code>，所以抛出 <code>SchedulerException: Trigger does not reference given job!</code>。</p>
+</li>
+</ul>
+<h4 id="总结">
+<a class="header-anchor" href="#%e6%80%bb%e7%bb%93"></a>
+总结
+</h4><ul>
+<li>
+<p>一个Scheduler能够调度多个Trigger</p>
+</li>
+<li>
+<p>一个Trigger只能绑定一个JobDetail（否则多个任务将在同一时间运行）</p>
+</li>
+<li>
+<p>一个JobDetail可以绑定多个Trigger（相同的任务内容可以同时按照不同的频率运行）</p>
+</li>
+<li>
+<p>一个Job可以使用供多个JobDeatil使用</p>
+</li>
+</ul>
+<h3 id="23-使用cron表达式利用crontrigger">
+<a class="header-anchor" href="#23-%e4%bd%bf%e7%94%a8cron%e8%a1%a8%e8%be%be%e5%bc%8f%e5%88%a9%e7%94%a8crontrigger"></a>
+2.3 使用Cron表达式（利用CronTrigger）
+</h3><h4 id="231-示例程序">
+<a class="header-anchor" href="#231-%e7%a4%ba%e4%be%8b%e7%a8%8b%e5%ba%8f"></a>
+2.3.1 示例程序
+</h4><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> SchedulerException {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//创建任务调度器</span>
+</span></span><span style="display:flex;"><span>        Scheduler scheduler <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StdSchedulerFactory().<span style="color:#a6e22e">getScheduler</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//创建任务</span>
+</span></span><span style="display:flex;"><span>        JobDetail job <span style="color:#f92672">=</span> newJob(TestJob.<span style="color:#a6e22e">class</span>)<span style="color:#75715e">//自定义任务内容</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">withIdentity</span>(<span style="color:#e6db74">&#34;myJob&#34;</span>,<span style="color:#e6db74">&#34;group1&#34;</span>)<span style="color:#75715e">//定义任务名称与组织名称</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>();<span style="color:#75715e">//创建</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//创建触发器</span>
+</span></span><span style="display:flex;"><span>        Trigger trigger <span style="color:#f92672">=</span> newTrigger()
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">withIdentity</span>(<span style="color:#e6db74">&#34;myTigger&#34;</span>,<span style="color:#e6db74">&#34;group1&#34;</span>)<span style="color:#75715e">//自定义任务内容</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">startNow</span>()<span style="color:#75715e">//设置开始时间</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">//利用Cron表达式来创建Trigger</span>
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">withSchedule</span>(CronScheduleBuilder
+</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">cronSchedule</span>(<span style="color:#e6db74">&#34;0/2 * * * * ? *&#34;</span>))
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>();<span style="color:#75715e">//创建</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//将任务和触发器注册到调度器中</span>
+</span></span><span style="display:flex;"><span>        scheduler.<span style="color:#a6e22e">scheduleJob</span>(job,trigger);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//启动调度器</span>
+</span></span><span style="display:flex;"><span>        scheduler.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h4 id="232-cron表达式的语法">
+<a class="header-anchor" href="#232-cron%e8%a1%a8%e8%be%be%e5%bc%8f%e7%9a%84%e8%af%ad%e6%b3%95"></a>
+2.3.2 Cron表达式的语法
+</h4><h5 id="概览">
+<a class="header-anchor" href="#%e6%a6%82%e8%a7%88"></a>
+概览
+</h5><p>Cron共有七个位置，每个位置分布表示：</p>
+<table>
+  <thead>
+      <tr>
+          <th>单位</th>
+          <th>允许符号</th>
+          <th>范围</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>秒</td>
+          <td>, - * /</td>
+          <td>0-59</td>
+      </tr>
+      <tr>
+          <td>分</td>
+          <td>, - * /</td>
+          <td>0-59</td>
+      </tr>
+      <tr>
+          <td>时</td>
+          <td>, - * /</td>
+          <td>0-23</td>
+      </tr>
+      <tr>
+          <td>日</td>
+          <td>, - * / <strong>? L w</strong></td>
+          <td>1-31</td>
+      </tr>
+      <tr>
+          <td>月</td>
+          <td>, - * /</td>
+          <td>0-11</td>
+      </tr>
+      <tr>
+          <td>星期</td>
+          <td>, - * / <strong>? L #</strong></td>
+          <td>1-7（1表示星期日）</td>
+      </tr>
+      <tr>
+          <td>年(可选）)</td>
+          <td>, - * /</td>
+          <td>1970-2199</td>
+      </tr>
+  </tbody>
+</table>
+<p>若年份字段不选，则默认每年都执行</p>
+<p>以下是每个符号的解释：</p>
+<h4 id="1-">
+<a class="header-anchor" href="#1-"></a>
+1. &ldquo;,&rdquo;
+</h4><p>表示同时选择多个时间点，如秒的位置的值为&quot;0,2&quot;时，表示每次的第0秒和第2秒都会执行一次</p>
+<h4 id="2--">
+<a class="header-anchor" href="#2--"></a>
+2. &ldquo;-&rdquo;
+</h4><p>表示选择某个时间段，如秒的位置的值为&quot;0-10&quot;时，表示每次的0到10秒的区间会执行一次</p>
+<h4 id="3-">
+<a class="header-anchor" href="#3-"></a>
+3. &ldquo;*&rdquo;
+</h4><p>表示选择范围内容的所有时间，如秒的位置的值为&quot;*&ldquo;时，表示0-59秒都会执行</p>
+<h4 id="4-">
+<a class="header-anchor" href="#4-"></a>
+4. &ldquo;/&rdquo;
+</h4><p>表示从某个时间段开始，间隔固定的时间执行一次。如秒的位置的值为&quot;0/4&quot;时，表示从第0秒开始，每隔4秒执行一次</p>
+<h4 id="5-">
+<a class="header-anchor" href="#5-"></a>
+5. &ldquo;?&rdquo;
+</h4><p>表示 <strong>日</strong> 和 <strong>星期</strong>无特定值，因为<strong>日</strong> 和 <strong>星期</strong> 本质上都指天数，因此二者同时使用容易产生冲突造成表达式非法，因此二者一般不一起使用。当只在两个字段中指定一项时，&rdquo;?&quot; 很有用。</p>
+<h4 id="6-l">
+<a class="header-anchor" href="#6-l"></a>
+6. &ldquo;L&rdquo;
+</h4><ul>
+<li>
+<p>是”Last“的简写，如”月“字段使用”L“表示月的&quot;最后一天&quot;,如非闰年的1月31日、2月28日，”星期“的字段使用则表示”星期六“或者”SAT“（周六）</p>
+</li>
+<li></li>
+</ul>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap article-nav-link-left"><img
+            data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+            data-sizes="auto"
+            alt="使用IDEA的Maven导出jar包失败"
+            class="lazyload"
+          /><a href="/post/%E4%BD%BF%E7%94%A8idea%E7%9A%84maven%E5%AF%BC%E5%87%BAjar%E5%8C%85%E5%A4%B1%E8%B4%A5/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">使用IDEA的Maven导出jar包失败</h3>
+      </div><div class="article-nav-link-wrap article-nav-link-right"><img
+            data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+            data-sizes="auto"
+            alt="Set和Map的遍历"
+            class="lazyload"
+          /><a href="/post/set%E5%92%8Cmap%E7%9A%84%E9%81%8D%E5%8E%86/"></a>
+        <div class="article-nav-caption">后一篇</div>
+        <h3 class="article-nav-title">Set和Map的遍历</h3>
+      </div></nav></article></section>
+        </div><footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2020-2025<span class="footer-info-sep rotate"></span>
+      meeting_smile
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;91.5k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;03:12</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-scheduled注解">1. @Scheduled注解</a>
+      <ul>
+        <li><a href="#引入依赖">引入依赖</a></li>
+        <li><a href="#使用方法">使用方法</a></li>
+        <li><a href="#注解参数">注解参数</a></li>
+        <li><a href="#通过配置指定参数值">通过配置指定参数值</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-quartz框架">2. Quartz框架</a>
+      <ul>
+        <li><a href="#核心类">核心类</a></li>
+        <li><a href="#引入依赖-1">引入依赖</a></li>
+        <li><a href="#21-简单使用方法利用simpletrigger">2.1 简单使用方法(利用SimpleTrigger)</a></li>
+        <li><a href="#22-三者之间的关系">2.2 三者之间的关系</a></li>
+        <li><a href="#23-使用cron表达式利用crontrigger">2.3 使用Cron表达式（利用CronTrigger）</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="meeting_smile"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">meeting_smile</div>
+  <div class="sidebar-description">未来一定是要笑着谈的(*≧▽≦)ツ</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">23</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social"></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/js/main.js" ></script><script src="/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "",
+        apiKey: "",
+        indexName: "",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/instantsearch.js@4.56.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-hHJCflT4KBLQyHfKO9vpstIcFKn/Y&#43;KHTORelMMEn7mOp2AVPp&#43;7fr03dLgZiV3J" crossorigin="anonymous"></script><script src="/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (window.firework) {
+    const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+    options.excludeElements = options.excludeelements;
+    delete options.excludeelements;
+    window.firework(options);
+  }
+</script><script>
+  function initLive2d() {
+    live2d.init('https:\/\/fastly.jsdelivr.net\/gh\/D-Sketon\/plugin-live2d\/', {themeTipsPath: ""});
+  }
+</script><script
+    src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js"
+    asynconload="initLive2d()"></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "meeting_smile",
+          title: "Java定时任务的实现",
+          url: "http:\/\/localhost:1313\/post\/java%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E5%AE%9E%E7%8E%B0\/",
+          description: " Java定时任务的实现 1. @Scheduled注解 引入依赖 \u0026lt;!-- Spring Boot Schedule依赖 --\u0026gt; \u0026lt;dependency\u0026gt; \u0026lt;groupId\u0026gt;org.springframework.boot\u0026lt;\/groupId\u0026gt; \u0026lt;artifactId\u0026gt;spring-boot-starter\u0026lt;\/artifactId\u0026gt; \u0026lt;\/dependency\u0026gt; 使用方法 首先，在定时任务方法所在的类加上 @Component 注解\n",
+          cover: "https:\/\/th.bing.com\/th\/id\/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg\u0026riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg\u0026ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d\u0026risl=\u0026pid=ImgRaw\u0026r=0",
+        };
+      </script><script src="/js/insert_highlight.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>

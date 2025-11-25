@@ -8,7 +8,7 @@
   name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 /><title>
-  星云好物——基于微服务架构的电商平台 | meeting_smile
+  判断字段是否非空不能用等号的原因 | meeting_smile
 </title>
 <meta
   name="description"
@@ -37,24 +37,24 @@
     crossorigin="anonymous"
   /><link rel="stylesheet" href="/css/loader.css" />
 <meta property="og:type" content="website" />
-  <meta property="og:title" content="星云好物——基于微服务架构的电商平台 | meeting_smile" />
+  <meta property="og:title" content="判断字段是否非空不能用等号的原因 | meeting_smile" />
   <meta
     property="og:description"
     content="未来一定是要笑着谈的(*≧▽≦)ツ"
   />
-  <meta property="og:url" content="http://localhost:1313/post/nebulamall/" />
+  <meta property="og:url" content="http://localhost:1313/post/%E5%88%A4%E6%96%AD%E5%AD%97%E6%AE%B5%E6%98%AF%E5%90%A6%E9%9D%9E%E7%A9%BA%E4%B8%8D%E8%83%BD%E7%94%A8%E7%AD%89%E5%8F%B7%E7%9A%84%E5%8E%9F%E5%9B%A0/" />
   <meta
     property="og:site_name"
     content="meeting_smile&#39;s blog"
   />
   <meta
     property="og:image"
-    content="https://img0.baidu.com/it/u=1174429826,2561145711&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=640&amp;h=457"
+    content="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
   />
   <meta property="article:author" content="meeting_smile" />
-  <meta property="article:published_time" content="2025-05-12T18:06:00-07:00" />
-  <meta property="article:modified_time" content="2025-05-23T06:00:00-07:00" /><meta name="twitter:card" content="summary" />
-  <meta name="twitter:image" content="https://img0.baidu.com/it/u=1174429826,2561145711&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=640&amp;h=457" />
+  <meta property="article:published_time" content="2025-10-28T17:00:00-07:00" />
+  <meta property="article:modified_time" content="2025-11-25T16:46:00-07:00" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" />
 <link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.css" />
 <link
     rel="preload"
@@ -129,9 +129,9 @@
   </nav>
   <nav id="sub-nav"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a></nav></div>
 <header id="header"><picture></picture>
-    <img crossorigin="anonymous" fetchpriority="high" src="https://img0.baidu.com/it/u=1174429826,2561145711&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=640&amp;h=457" alt="星云好物——基于微服务架构的电商平台"><div id="header-outer">
+    <img crossorigin="anonymous" fetchpriority="high" src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="判断字段是否非空不能用等号的原因"><div id="header-outer">
     <div id="header-title"><a href="/" id="logo">
-            <h1 data-aos="slide-up">星云好物——基于微服务架构的电商平台</h1>
+            <h1 data-aos="slide-up">判断字段是否非空不能用等号的原因</h1>
           </a><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
   </div>
 </header><div id="content"
@@ -145,9 +145,13 @@
   <div class="sidebar-toc-wrapper toc-div-class">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#仓库地址httpsgithubcommeeting77smilenebula-mall">仓库地址：https://github.com/meeting77smile/nebula-mall</a></li>
-    <li><a href="#项目介绍">项目介绍：</a></li>
-    <li><a href="#项目亮点">项目亮点：</a></li>
+    <li>
+      <ul>
+        <li><a href="#null的本质与比较规则">NULL的本质与比较规则</a></li>
+        <li><a href="#正确的判断方法与替代函数">正确的判断方法与替代函数</a></li>
+        <li><a href="#核心区别速查表">核心区别速查表</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -233,36 +237,89 @@
     class="article-date-link"
     data-aos="zoom-in"
   >
-    <time datetime="2025-05-12 18:06:00 -0700 -0700" itemprop="datePublished"
-      >2025-05-12</time
+    <time datetime="2025-10-28 17:00:00 -0700 -0700" itemprop="datePublished"
+      >2025-10-28</time
     >
     <time style="display: none;" id="post-update-time"
-      >2025-05-23</time
+      >2025-11-25</time
     >
   </span>
 </div>
 <div class="article-category"></div>
 </div>
-    <div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h2 id="仓库地址httpsgithubcommeeting77smilenebula-mall">
-<a class="header-anchor" href="#%e4%bb%93%e5%ba%93%e5%9c%b0%e5%9d%80httpsgithubcommeeting77smilenebula-mall"></a>
-仓库地址：https://github.com/meeting77smile/nebula-mall
-</h2><hr>
-<h2 id="项目介绍">
-<a class="header-anchor" href="#%e9%a1%b9%e7%9b%ae%e4%bb%8b%e7%bb%8d"></a>
-项目介绍：
-</h2><ul>
-<li>本人在学习微服务过程中制作的电商平台的后端代码。</li>
+    <div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="判断字段是否非空不能用等号的原因">
+<a class="header-anchor" href="#%e5%88%a4%e6%96%ad%e5%ad%97%e6%ae%b5%e6%98%af%e5%90%a6%e9%9d%9e%e7%a9%ba%e4%b8%8d%e8%83%bd%e7%94%a8%e7%ad%89%e5%8f%b7%e7%9a%84%e5%8e%9f%e5%9b%a0"></a>
+判断字段是否非空不能用等号的原因
+</h1><p>在MySQL中，判断字段是否为空（<code>NULL</code>）必须使用 <code>IS NULL</code>或 <code>IS NOT NULL</code>，而不能使用等号（例如 <code>= NULL</code>或 <code>!= NULL</code>），这是因为 <code>NULL</code>在数据库里代表一个特殊概念。</p>
+<h3 id="null的本质与比较规则">
+<a class="header-anchor" href="#null%e7%9a%84%e6%9c%ac%e8%b4%a8%e4%b8%8e%e6%af%94%e8%be%83%e8%a7%84%e5%88%99"></a>
+NULL的本质与比较规则
+</h3><p><code>NULL</code>表示一个未知的、不存在的或者缺失的值。它不是一个具体的数值或字符串，因此不能像普通值那样进行比较 。</p>
+<p>关键点在于，任何与 <code>NULL</code>进行的比较操作（包括使用 <code>=</code>、<code>!=</code>、<code>&lt;&gt;</code>等运算符）结果都不是 <code>TRUE</code>或 <code>FALSE</code>，而是 <code>UNKNOWN</code>。在SQL的逻辑处理中，<code>WHERE</code>子句只返回条件判断为 <code>TRUE</code>的行，而会过滤掉结果为 <code>FALSE</code>或 <code>UNKNOWN</code>的行。所以，当你使用 <code>field = NULL</code>这样的条件时，数据库无法确认两者相等（因为<code>NULL</code>是未知的），结果总是 <code>UNKNOWN</code>，最终不会返回任何记录 。</p>
+<h3 id="正确的判断方法与替代函数">
+<a class="header-anchor" href="#%e6%ad%a3%e7%a1%ae%e7%9a%84%e5%88%a4%e6%96%ad%e6%96%b9%e6%b3%95%e4%b8%8e%e6%9b%bf%e4%bb%a3%e5%87%bd%e6%95%b0"></a>
+正确的判断方法与替代函数
+</h3><ol>
+<li>
+<p>​<strong>​使用 <code>IS NULL</code>和 <code>IS NOT NULL</code>​</strong>​</p>
+<p>这是专门为判断 <code>NULL</code>值设计的运算符 。</p>
+<ul>
+<li>
+<p>查询空值：<code>SELECT * FROM table_name WHERE column_name IS NULL;</code></p>
+</li>
+<li>
+<p>查询非空值：<code>SELECT * FROM table_name WHERE column_name IS NOT NULL;</code></p>
+</li>
 </ul>
-<h2 id="项目亮点">
-<a class="header-anchor" href="#%e9%a1%b9%e7%9b%ae%e4%ba%ae%e7%82%b9"></a>
-项目亮点：
-</h2><ul>
-<li>服务间异步调用​​：利用RabbitMQ结合SpringAMQP代替OpenFeign从而实现服务间的异步调用，实现了降低服务间的耦合性、避免级联失败的效果。</li>
-<li>超时订单取消：通过DelayExchange插件，利用延迟消息实现订单超时取消功能。</li>
-<li>负载均衡：基于Nacos注册中心，利用DiscoveryClient和随机负载均衡算法，实现服务调用的负载均衡。</li>
-<li>网关登录校验：通过自定义GlobalFilter，结合JWT工具实现一个登录校验的过滤器，提高安全性和拓展性。</li>
-<li>微服务保护：利用Sentinel实现请求限流、线程隔离和服务熔断，通过Prometheus+Grafana监控平台可知系统可用性达99.9%。</li>
+</li>
+<li>
+<p>​<strong>​使用函数处理空值​</strong>​</p>
+<p>如果你希望将 <code>NULL</code>转换为一个具体的默认值后再参与比较，可以使用函数：</p>
+<ul>
+<li>
+<p>​<strong>​<code>IFNULL(column_name, default_value)</code>​</strong>​：如果 <code>column_name</code>为 <code>NULL</code>，则返回 <code>default_value</code>，否则返回 <code>column_name</code>本身 。例如，<code>SELECT * FROM users WHERE IFNULL(name, '') = '';</code>会找出所有姓名为空或空字符串的记录 。</p>
+</li>
+<li>
+<p>​<strong>​<code>COALESCE(value1, value2, ...)</code>​</strong>​：返回参数列表中第一个非 <code>NULL</code>的值 。这在有多个备选值时非常有用。</p>
+</li>
 </ul>
+</li>
+</ol>
+<h3 id="核心区别速查表">
+<a class="header-anchor" href="#%e6%a0%b8%e5%bf%83%e5%8c%ba%e5%88%ab%e9%80%9f%e6%9f%a5%e8%a1%a8"></a>
+核心区别速查表
+</h3><p>为了让概念更清晰，可以参考下表：</p>
+<table>
+  <thead>
+      <tr>
+          <th>特性</th>
+          <th><code>NULL</code></th>
+          <th>空字符串 (<code>''</code>)</th>
+          <th>数字 <code>0</code></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>​<strong>​含义​</strong>​</td>
+          <td>未知/缺失的值</td>
+          <td>一个已知的、长度为0的字符串</td>
+          <td>一个具体的数值</td>
+      </tr>
+      <tr>
+          <td>​<strong>​比较运算符​</strong>​</td>
+          <td>必须使用 <code>IS NULL</code>/<code>IS NOT NULL</code></td>
+          <td>可以使用 <code>= ''</code>或 <code>!= ''</code></td>
+          <td>可以使用 <code>= 0</code>或 <code>!= 0</code></td>
+      </tr>
+      <tr>
+          <td>​<strong>​逻辑结果​</strong>​</td>
+          <td><code>=NULL</code>返回 <code>UNKNOWN</code></td>
+          <td><code>=''</code>返回 <code>TRUE</code>或 <code>FALSE</code></td>
+          <td><code>=0</code>返回 <code>TRUE</code>或 <code>FALSE</code></td>
+      </tr>
+  </tbody>
+</table>
+<p>简单来说，记住 ​<strong>​<code>NULL</code>是一个表示“未知”的标记，而不是一个值​</strong>​，就能理解为什么不能用等号来判断了。</p>
 </div>
     <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"></ul>
 </footer>
@@ -270,21 +327,21 @@
     id="article-nav"
     data-aos="fade-up"
   ><div class="article-nav-link-wrap article-nav-link-left"><img
-            data-src="https://img1.baidu.com/it/u=3137591651,3259634186&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=825&amp;h=500"
+            data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
             data-sizes="auto"
-            alt="电商秒杀项目"
+            alt="Linux/Unix shell命令的反斜杠是​​续行符​"
             class="lazyload"
-          /><a href="/post/secondkill/"></a>
+          /><a href="/post/linux%E6%88%96unix%E7%9A%84shell%E5%91%BD%E4%BB%A4%E4%B8%AD%E7%9A%84%E5%8F%8D%E6%96%9C%E6%9D%A0%E6%98%AF%E7%BB%AD%E8%A1%8C%E7%AC%A6/"></a>
         <div class="article-nav-caption">前一篇</div>
-        <h3 class="article-nav-title">电商秒杀项目</h3>
+        <h3 class="article-nav-title">Linux/Unix shell命令的反斜杠是​​续行符​</h3>
       </div><div class="article-nav-link-wrap article-nav-link-right"><img
-            data-src="https://img1.baidu.com/it/u=2454867920,2504574413&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=802&amp;h=800"
+            data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
             data-sizes="auto"
-            alt="亿级流量点赞系统"
+            alt="Zookeeper&#43;Kafka集群的部署与启动"
             class="lazyload"
-          /><a href="/post/likesystem/"></a>
+          /><a href="/post/zookeeper&#43;kafka%E9%9B%86%E7%BE%A4%E7%9A%84%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%90%AF%E5%8A%A8/"></a>
         <div class="article-nav-caption">后一篇</div>
-        <h3 class="article-nav-title">亿级流量点赞系统</h3>
+        <h3 class="article-nav-title">Zookeeper&#43;Kafka集群的部署与启动</h3>
       </div></nav></article></section>
         </div><footer id="footer">
   <div style="width: 100%; overflow: hidden">
@@ -335,9 +392,13 @@
   <div class="sidebar-toc-wrapper toc-div-class">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#仓库地址httpsgithubcommeeting77smilenebula-mall">仓库地址：https://github.com/meeting77smile/nebula-mall</a></li>
-    <li><a href="#项目介绍">项目介绍：</a></li>
-    <li><a href="#项目亮点">项目亮点：</a></li>
+    <li>
+      <ul>
+        <li><a href="#null的本质与比较规则">NULL的本质与比较规则</a></li>
+        <li><a href="#正确的判断方法与替代函数">正确的判断方法与替代函数</a></li>
+        <li><a href="#核心区别速查表">核心区别速查表</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -481,10 +542,10 @@
   <div><script data-pjax>
         window.REIMU_POST = {
           author: "meeting_smile",
-          title: "星云好物——基于微服务架构的电商平台",
-          url: "http:\/\/localhost:1313\/post\/nebulamall\/",
-          description: " 仓库地址：https:\/\/github.com\/meeting77smile\/nebula-mall 项目介绍： 本人在学习微服务过程中制作的电商平台的后端代码。 项目亮点： 服务间异步调用​​：利用RabbitMQ结合SpringAMQP代替OpenFeign从而实现服务间的异步调用，实现了降低服务间的耦合性、避免级联失败的效果。 超时订单取消：通过DelayExchange插件，利用延迟消息实现订单超时取消功能。 负载均衡：基于Nacos注册中心，利用DiscoveryClient和随机负载均衡算法，实现服务调用的负载均衡。 网关登录校验：通过自定义GlobalFilter，结合JWT工 …",
-          cover: "https:\/\/img0.baidu.com\/it\/u=1174429826,2561145711\u0026fm=253\u0026fmt=auto\u0026app=120\u0026f=JPEG?w=640\u0026h=457",
+          title: "判断字段是否非空不能用等号的原因",
+          url: "http:\/\/localhost:1313\/post\/%E5%88%A4%E6%96%AD%E5%AD%97%E6%AE%B5%E6%98%AF%E5%90%A6%E9%9D%9E%E7%A9%BA%E4%B8%8D%E8%83%BD%E7%94%A8%E7%AD%89%E5%8F%B7%E7%9A%84%E5%8E%9F%E5%9B%A0\/",
+          description: " 判断字段是否非空不能用等号的原因 在MySQL中，判断字段是否为空（NULL）必须使用 IS NULL或 IS NOT NULL，而不能使用等号（例如 = NULL或 != NULL），这是因为 NULL在数据库里代表一个特殊概念。\n",
+          cover: "https:\/\/th.bing.com\/th\/id\/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg\u0026riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg\u0026ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d\u0026risl=\u0026pid=ImgRaw\u0026r=0",
         };
       </script><script src="/js/insert_highlight.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const pswp = () => {
           if (_$$('.article-entry a.article-gallery-item').length > 0) {

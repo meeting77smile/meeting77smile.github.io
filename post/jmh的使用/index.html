@@ -1,0 +1,1009 @@
+<!doctype html>
+<html
+  lang="zh-cn" 
+  data-theme-mode="auto"
+  >
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/><title>
+  JMH的使用 | meeting_smile
+</title>
+<meta
+  name="description"
+  content="未来一定是要笑着谈的(*≧▽≦)ツ"
+/><script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"base\":\"http://localhost:1313/\",\"clipboard\":{\"copyright\":{\"count\":50,\"enable\":false,\"license_type\":\"by-nc-sa\"},\"fail\":{\"en\":\"Copy failed (ﾟ⊿ﾟ)ﾂ\",\"ja\":\"コピー失敗 (ﾟ⊿ﾟ)ﾂ\",\"zh-cn\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"zh-tw\":\"複製失敗 (ﾟ⊿ﾟ)ﾂ\"},\"success\":{\"en\":\"Copy successfully (*^▽^*)\",\"ja\":\"コピー成功 (*^▽^*)\",\"zh-cn\":\"复制成功 (*^▽^*)\",\"zh-tw\":\"複製成功 (*^▽^*)\"}},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_0khxww3tj3q9\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":{\"en\":\"This article was last updated on {time}. Please note that the content may no longer be applicable.\",\"ja\":\"この記事は最終更新日：{time}。記載内容が現在有効でない可能性がありますのでご注意ください。\",\"zh-cn\":\"本文最后更新于 {time}，请注意文中内容可能已不适用。\",\"zh-tw\":\"本文最後更新於 {time}，請注意文中內容可能已不適用。\"}}}");
+  
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+<link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_0khxww3tj3q9.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  /><link rel="stylesheet" href="/css/loader.css" />
+<meta property="og:type" content="website" />
+  <meta property="og:title" content="JMH的使用 | meeting_smile" />
+  <meta
+    property="og:description"
+    content="未来一定是要笑着谈的(*≧▽≦)ツ"
+  />
+  <meta property="og:url" content="http://localhost:1313/post/jmh%E7%9A%84%E4%BD%BF%E7%94%A8/" />
+  <meta
+    property="og:site_name"
+    content="meeting_smile&#39;s blog"
+  />
+  <meta
+    property="og:image"
+    content="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+  />
+  <meta property="article:author" content="meeting_smile" />
+  <meta property="article:published_time" content="2025-11-11T17:00:00-07:00" />
+  <meta property="article:modified_time" content="2025-11-25T16:46:00-07:00" /><meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" />
+<link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/main.css" />
+<link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei&#43;Zx/1oA/0l8ysE" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.11/dist/katex.min.css"
+    integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm&#43;ZU03BU6SQNC66uf4l5&#43;" crossorigin="anonymous"onload="this.onload=null;this.rel='stylesheet'"
+  /><script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script><link
+    rel="stylesheet"
+    href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css"
+    integrity="sha384-4NN3fZ5AokFyHuoihl7A9qWaCt&#43;HsAtOaUsXwJGRb4/SMBtFr2vcNSHR5E8dg0Wk" crossorigin="anonymous"/></head>
+  <body><div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate"><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg></div><div class="loading-word">马上就好~</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script><div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+<div id="lang-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+本文章没有找到对应的语言版本
+</div><div id="container">
+      <div id="wrap"><div id="header-nav">
+  <nav id="main-nav"><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/">首页</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/archives">归档</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/about">关于</a>
+      </span><span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>&#xe62b;</div>
+        <a class="main-nav-link" href="/friend">友链</a>
+      </span><a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav"><a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a></nav></div>
+<header id="header"><picture></picture>
+    <img crossorigin="anonymous" fetchpriority="high" src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="JMH的使用"><div id="header-outer">
+    <div id="header-title"><a href="/" id="logo">
+            <h1 data-aos="slide-up">JMH的使用</h1>
+          </a><h2 id="subtitle-wrap" data-aos="slide-down"></h2></div>
+  </div>
+</header><div id="content"
+          
+          class="sidebar-right"  ><aside id="sidebar"><div class="sidebar-wrapper wrap-sticky">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    ><div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-与jmeter的区别">1. 与JMeter的区别</a>
+      <ul>
+        <li><a href="#11-核心区别和选择">1.1 核心区别和选择</a></li>
+        <li><a href="#12-核心用途的区别">1.2 核心用途的区别</a></li>
+        <li><a href="#13-适用场景的区别">1.3 适用场景的区别</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-jmh的基本使用">2. JMH的基本使用</a>
+      <ul>
+        <li><a href="#21-测试类必须">2.1 测试类（必须）</a></li>
+        <li><a href="#22-初始化方法可选">2.2 初始化方法（可选）</a></li>
+        <li><a href="#23-执行基准测试方法必须">2.3 执行基准测试方法（必须）</a></li>
+        <li><a href="#24-执行结束方法可选">2.4 执行结束方法（可选）</a></li>
+        <li><a href="#25-完整例子">2.5 完整例子</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-setup初始化方法的执行时机和次数">3. setup（初始化方法）的执行时机和次数</a>
+      <ul>
+        <li><a href="#31-最核心的参数setup注解的level">3.1 最核心的参数：@Setup注解的 level</a></li>
+        <li><a href="#32-影响执行次数的jmh测试参数">3.2 影响执行次数的JMH测试参数</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div></div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="meeting_smile"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">meeting_smile</div>
+  <div class="sidebar-description">未来一定是要笑着谈的(*≧▽≦)ツ</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">23</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social"></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div><div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div></div>
+  </div>
+
+  <div class="sidebar-widget"></div></aside>
+<section id="main"><article
+  class="h-entry article"
+  itemprop="blogPost"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta"><div class="article-date">
+  <span
+    class="article-date-link"
+    data-aos="zoom-in"
+  >
+    <time datetime="2025-11-11 17:00:00 -0700 -0700" itemprop="datePublished"
+      >2025-11-11</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2025-11-25</time
+    >
+  </span>
+</div>
+<div class="article-category"></div>
+</div>
+    <div class="hr-line"></div><div class="e-content article-entry" itemprop="articleBody"><h1 id="jmh的使用">
+<a class="header-anchor" href="#jmh%e7%9a%84%e4%bd%bf%e7%94%a8"></a>
+JMH的使用
+</h1><h2 id="1-与jmeter的区别">
+<a class="header-anchor" href="#1-%e4%b8%8ejmeter%e7%9a%84%e5%8c%ba%e5%88%ab"></a>
+1. 与JMeter的区别
+</h2><h3 id="11-核心区别和选择">
+<a class="header-anchor" href="#11-%e6%a0%b8%e5%bf%83%e5%8c%ba%e5%88%ab%e5%92%8c%e9%80%89%e6%8b%a9"></a>
+1.1 核心区别和选择
+</h3><table>
+  <thead>
+      <tr>
+          <th>特性</th>
+          <th>JMH</th>
+          <th>JMeter</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>测试类型</strong></td>
+          <td>微基准测试（Microbenchmark）</td>
+          <td>负载测试、压力测试（Load/Stress Test）</td>
+      </tr>
+      <tr>
+          <td><strong>测试粒度</strong></td>
+          <td>方法级别，代码级</td>
+          <td>系统级别，接口/服务级</td>
+      </tr>
+      <tr>
+          <td><strong>测试精度</strong></td>
+          <td>毫秒级/微秒级</td>
+          <td>秒级</td>
+      </tr>
+      <tr>
+          <td><strong>主要用途</strong></td>
+          <td><strong>测试</strong>和<strong>优化</strong>代码片段的性能</td>
+          <td>评估系统在高并发下的整体性能</td>
+      </tr>
+      <tr>
+          <td><strong>执行方式</strong></td>
+          <td>在JVM内部运行，需要编写Java代码</td>
+          <td>从外部模拟用户请求，通过GUI（图形用户界面）配置</td>
+      </tr>
+      <tr>
+          <td><strong>典型问题</strong></td>
+          <td>ArrayList和LinkedList的遍历哪个更快</td>
+          <td>我的网站能否承受 1000 个用户同时访问？</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="12-核心用途的区别">
+<a class="header-anchor" href="#12-%e6%a0%b8%e5%bf%83%e7%94%a8%e9%80%94%e7%9a%84%e5%8c%ba%e5%88%ab"></a>
+1.2 核心用途的区别
+</h3><ul>
+<li>
+<p><strong>JMH</strong>：是由 OpenJDK 团队开发的一款专门用于 ​<strong>​Java 代码微基准测试​</strong>​ 的工具，用于测量和比较一小段代码/片段的性能，通过一系列复杂的机制（如预热、多线程隔离等）等手段来<strong>避免JVM的即时编译（JIT）优化、GC垃圾回收等因素对测试结果的干扰</strong>，从而<strong>保证测试结果的精确</strong>。</p>
+</li>
+<li>
+<p><strong>JMeter</strong> ：是Apache组织开发的一款开源的<strong>负载和性能测试工具</strong> ，通过<strong>模拟大规模用户的访问</strong>，对服务器、网络或对象施加压力，从而测试在搞负载下系统的强度、稳定性和整体性能。它关注的是系统级别的指标，如<strong>吞吐量、响应时间和错误率</strong>等。</p>
+</li>
+</ul>
+<h3 id="13-适用场景的区别">
+<a class="header-anchor" href="#13-%e9%80%82%e7%94%a8%e5%9c%ba%e6%99%af%e7%9a%84%e5%8c%ba%e5%88%ab"></a>
+1.3 适用场景的区别
+</h3><h4 id="131-jmh的适用场景">
+<a class="header-anchor" href="#131-jmh%e7%9a%84%e9%80%82%e7%94%a8%e5%9c%ba%e6%99%af"></a>
+1.3.1 JMH的适用场景
+</h4><ul>
+<li>
+<p><strong>热点代码的优化</strong> ：如可通过JMH进行性能测试，选择性能优秀的方案优化热点代码（利用StringBuffer.append()还是String之间用&quot;+&ldquo;来拼接字符串）。</p>
+</li>
+<li>
+<p><strong>算法比较</strong> ：比较不同算法（排序算法、数据结构）在相同输入下的性能表现。</p>
+</li>
+<li>
+<p><strong>库/框架的选择</strong> 在多个功能相似的库/框架（如JSON序列化）中进行选择时，可通过JVM来进行性能测试并比较。</p>
+</li>
+<li>
+<p><strong>JVM特性分析</strong>：分析JIT编译、方法内敛等JVM优化策略对代码性能的影响。</p>
+</li>
+</ul>
+<h4 id="132-jmeter的使用场景">
+<a class="header-anchor" href="#132-jmeter%e7%9a%84%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af"></a>
+1.3.2 JMeter的使用场景
+</h4><ul>
+<li>
+<p><strong>Web应用/API性能测试</strong> ：对网站、RESTFUL API等服务进行压力测试，确定其能承受的最大并发数，找出其性能瓶颈。</p>
+</li>
+<li>
+<p><strong>数据库性能测试</strong> ：通过JMeter模拟大量用户，访问JDBC连接器相关的接口，从而模拟大量数据库增删改查操作，评估数据库性能。</p>
+</li>
+<li>
+<p><strong>分布式测试</strong> ：在多台机器上分别部署JMeter对同一个接口进行测试，从而产生远超单机能力的并发负载，模拟更真实的用户场景。</p>
+</li>
+<li>
+<p><strong>功能与回归测试</strong> ：虽然主要用于性能测试，但JMeter也支持通过断言等功能进行接口的功能验证和回归测试。</p>
+</li>
+</ul>
+<h4 id="133-jmh和jmeter的关系">
+<a class="header-anchor" href="#133-jmh%e5%92%8cjmeter%e7%9a%84%e5%85%b3%e7%b3%bb"></a>
+1.3.3 JMH和JMeter的关系
+</h4><p>JMH和JMeter是互补而非竞争的工具，在<strong>开发阶段</strong>可以使用<strong>JMH</strong>来优化关键代码的性能；在<strong>系统集成或上线</strong>前，则可以使用<strong>JMeter</strong>来验证整个系统在高负载下的表现是否达标。</p>
+<hr>
+<h2 id="2-jmh的基本使用">
+<a class="header-anchor" href="#2-jmh%e7%9a%84%e5%9f%ba%e6%9c%ac%e4%bd%bf%e7%94%a8"></a>
+2. JMH的基本使用
+</h2><h3 id="21-测试类必须">
+<a class="header-anchor" href="#21-%e6%b5%8b%e8%af%95%e7%b1%bb%e5%bf%85%e9%a1%bb"></a>
+2.1 测试类（必须）
+</h3><h4 id="211-测试类的注解">
+<a class="header-anchor" href="#211-%e6%b5%8b%e8%af%95%e7%b1%bb%e7%9a%84%e6%b3%a8%e8%a7%a3"></a>
+2.1.1 测试类的注解
+</h4><p>首先需要<strong>编写用于JMH测试的测试类</strong>，并在该类上<strong>加上JMH相关的注解</strong>，常见注解有：</p>
+<ul>
+<li>
+<p><strong>@BenchmarkMode</strong> ：用于指定JMH测试的性能，主要有四种：</p>
+<ul>
+<li>
+<p><strong>Throughput</strong> （吞吐量），即<strong>单位时间内执行操作的次数</strong>。</p>
+</li>
+<li>
+<p><strong>AverageTime</strong> （平均时间），即<strong>执行一次操作使用的平均时间</strong> 。</p>
+</li>
+<li>
+<p><strong>SampleTime</strong>  (采样时间)，采用随机采样的方式，<strong>输出性能数据的分布情况</strong>，可得出有百分之多少的样本的执行时间在百分之多少之内。</p>
+</li>
+<li>
+<p><strong>SingleShotTime</strong> （单次执行时间），只进行一次测试（与<strong>AverageTime</strong> 不同，它虽然也是测量一次操作，但却是<strong>多次测量</strong> ），通常用于测试冷启动的性能，不进行预热（warmup次数设置为0）。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>@OutputTimeUnit</strong> ：输出结果的时间单位。</p>
+</li>
+<li>
+<p><strong>@Fork</strong> ：启用多少个独立线程进行测试（默认是串行执行，而不是同时并行执行。即上一个Fork执行完，才会继续执行下一个Fork）。</p>
+</li>
+<li>
+<p><strong>@Measurement</strong>：测试进行的次数，其中：</p>
+<ul>
+<li>
+<p><strong>​</strong>​<strong>iterations</strong> ：表示整个测试阶段（如测量或预热）的“轮数”</p>
+</li>
+<li>
+<p>​<strong>​batchSize</strong> ：表示每轮迭代中​<strong>​连续调用基准方法的次数</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>@warmup</strong> ：预热的轮数，如指定(iterators = 3)。与 <strong>@Measurement</strong>类似，也可指定​<strong>​batchSize</strong></p>
+</li>
+<li>
+<p><strong>@State</strong> ：用于管理测试实例的生命周期，常见属性有：</p>
+<ul>
+<li>
+<p><strong>Scope.Thread</strong> ：表示<strong>每个</strong>测试用的<strong>线程</strong>共享同一个实例，线程之间互不影响（@State的<strong>默认值</strong>）</p>
+</li>
+<li>
+<p><strong>@Scope.Benchmark</strong>：<strong>所有</strong>测试用的<strong>线程</strong>共享一个实例。适用于测试<strong>有状态</strong>实例在多线程共享下的性能。</p>
+</li>
+<li>
+<p><strong>@Scope.Group</strong>：每个线程组共享一个实例，常用于分组测试。</p>
+</li>
+<li>
+<p>此外，使用 <strong>@State</strong>注解的类必须满足两个条件：<strong>类必须是public的</strong>，<strong>必须有无参构造方法</strong> 。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>@Setup</strong> ：用于定义初始化方法，常见属性包含：</p>
+<ul>
+<li>
+<p><strong>Level.Trial</strong>​  (<strong>默认值</strong>) ：在<strong>每次试验</strong>​ 的开始前执行。一个“试验”即一个Fork进程的完整运行。</p>
+</li>
+<li>
+<p><strong>Level.Iteration</strong> ：在<strong>每次迭代</strong>​ 的开始前执行。包括预热迭代和测量迭代。</p>
+</li>
+<li>
+<p><strong>Level.Invocation</strong> ：在<strong>每次<code>@Benchmark</code>方法调用</strong>​ 之前执行。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>例子，如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@BenchmarkMode</span>(Mode.<span style="color:#a6e22e">Throughput</span>) <span style="color:#75715e">//设置模式为测试吞吐量（单位时间执行多少次操作）</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@OutputTimeUnit</span>(TimeUnit.<span style="color:#a6e22e">SECONDS</span>) <span style="color:#75715e">//测试结果的时间单位</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Fork</span>(3) <span style="color:#75715e">//fork多少个线程用于测试</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@State</span>(Scope.<span style="color:#a6e22e">Thread</span>) <span style="color:#75715e">//一个线程共享一个实例</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Warmup</span>(iterations <span style="color:#f92672">=</span> 3) <span style="color:#75715e">//预热轮数</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Measurement</span>(iterations <span style="color:#f92672">=</span> 3) <span style="color:#75715e">//测试的次数</span>
+</span></span></code></pre></div><h4 id="212-注解的注意点">
+<a class="header-anchor" href="#212-%e6%b3%a8%e8%a7%a3%e7%9a%84%e6%b3%a8%e6%84%8f%e7%82%b9"></a>
+2.1.2 注解的注意点
+</h4><ul>
+<li>
+<p>​<strong>实际​总测试次数​</strong>​的公式为：<strong>fork × (measurement.iterations × batchSize)</strong></p>
+</li>
+<li>
+<p>结果显示的测试次数<strong>Cnt</strong> 等于：<strong>fork × measurement.iterations</strong></p>
+</li>
+<li>
+<p>如果 <code>batchSize &gt; 1</code>，JMH 会在单次迭代中执行多次方法调用，但​<strong>​仍将整批调用的聚合结果（如平均时间）作为一个数据点​</strong>​。因为 <code>batchSize</code>​<strong>​不直接增加 <code>Cnt</code>​</strong>​，而是提高单个数据点的精度。</p>
+</li>
+</ul>
+<h4 id="213为什么cnt--fork--iterations--batchsize">
+<a class="header-anchor" href="#213%e4%b8%ba%e4%bb%80%e4%b9%88cnt--fork--iterations--batchsize"></a>
+2.1.3为什么 <code>Cnt ≠ fork × iterations × batchSize</code>？​
+</h4><ul>
+<li>
+<p><strong><code>batchSize</code>的作用​</strong>​是减少短耗时方法的测量误差（如通过批量调用取平均值），但​<strong>​不增加统计样本量​</strong>​。</p>
+</li>
+<li>
+<p><strong><code>fork</code>和 <code>iterations</code>​</strong>​ 决定了数据点的数量，而 <code>batchSize</code>决定了每个数据点的计算方式。</p>
+</li>
+</ul>
+<h3 id="22-初始化方法可选">
+<a class="header-anchor" href="#22-%e5%88%9d%e5%a7%8b%e5%8c%96%e6%96%b9%e6%b3%95%e5%8f%af%e9%80%89"></a>
+2.2 初始化方法（可选）
+</h3><p>如果需要在测试之前先做一些初始化操作，则可以使用 <strong>@Setup</strong>注解使用在初始化方法上，如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@Setup</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//二者不是数组，初始化不一定要指定长度</span>
+</span></span><span style="display:flex;"><span>        arrayList <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>(0);
+</span></span><span style="display:flex;"><span>        linkedList <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LinkedList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>1;i<span style="color:#f92672">&lt;=</span>n;i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            arrayList.<span style="color:#a6e22e">add</span>(i);
+</span></span><span style="display:flex;"><span>            linkedList.<span style="color:#a6e22e">add</span>(i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h3 id="23-执行基准测试方法必须">
+<a class="header-anchor" href="#23-%e6%89%a7%e8%a1%8c%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95%e6%96%b9%e6%b3%95%e5%bf%85%e9%a1%bb"></a>
+2.3 执行基准测试方法（必须）
+</h3><p>在需要测试的方法上加上 <strong>@Benchmark</strong>注解，一个测试类当中可以有多个方法使用该注解，即可以有多个测试的方法，如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#a6e22e">@Benchmark</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testArrayList</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>0;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            arrayList.<span style="color:#a6e22e">get</span>(i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Benchmark</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testLinkedList</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>0;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            linkedList.<span style="color:#a6e22e">get</span>(i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h3 id="24-执行结束方法可选">
+<a class="header-anchor" href="#24-%e6%89%a7%e8%a1%8c%e7%bb%93%e6%9d%9f%e6%96%b9%e6%b3%95%e5%8f%af%e9%80%89"></a>
+2.4 执行结束方法（可选）
+</h3><p>在JMH中，<strong>@TearDown</strong> 注解用于标记在<strong>基准测试执行之后需要运行的方法</strong>，主要用于资源的回收与清理工作，通常与 <strong>@SetUp</strong> 注解配对使用 ，<strong>@SetUp</strong> 用于测试前的初始化，<strong>@TearDwon</strong> 用于测试之后的清理。<strong>@TearDown</strong> 注解的方法执行时机由Level参数控制，支持以下三种粒度：</p>
+<ul>
+<li>
+<p><strong>Level.Trial</strong> ：（Tiral中文翻译为<strong>试验</strong>）表示在<strong>所有测试迭代结束之后</strong>执行一次，适合做全局资源释放等一次性操作。</p>
+</li>
+<li>
+<p><strong>Level.Iteration</strong> ：<strong>在每次迭代开始前和结束后执行</strong> ，适合每次迭代的准备和清理工作</p>
+</li>
+<li>
+<p><strong>Level.Invocation</strong> ：（Invocation中文翻译为<strong>调用</strong>）<strong>在每次方法调用前后执行</strong> ，适合做方法粒度的资源管理。</p>
+</li>
+</ul>
+<h3 id="25-完整例子">
+<a class="header-anchor" href="#25-%e5%ae%8c%e6%95%b4%e4%be%8b%e5%ad%90"></a>
+2.5 完整例子
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> jmh;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.openjdk.jmh.annotations.*;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.openjdk.jmh.runner.Runner;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.openjdk.jmh.runner.RunnerException;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.openjdk.jmh.runner.options.Options;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.openjdk.jmh.runner.options.OptionsBuilder;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.ArrayList;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.LinkedList;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.concurrent.TimeUnit;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * JMH体验：通过JMH来证明ArrayList的遍历效率高于LinkedList
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@BenchmarkMode</span>(Mode.<span style="color:#a6e22e">Throughput</span>) <span style="color:#75715e">//设置模式为测试吞吐量（单位时间执行多少次操作）</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@OutputTimeUnit</span>(TimeUnit.<span style="color:#a6e22e">SECONDS</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Fork</span>(3)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@State</span>(Scope.<span style="color:#a6e22e">Thread</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Warmup</span>(iterations <span style="color:#f92672">=</span> 3)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Measurement</span>(iterations <span style="color:#f92672">=</span> 3,batchSize <span style="color:#f92672">=</span> 2)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JMHTest</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Param</span>({<span style="color:#e6db74">&#34;10&#34;</span>,<span style="color:#e6db74">&#34;20&#34;</span>,<span style="color:#e6db74">&#34;50&#34;</span>,<span style="color:#e6db74">&#34;100&#34;</span>})
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> n;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> ArrayList<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> arrayList;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> LinkedList<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> linkedList;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Setup</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//二者不是数组，初始化不一定要指定长度</span>
+</span></span><span style="display:flex;"><span>        arrayList <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>(0);
+</span></span><span style="display:flex;"><span>        linkedList <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LinkedList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>1;i<span style="color:#f92672">&lt;=</span>n;i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            arrayList.<span style="color:#a6e22e">add</span>(i);
+</span></span><span style="display:flex;"><span>            linkedList.<span style="color:#a6e22e">add</span>(i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Benchmark</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testArrayList</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>0;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            arrayList.<span style="color:#a6e22e">get</span>(i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Benchmark</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testLinkedList</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>0;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            linkedList.<span style="color:#a6e22e">get</span>(i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> RunnerException {
+</span></span><span style="display:flex;"><span>        Options options <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> OptionsBuilder().<span style="color:#a6e22e">include</span>(JMHTest.<span style="color:#a6e22e">class</span>.<span style="color:#a6e22e">getSimpleName</span>()).<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> Runner(options).<span style="color:#a6e22e">run</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="3-setup初始化方法的执行时机和次数">
+<a class="header-anchor" href="#3-setup%e5%88%9d%e5%a7%8b%e5%8c%96%e6%96%b9%e6%b3%95%e7%9a%84%e6%89%a7%e8%a1%8c%e6%97%b6%e6%9c%ba%e5%92%8c%e6%ac%a1%e6%95%b0"></a>
+3. setup（初始化方法）的执行时机和次数
+</h2><p>MH中有几个关键的参数和注解会直接影响 <code>@Setup</code>方法的执行时机和次数。其核心逻辑是：<strong><code>@Setup</code>方法的执行频率由其 <code>level</code>参数决定，而执行次数则受 <code>Fork</code>、线程数等参数影响。</strong></p>
+<p>以下是详细的分解说明：</p>
+<h3 id="31-最核心的参数setup注解的level">
+<a class="header-anchor" href="#31-%e6%9c%80%e6%a0%b8%e5%bf%83%e7%9a%84%e5%8f%82%e6%95%b0setup%e6%b3%a8%e8%a7%a3%e7%9a%84level"></a>
+3.1 最核心的参数：@Setup注解的 level
+</h3><p>这是决定 <code>setup()</code>方法执行时机的<strong>最直接、最根本</strong>的因素。它定义了“一次性准备”的粒度。</p>
+<table>
+  <thead>
+      <tr>
+          <th>Level 级别</th>
+          <th>执行时机</th>
+          <th>受影响的其他JMH参数</th>
+          <th>原因</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>Level.Trial</code>​ (<strong>默认值</strong>)</td>
+          <td>在<strong>每次试验</strong>​ 的开始前执行。一个“试验”即一个Fork进程的完整运行。</td>
+          <td>**<code>@Fork</code>**​</td>
+          <td>因为每个Fork都是一个独立的JVM进程，代表一次全新的试验。<code>Trial</code>级别的Setup需要为这次完整的试验做准备。</td>
+      </tr>
+      <tr>
+          <td><code>Level.Iteration</code></td>
+          <td>在<strong>每次迭代</strong>​ 的开始前执行。包括预热迭代和测量迭代。</td>
+          <td><strong><code>@Warmup</code></strong>、**<code>@Measurement</code>**​</td>
+          <td>因为<code>Iteration</code>级别的Setup定义于“每次迭代前”，所以迭代的总次数（预热+测量）直接决定了它的执行次数。</td>
+      </tr>
+      <tr>
+          <td><code>Level.Invocation</code>​</td>
+          <td>在<strong>每次<code>@Benchmark</code>方法调用</strong>​ 之前执行。</td>
+          <td>**（基准方法调用次数）**​</td>
+          <td>这是最细的粒度，旨在为每次方法调用都提供一个全新的状态。但由于Setup本身有开销，会严重干扰性能测量，故极少使用。</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>简单比喻：</strong></p>
+<ul>
+<li>
+<p><strong><code>Trial</code></strong>： 在整场考试开始前，一次性发完所有草稿纸。</p>
+</li>
+<li>
+<p><strong><code>Iteration</code></strong>： 在每道大题开始前，发一张新的草稿纸。</p>
+</li>
+<li>
+<p><strong><code>Invocation</code></strong>： 在计算每个小题前，都换一张新草稿纸。</p>
+</li>
+</ul>
+<hr>
+<h3 id="32-影响执行次数的jmh测试参数">
+<a class="header-anchor" href="#32-%e5%bd%b1%e5%93%8d%e6%89%a7%e8%a1%8c%e6%ac%a1%e6%95%b0%e7%9a%84jmh%e6%b5%8b%e8%af%95%e5%8f%82%e6%95%b0"></a>
+3.2 影响执行次数的JMH测试参数
+</h3><p>以下参数会与 <code>level</code>相互作用，共同决定 <code>setup()</code>的总执行次数。</p>
+<h4 id="afork-最重要的参数之一">
+<a class="header-anchor" href="#afork-%e6%9c%80%e9%87%8d%e8%a6%81%e7%9a%84%e5%8f%82%e6%95%b0%e4%b9%8b%e4%b8%80"></a>
+a. @Fork （最重要的参数之一）
+</h4><ul>
+<li>
+<p><strong>作用</strong>： 指定要启动的独立JVM进程的数量。<strong>每个Fork都是一个全新的基准测试运行</strong>，拥有全新的状态实例。</p>
+</li>
+<li>
+<p><strong>影响</strong>：</p>
+<ul>
+<li>
+<p>对于 <strong><code>Level.Trial</code></strong>： <strong>每个Fork都会执行一次 <code>setup()</code></strong>。总次数 = <code>value</code>参数（默认1）。</p>
+</li>
+<li>
+<p>对于 <code>Level.Iteration</code>和 <code>Level.Invocation</code>： Fork数会乘以该Level对应的执行次数。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>原因</strong>： Fork的目的是消除JVM的JIT编译、类加载等因素对前一次运行的影响，确保每次试验都在“冷”状态下开始。因此，每个Fork都需要独立进行初始化。</p>
+<h4 id="bthreads-或-t命令行参数">
+<a class="header-anchor" href="#bthreads-%e6%88%96-t%e5%91%bd%e4%bb%a4%e8%a1%8c%e5%8f%82%e6%95%b0"></a>
+b. @Threads​ （或 -t命令行参数）
+</h4><ul>
+<li>
+<p><strong>作用</strong>： 指定每个Fork中并发执行的线程数。</p>
+</li>
+<li>
+<p><strong>影响</strong>： <strong>仅当 <code>@State(Scope.Thread)</code>时才有影响。</strong></p>
+<ul>
+<li>
+<p>对于 <code>Scope.Thread</code>状态： JMH会为<strong>每个线程</strong>创建一份状态的独立副本。因此，<code>setup()</code>会在每个线程中独立执行。总次数 = <code>@Fork值 * @Threads值</code>。</p>
+</li>
+<li>
+<p>对于 <code>Scope.Benchmark</code>状态： 整个Fork共享一个状态实例，因此无论多少线程，<code>setup()</code>每个Fork只执行一次。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>原因</strong>： <code>Scope.Thread</code>保证了线程安全，每个线程需要自己的初始化数据，避免竞争条件。</p>
+<h4 id="cwarmup和measurement">
+<a class="header-anchor" href="#cwarmup%e5%92%8cmeasurement"></a>
+c. @Warmup和 @Measurement
+</h4><ul>
+<li>
+<p><strong>作用</strong>： <code>iterations</code>参数分别指定了预热迭代和测量迭代的次数。</p>
+</li>
+<li>
+<p><strong>影响</strong>： <strong>主要影响 <code>Level.Iteration</code></strong>。</p>
+<ul>
+<li>
+<p>对于 <code>Level.Iteration</code>： <code>setup()</code>的总执行次数 = <code>@Fork值 * @Threads值 * (@Warmup迭代数 + @Measurement迭代数)</code>。</p>
+</li>
+<li>
+<p>对其他Level无<strong>直接</strong>影响。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>原因</strong>： <code>Iteration</code>级别的Setup需要在每次迭代（无论是预热还是测量）前都重置状态。</p>
+<h4 id="dstate的-scope">
+<a class="header-anchor" href="#dstate%e7%9a%84-scope"></a>
+d. @State的 Scope
+</h4><ul>
+<li>
+<p><strong>作用</strong>： 定义状态实例的作用域。</p>
+</li>
+<li>
+<p><strong>影响</strong>：</p>
+<ul>
+<li>
+<p><strong><code>Scope.Thread</code></strong>： 状态是线程本地的。<code>setup()</code>的执行次数与线程数相关（见上文）。</p>
+</li>
+<li>
+<p><strong><code>Scope.Benchmark</code></strong>： 状态在所有线程间共享。<strong>每个Fork只会有一个状态实例，因此 <code>setup()</code>每个Fork只执行一次</strong>，无论有多少线程。</p>
+</li>
+<li>
+<p><strong><code>Scope.Group</code></strong>： 状态在线程组内共享，情况更复杂，但不常用。</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+    <footer class="article-footer"><ul class="article-tag-list" itemprop="keywords"></ul>
+</footer>
+  </div><nav
+    id="article-nav"
+    data-aos="fade-up"
+  ><div class="article-nav-link-wrap article-nav-link-left"><img
+            data-src="https://th.bing.com/th/id/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg&amp;riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg&amp;ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0"
+            data-sizes="auto"
+            alt="SSL/TLS"
+            class="lazyload"
+          /><a href="/post/ssl%E4%B8%8Etls/ssl%E4%B8%8Etls/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">SSL/TLS</h3>
+      </div></nav></article></section>
+        </div><footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info"><div>
+      <span class="icon-copyright"></span>2020-2025<span class="footer-info-sep rotate"></span>
+      meeting_smile
+    </div><div>
+        基于&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          >Reimu</a
+        >
+      </div><div>
+        <span class="icon-brush"
+          >&nbsp;91.5k</span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;03:12</span>
+      </div><div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >总访问量&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >总访客量&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div></div>
+</footer>
+<div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div><div id="mask" class="hide"></div>
+      </div><nav id="mobile-nav">
+  <div class="sidebar-wrap"><div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-与jmeter的区别">1. 与JMeter的区别</a>
+      <ul>
+        <li><a href="#11-核心区别和选择">1.1 核心区别和选择</a></li>
+        <li><a href="#12-核心用途的区别">1.2 核心用途的区别</a></li>
+        <li><a href="#13-适用场景的区别">1.3 适用场景的区别</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-jmh的基本使用">2. JMH的基本使用</a>
+      <ul>
+        <li><a href="#21-测试类必须">2.1 测试类（必须）</a></li>
+        <li><a href="#22-初始化方法可选">2.2 初始化方法（可选）</a></li>
+        <li><a href="#23-执行基准测试方法必须">2.3 执行基准测试方法（必须）</a></li>
+        <li><a href="#24-执行结束方法可选">2.4 执行结束方法（可选）</a></li>
+        <li><a href="#25-完整例子">2.5 完整例子</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-setup初始化方法的执行时机和次数">3. setup（初始化方法）的执行时机和次数</a>
+      <ul>
+        <li><a href="#31-最核心的参数setup注解的level">3.1 最核心的参数：@Setup注解的 level</a></li>
+        <li><a href="#32-影响执行次数的jmh测试参数">3.2 影响执行次数的JMH测试参数</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div></div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="meeting_smile"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">meeting_smile</div>
+  <div class="sidebar-description">未来一定是要笑着谈的(*≧▽≦)ツ</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div><div class="sidebar-state-number">23</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social"></div>
+<div class="sidebar-menu"><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="首页"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">首页</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="归档"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">归档</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="关于"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">关于</div>
+    </div><div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="友链"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>&#xe62b;</div>
+      <div class="sidebar-menu-link">友链</div>
+    </div></div>
+</div></div><div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div></nav>
+</div><div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" />
+        </div>
+      </div><script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/material-theme@1.0.0/dist/material-theme.umd.js"
+    integrity="sha384-vLev0II0HKFaxkcm&#43;/7kX5IGwVFBASkGchU311wmU/veIj2bB0UcBkQbW6yw2asK" crossorigin="anonymous"></script><script src="/js/main.js" ></script><script src="/js/aos.js" ></script><script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script><script src="/js/pjax_main.js" data-pjax></script><script>
+    var ALGOLIA_CONFIG = {
+      logo: '\/images\/algolia_logo.svg',
+      algolia: {
+        applicationID: "",
+        apiKey: "",
+        indexName: "",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": '搜索.....',
+          "hits_empty": '未发现与 「${query}」相关内容',
+          "hits_stats": '找到${hits}条结果（用时 ${time} ms）'
+        }
+      }
+    };
+  </script><script
+    src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"
+    deferintegrity="sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S&#43;jQz7ZBtQXnsXmD&#43;9jDOOY4cL6dCPzlrk" crossorigin="anonymous"></script><script
+    src="https://npm.webcache.cn/instantsearch.js@4.56.1/dist/instantsearch.production.min.js"
+    deferintegrity="sha384-hHJCflT4KBLQyHfKO9vpstIcFKn/Y&#43;KHTORelMMEn7mOp2AVPp&#43;7fr03dLgZiV3J" crossorigin="anonymous"></script><script src="/js/algolia_search.js" ></script><script
+    src="https://npm.webcache.cn/mouse-firework@0.1.1/dist/index.umd.js"
+    integrity="sha384-8LyaidD9GPxQQgLJO/WRw/O2h3BoNq/ApI/ecpvM6RsrCz2qP2ppBXUKihP4V/2d" crossorigin="anonymous"></script><script>
+  if (window.firework) {
+    const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"var(--red-1)\",\"var(--red-2)\",\"var(--red-3)\",\"var(--red-4)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"var(--red-0)\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+    options.excludeElements = options.excludeelements;
+    delete options.excludeelements;
+    window.firework(options);
+  }
+</script><script>
+  function initLive2d() {
+    live2d.init('https:\/\/fastly.jsdelivr.net\/gh\/D-Sketon\/plugin-live2d\/', {themeTipsPath: ""});
+  }
+</script><script
+    src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js"
+    asynconload="initLive2d()"></script>
+
+<div id="lazy-script">
+  <div><script data-pjax>
+        window.REIMU_POST = {
+          author: "meeting_smile",
+          title: "JMH的使用",
+          url: "http:\/\/localhost:1313\/post\/jmh%E7%9A%84%E4%BD%BF%E7%94%A8\/",
+          description: " JMH的使用 1. 与JMeter的区别 1.1 核心区别和选择 特性 JMH JMeter 测试类型 微基准测试（Microbenchmark） 负载测试、压力测试（Load\/Stress Test） 测试粒度 方法级别，代码级 系统级别，接口\/服务级 测试精度 毫秒级\/微秒级 秒级 主要用途 测试和优化代码片段的性能 评估系统在高并发下的整体性能 执行方式 在JVM内部运行，需要编写Java代码 从外部模拟用户请求，通过GUI（图形用户界面）配置 典型问题 ArrayList和LinkedList的遍历哪个更快 我的网站能否承受 1000 个用户同时访问？ 1.2 …",
+          cover: "https:\/\/th.bing.com\/th\/id\/R.ea79db054fb34ed0a3b96fb39065f8c6?rik=zPCDDnEZuiNDSg\u0026riu=http%3a%2f%2fimg.netbian.com%2ffile%2f2024%2f0229%2f23511787iaB.jpg\u0026ehk=CBW5%2fVpFvZ7Nzp0hbPI0MGAL0HANfJw%2fLQ9%2fWUrPU2I%3d\u0026risl=\u0026pid=ImgRaw\u0026r=0",
+        };
+      </script><script src="/js/insert_highlight.js" data-pjax></script><script type="module" data-pjax>const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")}).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script></div>
+</div><script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    asyncintegrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"></script><script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script><script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script></body>
+</html>
